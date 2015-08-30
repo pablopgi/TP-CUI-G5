@@ -25,4 +25,8 @@ class Personaje {
 	def void agregarDebilidad(Caracteristica caracteristica){
 		debilidades.add(caracteristica)
 	}
+	
+	def esPosicionIdeal(Posicion posicionElegida){
+		posicionIdeal == posicionElegida
+	}
 }
