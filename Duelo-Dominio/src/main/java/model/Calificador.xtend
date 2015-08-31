@@ -86,6 +86,7 @@ class CriterioShameOnYou extends CriterioCalificacion {
 	
 	override cumpleCondicion(Partida partida, Jugador jugador) {
 		partida.perdio &&
+		partida.usoPosicionIdeal &&
 		jugador.partidasEnLaPosicion(partida.posicionElegida).size >= 2
 	}
 
@@ -99,6 +100,8 @@ class CriterioManco extends CriterioCalificacion {
 	override cumpleCondicion(Partida partida, Jugador jugador) {
 		partida.perdio &&
 		partida.usoPosicionIdeal
+		jugador.partidasEnLaPosicion(partida.posicionElegida).size <= 2
+
 	}
 
 }

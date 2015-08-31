@@ -1,7 +1,5 @@
 package modelTest
 
-import org.junit.Test
-import org.junit.Assert
 import org.eclipse.xtend.lib.annotations.Accessors
 import model.Jugador
 import model.Partida
@@ -26,6 +24,8 @@ abstract class AbstractTest {
 	var Personaje nasus
 	var Personaje drowRanger
 	
+	var int contador
+	
 	@Before
 	def void setUp() {
 		
@@ -47,7 +47,11 @@ abstract class AbstractTest {
 														ResultadoPartida.Derrota, Posicion.TOP)
 
 		partidaPerdidaSinPosicionIdealTop = new Partida(jugadorIniciador, nasus,
-														ResultadoPartida.Derrota, Posicion.MIDDLE)
+														ResultadoPartida.Derrota, Posicion.MIDDLE);
+
+		(1..6).forEach[jugadorConSeisPartidasConMismoPersonajeConPosicionIdealTop.agregarPartida(partidaGanadaConPosicionIdealTop)]
+		
+		(1..3).forEach[jugadorConTresPartidasConPosicionTop.agregarPartida(partidaGanadaConPosicionIdealTop)]
 
 	}
 }
