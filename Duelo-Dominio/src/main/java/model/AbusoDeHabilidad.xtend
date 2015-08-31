@@ -15,6 +15,7 @@ class AbusoDeHabilidad extends Denuncia {
 
 	override void ejecutarDenuncia() {
 		if (valDenucias.validar(this)) {
+			this.denunciado.denunciasRecibidas.add(this)
 			this.sumarPenalizacion(this)
 		} else {
 

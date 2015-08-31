@@ -18,7 +18,7 @@ abstract class Denuncia {
 	protected def AbusoDelSistemaDeDenuncias abusoDeDenuncia(Denuncia deuncia) {
 		return new AbusoDelSistemaDeDenuncias(deuncia.denunciante, deuncia.denunciante,
 			'''El jugador intenta denunciar a: «deuncia.denunciado» por: «deuncia.class» sin tener una justificación suficiente: «this.
-				justificacion»''')
+				justificacion»''', 25)
 	}
 
 	abstract def void ejecutarDenuncia()

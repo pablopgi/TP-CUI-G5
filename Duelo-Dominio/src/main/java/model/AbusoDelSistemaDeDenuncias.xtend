@@ -14,7 +14,7 @@ class AbusoDelSistemaDeDenuncias extends Denuncia {
 	}
 
 	override void ejecutarDenuncia() {
-
+		this.denunciado.denunciasRecibidas.add(this)
 		this.abusoDeDenuncia(this)
 
 	}
