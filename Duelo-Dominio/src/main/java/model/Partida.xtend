@@ -33,6 +33,10 @@ class Partida {
 	def perdio() {
 		resultadoPartida == ResultadoPartida.Derrota
 	}
+	
+	def valorCalificacionObtenida() {
+		calificacionObtenida.valorCalificacion
+	}
 }
 
 enum ResultadoPartida {
