@@ -1,26 +1,26 @@
 package model
 
-class ValidadorDeDenuncias {
+class ValidadorDeDenuncias{
 	
-	val int tamanioValido = 20
-	val int cantidadMinPalabras = 3
+	val static int tamanioValido = 20
+	val static int cantidadMinPalabras = 3
 	
-	def validar(Denuncia denuncia){
-		return (tamanioValido(denuncia.motivo) && cantidadValidaPalabras(denuncia.motivo))
+	def static validar(Denuncia denuncia){
+		return (tamanioValido(denuncia.justificacion) && cantidadValidaPalabras(denuncia.justificacion))
 	}
 	
-	def tamanioValido(String motivo){
-		motivo.length >= tamanioValido
+	def static tamanioValido(String justificacion){
+		justificacion.length >= tamanioValido
 	}
 	
-	def cantidadValidaPalabras(String motivo){
-		contarPalabras(motivo) >= cantidadMinPalabras
+	def static cantidadValidaPalabras(String justificacion){
+		contarPalabras(justificacion) >= cantidadMinPalabras
 	}
 	
-	def private contarPalabras(String motivoDenuncia) {
+	def static private contarPalabras(String justificacion) {
 	    var contador = 1 
 	    var int pos
-	    var motivo = motivoDenuncia.trim()
+	    var motivo = justificacion.trim()
 	    if (motivo.isEmpty()) { 
 	        contador = 0;
 	    } 

@@ -7,6 +7,8 @@ import org.junit.Before
 import model.Personaje
 import model.Posicion
 import model.ResultadoPartida
+import model.Denuncia
+import model.FeedIntencional
 
 @Accessors
 abstract class AbstractTest {
@@ -23,6 +25,10 @@ abstract class AbstractTest {
 	
 	var Personaje nasus
 	var Personaje drowRanger
+	
+	var Denuncia denunciaConMasDe20CaracteresYMasde3Palabras
+	var Denuncia denunciaConMenosDe20CaracteresYMasde3Palabras
+	var Denuncia denunciaConMenosDe20CaracteresYMenosde3Palabras
 	
 	var int contador
 	
@@ -47,11 +53,23 @@ abstract class AbstractTest {
 														ResultadoPartida.Derrota, Posicion.TOP)
 
 		partidaPerdidaSinPosicionIdealTop = new Partida(jugadorIniciador, nasus,
-														ResultadoPartida.Derrota, Posicion.MIDDLE);
+														ResultadoPartida.Derrota, Posicion.MIDDLE)
 
 		(1..6).forEach[jugadorConSeisPartidasConMismoPersonajeConPosicionIdealTop.agregarPartida(partidaGanadaConPosicionIdealTop)]
 		
 		(1..3).forEach[jugadorConTresPartidasConPosicionTop.agregarPartida(partidaGanadaConPosicionIdealTop)]
+		
+		denunciaConMasDe20CaracteresYMasde3Palabras = new FeedIntencional(jugadorIniciador,
+															        	  jugadorSinPartidas,
+																          "Un motivo de denuncia de un jugador")	
+																   
+		denunciaConMenosDe20CaracteresYMasde3Palabras = new FeedIntencional(jugadorIniciador,
+																            jugadorSinPartidas,
+																            "Ab Cd Ef Gh")
+																     
+		denunciaConMenosDe20CaracteresYMenosde3Palabras = new FeedIntencional(jugadorIniciador,
+																              jugadorSinPartidas,
+																              "Aa Bb")
 
 	}
 }

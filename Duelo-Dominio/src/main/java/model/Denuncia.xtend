@@ -20,7 +20,7 @@ abstract class Denuncia {
 	}
 
 	def void sumarPenalizacion(Denuncia denuncia) {
-		denunciado.pesoDeDenuncias = denunciado.pedoDeDenuncias + denuncia.getPenalizacion
+		denunciado.pesoDeDenuncias = denunciado.pesoDeDenuncias + denuncia.getPenalizacion
 	}
 
 	protected def abusoDeDenuncia(Denuncia denuncia) {
