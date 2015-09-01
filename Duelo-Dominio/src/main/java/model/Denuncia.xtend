@@ -1,6 +1,7 @@
 package model
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import static model.ValidadorDeDenuncias.*
 
 @Accessors
 abstract class Denuncia {
@@ -8,7 +9,6 @@ abstract class Denuncia {
 	Jugador denunciante
 	Jugador denunciado
 	String justificacion
-	ValidadorDeDenuncias valDenucias
 	Integer penalizacion
 
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
@@ -43,7 +43,7 @@ class AbusoDeHabilidad extends Denuncia {
 	}
 
 	override void ejecutarDenuncia() {
-		if (valDenucias.validar(this)) {
+		if (validar(this)) {
 			this.denunciado.denunciasRecibidas.add(this)
 			this.sumarPenalizacion(this)
 		} else {
@@ -66,7 +66,7 @@ class ComunicacionAbusiva extends Denuncia {
 	}
 	
 	override void ejecutarDenuncia() {
-		if (valDenucias.validar(this)) {
+		if (validar(this)) {
 			this.denunciado.denunciasRecibidas.add(this)
 			this.sumarPenalizacion(this)
 		} else {
@@ -89,7 +89,7 @@ class FeedIntencional extends Denuncia {
 	}
 
 	override void ejecutarDenuncia() {
-		if (valDenucias.validar(this)) {
+		if (validar(this)) {
 			this.denunciado.denunciasRecibidas.add(this)
 			this.sumarPenalizacion(this)
 		} else {
