@@ -32,4 +32,8 @@ class Jugador {
 		partidasEnLaPosicion(posicion).filter[ personajeElegido == personaje ]
 	}
 	
+	def partidasConPersonaje(Personaje personaje) {
+		partidas.filter[ personajeElegido == personaje ]
+	}
+	
 }
