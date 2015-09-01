@@ -16,6 +16,10 @@ class Jugador {
 		denunciasRecibidas = newArrayList
 	}
 	
+	def void agregarDenuncia(Denuncia denuncia) {
+		denunciasRecibidas.add(denuncia)
+	}
+	
 	def void agregarPartida(Partida partida) {
 		partidas.add(partida)
 	}
