@@ -1,6 +1,8 @@
 package model
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.List
+import static model.CalculadorDeRanking.*
 
 @Accessors
 class Duelo {
@@ -20,8 +22,8 @@ class Duelo {
 		etapaActual.elegirPersonaje(pj, this)
 	}
 	
-	def void definirRival() {
-		etapaActual.definirRival(this)
+	def void definirRival(List<Jugador> posiblesRivales) {
+		etapaActual.definirRival(posiblesRivales, this)
 	}
 	
 	def void comenzarDuelo() {
@@ -34,7 +36,7 @@ abstract class EtapaDeDuelo {
 	
 	abstract def void elegirPersonaje(Personaje pj, Duelo duelo)
 	
-	abstract def void definirRival(Duelo duelo)
+	abstract def void definirRival(List<Jugador> posiblesRivales, Duelo duelo)
 	
 	abstract def void comenzarDuelo(Duelo duelo)
 	
@@ -49,7 +51,7 @@ class SeleccionPersonaje extends EtapaDeDuelo {
 		
 	}
 	
-	override definirRival(Duelo duelo) {
+	override definirRival(List<Jugador> posiblesRivales, Duelo duelo) {
 		throw new PersonajeNoElegidoException
 	}
 	
@@ -62,15 +64,21 @@ class SeleccionPersonaje extends EtapaDeDuelo {
 class SeleccionRival extends EtapaDeDuelo {
 	
 	override elegirPersonaje(Personaje pj, Duelo duelo) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		throw new PersonajeYaElegidoException
 	}
 	
-	override definirRival(Duelo duelo) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override definirRival(List<Jugador> posiblesRivales, Duelo duelo) {
+		var rivalEnMismoRanking = posiblesRivales.findFirst[ sonMismoRanking(duelo.retador, it) ]
+		
+		if(rivalEnMismoRanking.equals(null)) {
+			throw new NoHayRivalesPosiblesException
+		}
+		
+		duelo.retado = rivalEnMismoRanking
 	}
 	
 	override comenzarDuelo(Duelo duelo) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		throw new RivalNoDefinido
 	}
 	
 }
