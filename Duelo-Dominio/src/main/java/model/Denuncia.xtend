@@ -19,17 +19,22 @@ abstract class Denuncia {
 
 	}
 
-	def void sumarPenalizacion(Denuncia denuncia) {
-		denunciado.pesoDeDenuncias = denunciado.pesoDeDenuncias + denuncia.getPenalizacion
-	}
-
 	protected def abusoDeDenuncia(Denuncia denuncia) {
+		this.denunciado.denunciasRecibidas.add(this)
 		return new AbusoDelSistemaDeDenuncias(denuncia.denunciante, denuncia.denunciante,
-			'''El jugador intenta denunciar a: Â«denuncia.denunciadoÂ» por: Â«denuncia.classÂ» sin tener una justificacion suficiente: Â«this.
-				justificacionÂ»''')
+			'''El jugador intenta denunciar a: «denuncia.denunciado» por: «denuncia.class» sin tener una justificacion suficiente: Â«this.
+				justificacion»''')
 	}
 
-	abstract def void ejecutarDenuncia()
+	def void ejecutarDenuncia(Denuncia denuncia) {
+		if (validar(denuncia)) {
+			this.denunciado.denunciasRecibidas.add(denuncia)
+		} else {
+
+			this.abusoDeDenuncia(denuncia)
+
+		}
+	}
 
 }
 
@@ -39,18 +44,6 @@ class AbusoDeHabilidad extends Denuncia {
 
 		super(denunciante, denunciado, justificacion)
 		this.penalizacion = 5
-
-	}
-
-	override void ejecutarDenuncia() {
-		if (validar(this)) {
-			this.denunciado.denunciasRecibidas.add(this)
-			this.sumarPenalizacion(this)
-		} else {
-
-			this.abusoDeDenuncia(this)
-
-		}
 
 	}
 
@@ -64,19 +57,7 @@ class ComunicacionAbusiva extends Denuncia {
 		this.penalizacion = 7
 
 	}
-	
-	override void ejecutarDenuncia() {
-		if (validar(this)) {
-			this.denunciado.denunciasRecibidas.add(this)
-			this.sumarPenalizacion(this)
-		} else {
 
-			this.abusoDeDenuncia(this)
-
-		}
-
-	}
-	
 }
 
 class FeedIntencional extends Denuncia {
@@ -88,18 +69,6 @@ class FeedIntencional extends Denuncia {
 
 	}
 
-	override void ejecutarDenuncia() {
-		if (validar(this)) {
-			this.denunciado.denunciasRecibidas.add(this)
-			this.sumarPenalizacion(this)
-		} else {
-
-			this.abusoDeDenuncia(this)
-
-		}
-
-	}
-
 }
 
 class AbusoDelSistemaDeDenuncias extends Denuncia {
@@ -108,12 +77,6 @@ class AbusoDelSistemaDeDenuncias extends Denuncia {
 
 		super(denunciante, denunciado, justificacion)
 		this.penalizacion = 25
-
-	}
-
-	override void ejecutarDenuncia() {
-		this.denunciado.denunciasRecibidas.add(this)
-		this.abusoDeDenuncia(this)
 
 	}
 
