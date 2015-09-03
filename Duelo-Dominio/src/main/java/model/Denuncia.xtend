@@ -22,8 +22,8 @@ abstract class Denuncia {
 	protected def abusoDeDenuncia(Denuncia denuncia) {
 		this.denunciado.denunciasRecibidas.add(this)
 		return new AbusoDelSistemaDeDenuncias(denuncia.denunciante, denuncia.denunciante,
-			'''El jugador intenta denunciar a: «denuncia.denunciado» por: «denuncia.class» sin tener una justificacion suficiente: Â«this.
-				justificacion»''')
+			'''El jugador intenta denunciar a: Â«denuncia.denunciadoÂ» por: Â«denuncia.classÂ» sin tener una justificacion suficiente: Â«this.
+				justificacionÂ»''')
 	}
 
 	def void ejecutarDenuncia(Denuncia denuncia) {
