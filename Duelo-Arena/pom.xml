@@ -1,19 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.unq.cui.tp</groupId>
-  <artifactId>Duelo-Dominio</artifactId>
+  <artifactId>Duelo-Arena</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>TP.CUI.Dominio</name>
+  <name>TP.CUI.Arena</name>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-
+	
 		<dependency>
 			<groupId>org.eclipse.xtend</groupId>
 			<artifactId>xtend-archetype</artifactId>
@@ -22,9 +15,16 @@
 
 		<dependency>
 		    <groupId>org.uqbar-project</groupId>
-		    <artifactId>uqbar-domain</artifactId>
+		    <artifactId>arena-jface</artifactId>
 		    <version>3.5-SNAPSHOT</version>
 		</dependency>
 
+		<dependency>
+		    <groupId>edu.unq.cui.tp</groupId>
+		    <artifactId>Duelo-Dominio</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	
 	</dependencies>
+
 </project>
