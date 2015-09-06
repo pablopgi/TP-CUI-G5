@@ -11,6 +11,8 @@ class Duelo {
 	var Jugador retado
 	var Personaje personajeElegidoPorRetador
 	var Personaje personajeElegidoPorRetado
+	var Posicion posicionElegidaPorRetador
+	var Posicion posicionElegidaPorRetado
 	var EtapaDeDuelo etapaActual
 	
 	new (Jugador retador) {
@@ -29,6 +31,10 @@ class Duelo {
 	def void comenzarDuelo() {
 		etapaActual.comenzarDuelo(this)
 	}
+	
+//	def void setearAMR-XComoRival() {
+//		retado = new MRX
+//	}
 	
 }
 
@@ -75,10 +81,60 @@ class SeleccionRival extends EtapaDeDuelo {
 		}
 		
 		duelo.retado = rivalEnMismoRanking
+		
+		duelo.etapaActual = new DefinirDuelo
 	}
 	
 	override comenzarDuelo(Duelo duelo) {
-		throw new RivalNoDefinido
+		throw new RivalNoDefinidoException
+	}
+	
+}
+
+class DefinirDuelo extends EtapaDeDuelo {
+	
+	override elegirPersonaje(Personaje pj, Duelo duelo) {
+		throw new PersonajeYaElegidoException
+	}
+	
+	override definirRival(List<Jugador> posiblesRivales, Duelo duelo) {
+		throw new RivalYaDefinidoException
+	}
+	
+	override comenzarDuelo(Duelo duelo) {
+		
+		var partidaRetador = new Partida(duelo.retador, duelo.personajeElegidoPorRetador,
+										 null, duelo.posicionElegidaPorRetador)
+
+		var partidaRetado  = new Partida(duelo.retado, duelo.personajeElegidoPorRetado,
+										 null, duelo.posicionElegidaPorRetado)
+
+		var ataqueRetador = poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
+		var ataqueRetado  = poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
+
+		if(ataqueRetador > ataqueRetado) {
+			setearVictoriaDerrotaEnParDePartidas(partidaRetador, partidaRetado)
+		}
+		else if(ataqueRetador < ataqueRetado) {
+			setearVictoriaDerrotaEnParDePartidas(partidaRetado, partidaRetador)
+		}
+		else {
+			setearEmpateEnParDePartidas(partidaRetador, partidaRetado)
+		}
+		
+		duelo.retador.agregarPartida(partidaRetador)
+		duelo.retado.agregarPartida(partidaRetado)
+		
+	}
+	
+	private def void setearVictoriaDerrotaEnParDePartidas(Partida vencedor, Partida perdedor) {
+		vencedor.resultadoPartida = ResultadoPartida.Victoria
+		perdedor.resultadoPartida  = ResultadoPartida.Derrota
+	}
+	
+	private def void setearEmpateEnParDePartidas(Partida empate1, Partida empate2) {
+		empate1.resultadoPartida = ResultadoPartida.Empate
+		empate2.resultadoPartida  = ResultadoPartida.Empate
 	}
 	
 }

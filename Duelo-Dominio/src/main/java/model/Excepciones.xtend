@@ -20,3 +20,17 @@ class PersonajeYaElegidoException extends Exception {
 		super("Ya se ha elegido un personaje")
 	}
 }
+
+class RivalNoDefinidoException extends Exception {
+
+	new() {
+		super("Aun no se ha definido un rival")
+	}
+}
+
+class RivalYaDefinidoException extends Exception {
+	
+	new() {
+		super("Ya se ha definido un rival")
+	}
+}
