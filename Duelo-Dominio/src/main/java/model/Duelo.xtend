@@ -127,6 +127,21 @@ class DefinirDuelo extends EtapaDeDuelo {
 		
 	}
 	
+	def poderDeAtaque(Jugador jugador, Personaje personaje) {
+		var estadistica = jugador.getEstadisticaDe(personaje)
+		(estadistica.calificacion.valorCalificacion +
+		(estadistica.cantidadDeKills + (estadistica.cantidadDeAssists/2) - estadistica.cantidadDeDeads) *
+		estadistica.cantidadDeVecesQueInicioConPersonaje)  
+	}
+	
+//	El poder de ataque de los personajes dependen de las estadísticas que cada 
+//	jugador tenga para ese personaje y se calcula como:
+//	Valor de la Clasificación + (kills + assists / 2  - deads) * cantidad de veces usado el personaje para iniciar un duelo.
+
+//	NOTA: Si un jugador nunca había jugado con un personaje tomamos como clasificación la más baja (NOOOB).
+//	Tanto el retador como el contrincante del duelo actualizan sus estadísticas una vez finalizado el reto sabiendo el resultado obtenido.
+//	(Ver detalle de estadísticas en la sección Estadísticas)
+	
 	private def void setearVictoriaDerrotaEnParDePartidas(Partida vencedor, Partida perdedor) {
 		vencedor.resultadoPartida = ResultadoPartida.Victoria
 		perdedor.resultadoPartida  = ResultadoPartida.Derrota

@@ -1,37 +1,40 @@
 package model
 
+import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+
+@Accessors
 class Estadistica {
+	var int cantidadDeVecesQueInicioConPersonaje
+	var int cantidadDeVecesQueGano
+	var int cantidadDeKills
+	var int cantidadDeDeads
+	var int cantidadDeAssists
+	var List<Posicion> ubicacionesUtilizadas
+	var Posicion mejorUbicacion
+	var Calificacion calificacion
+	var Personaje personaje
 	
-	def cantidadDeVecesQueInicioConPersonaje(Jugador jugador, Personaje pj){
-		jugador.partidasConPersonaje(pj).filter[ iniciador == jugador ].size
-	}
-	
-	def cantidadDeVecesQueGano(Jugador jugador){
-		jugador.partidas.filter[ gano ].size
-	}
-	
-	def cantidadDeKills(Jugador jugador){
-		jugador.partidas.filter[ iniciador == jugador && gano ].size
-	}
-	
-	def cantidadDeDeads(Jugador jugador){
-		jugador.partidas.filter[ iniciador != jugador && perdio ].size
-	}
-	
-	def cantidadDeAssists(Jugador jugador){
-		jugador.partidas.filter[ empato ].size
-	}
-	
-	def ubicacionesUtilizadas(Jugador jugador){
-		jugador.partidas.filter[ iniciador == jugador ].map[ posicionElegida ].toSet
-	}
-	
-	def mejorUbicacion(Jugador jugador){
-		jugador.partidas.filter[ iniciador == jugador && gano ].last.posicionElegida
-	}
-	
-	def calificacion(Jugador jugador){
-		jugador.partidas.filter[ iniciador == jugador ].last.calificacionObtenida
+	new( int cantidadDeVecesQueInicioConPersonaje,
+		 int cantidadDeVecesQueGano,
+		 int cantidadDeKills,
+		 int cantidadDeDeads,
+		 int cantidadDeAssists,
+		 List<Posicion> ubicacionesUtilizadas,
+		 Posicion mejorUbicacion,
+		 Calificacion calificacion,
+		 Personaje personaje) {
+		 	
+		this.cantidadDeVecesQueInicioConPersonaje = cantidadDeVecesQueInicioConPersonaje
+		this.cantidadDeVecesQueGano = cantidadDeVecesQueGano
+		this.cantidadDeKills = cantidadDeKills
+		this.cantidadDeDeads = cantidadDeDeads
+		this.cantidadDeAssists = cantidadDeAssists
+		this.ubicacionesUtilizadas = ubicacionesUtilizadas
+		this.mejorUbicacion = mejorUbicacion
+		this.calificacion = calificacion
+		this.personaje = personaje
+		
 	}
 	
 }

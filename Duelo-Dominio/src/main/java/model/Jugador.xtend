@@ -9,11 +9,13 @@ class Jugador {
 	var String nombreJugador
 	var List<Partida> partidas
 	var List<Denuncia> denunciasRecibidas
+	var List<Estadistica> estadisticas
 	
 	new (String nombre){
 		nombreJugador = nombre
 		partidas = newArrayList
 		denunciasRecibidas = newArrayList
+		estadisticas = newArrayList
 	}
 	
 	def void agregarDenuncia(Denuncia denuncia) {
@@ -34,6 +36,15 @@ class Jugador {
 	
 	def partidasConPersonaje(Personaje personaje) {
 		partidas.filter[ personajeElegido == personaje ]
+	}
+	
+	def getEstadisticaDe(Personaje personaje){
+		estadisticas.findFirst[est | est.personaje == personaje]
+		
+	}
+	def removeEstadisticaDePersonaje(Personaje personaje){
+		var estPj= getEstadisticaDe(personaje)
+		estadisticas.remove(estPj)
 	}
 	
 }
