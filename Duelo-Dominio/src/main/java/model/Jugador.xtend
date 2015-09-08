@@ -47,4 +47,13 @@ class Jugador {
 		estadisticas.remove(estPj)
 	}
 	
+	def void agregarEstadistica(Estadistica estadistica){
+		estadisticas.add(estadistica)
+	}
+	
+	def void actualizarEstadistica(Estadistica estadistica){
+		removeEstadisticaDePersonaje(estadistica.personaje)
+		agregarEstadistica(estadistica)
+	}
+	
 }

@@ -3,6 +3,7 @@ package model
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import static model.CalculadorDeRanking.*
+import static model.GeneradorDeEstadistica.*
 
 @Accessors
 class Duelo {
@@ -125,6 +126,8 @@ class DefinirDuelo extends EtapaDeDuelo {
 		duelo.retador.agregarPartida(partidaRetador)
 		duelo.retado.agregarPartida(partidaRetado)
 		
+		duelo.retador.actualizarEstadistica(crearEstadistica(duelo.personajeElegidoPorRetador,duelo.retador))
+		duelo.retado.actualizarEstadistica(crearEstadistica(duelo.personajeElegidoPorRetado,duelo.retado))
 	}
 	
 	def poderDeAtaque(Jugador jugador, Personaje personaje) {
