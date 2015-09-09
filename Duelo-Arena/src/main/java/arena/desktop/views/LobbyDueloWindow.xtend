@@ -1,6 +1,5 @@
 package arena.desktop.views
 
-import org.uqbar.arena.windows.SimpleWindow
 import model.Duelo
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
