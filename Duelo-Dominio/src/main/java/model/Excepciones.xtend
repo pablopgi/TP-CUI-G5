@@ -33,4 +33,11 @@ class RivalYaDefinidoException extends Exception {
 	new() {
 		super("Ya se ha definido un rival")
 	}
+	
+}
+
+class DenunciaInvalidaException extends Exception {
+	new() {
+		super("La denuncia es inválida")
+	}
 }
