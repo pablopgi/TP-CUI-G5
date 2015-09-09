@@ -1,7 +1,6 @@
 package model
 
 import org.eclipse.xtend.lib.annotations.Accessors
-import static model.ValidadorDeDenuncias.*
 
 @Accessors
 abstract class Denuncia {
@@ -24,16 +23,6 @@ abstract class Denuncia {
 		return new AbusoDelSistemaDeDenuncias(denuncia.denunciante, denuncia.denunciante,
 			'''El jugador intenta denunciar a: «denuncia.denunciado» por: «denuncia.class» sin tener una justificacion suficiente: «this.
 				justificacion»''')
-	}
-
-	def void ejecutarDenuncia(Denuncia denuncia) {
-		if (validar(denuncia)) {
-			this.denunciado.denunciasRecibidas.add(denuncia)
-		} else {
-
-			this.abusoDeDenuncia(denuncia)
-
-		}
 	}
 
 }
