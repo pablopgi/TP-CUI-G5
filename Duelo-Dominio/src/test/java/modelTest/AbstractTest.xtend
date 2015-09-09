@@ -9,6 +9,8 @@ import model.Posicion
 import model.ResultadoPartida
 import model.Denuncia
 import model.FeedIntencional
+import model.Dominador
+import model.Rampage
 
 @Accessors
 abstract class AbstractTest {
@@ -17,6 +19,7 @@ abstract class AbstractTest {
 	var Jugador jugadorConSeisPartidasConMismoPersonajeConPosicionIdealTop
 	var Jugador jugadorConTresPartidasConPosicionTop
 	var Jugador jugadorSinPartidas
+	var Jugador jugadorConVeintePartidasGanadas
 	
 	var Partida partidaGanadaConPosicionIdealTop
 	var Partida partidaGanadaSinPosicionIdeal
@@ -42,18 +45,23 @@ abstract class AbstractTest {
 		jugadorConSeisPartidasConMismoPersonajeConPosicionIdealTop = new Jugador("PeruanoFeeder")
 		jugadorConTresPartidasConPosicionTop = new Jugador("Huehue")
 		jugadorSinPartidas = new Jugador("Robochop")
+		jugadorConVeintePartidasGanadas = new Jugador("Asian Power")
 
 		partidaGanadaConPosicionIdealTop = new Partida(jugadorIniciador, nasus,
 													   ResultadoPartida.Victoria, Posicion.TOP)
+		partidaGanadaConPosicionIdealTop.calificacionObtenida = new Dominador
    
 		partidaGanadaSinPosicionIdeal = new Partida(jugadorIniciador, nasus,
 													ResultadoPartida.Victoria, Posicion.JUNGLE)
+		partidaGanadaSinPosicionIdeal.calificacionObtenida = new Rampage
 
 		partidaPerdidaConPosicionIdealTop = new Partida(jugadorIniciador, nasus,
 														ResultadoPartida.Derrota, Posicion.TOP)
 
 		partidaPerdidaSinPosicionIdealTop = new Partida(jugadorIniciador, nasus,
 														ResultadoPartida.Derrota, Posicion.MIDDLE)
+
+		(1..20).forEach[jugadorConVeintePartidasGanadas.agregarPartida(partidaGanadaConPosicionIdealTop)]
 
 		(1..6).forEach[jugadorConSeisPartidasConMismoPersonajeConPosicionIdealTop.agregarPartida(partidaGanadaConPosicionIdealTop)]
 		
