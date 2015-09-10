@@ -15,6 +15,8 @@ class DenunciasAppModel {
 	var Jugador jugadorDenunciado
 	var Denuncia denunciaSeleccionada
 	
+	new(){}
+	
 	def void validarDenuncia() {
 		validar(denunciaSeleccionada=>[
 			justificacion = detalles
