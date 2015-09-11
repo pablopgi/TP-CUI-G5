@@ -14,6 +14,8 @@ class Duelo {
 	var Personaje personajeElegidoPorRetado
 	var Posicion posicionElegidaPorRetador
 	var Posicion posicionElegidaPorRetado
+	var int poderDeRetador
+	var int poderDeRetado
 	var EtapaDeDuelo etapaActual
 	
 	new (Jugador retador) {
@@ -110,13 +112,13 @@ class DefinirDuelo extends EtapaDeDuelo {
 		var partidaRetado  = new Partida(duelo.retado, duelo.personajeElegidoPorRetado,
 										 null, duelo.posicionElegidaPorRetado)
 
-		var ataqueRetador = poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
-		var ataqueRetado  = poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
+		duelo.poderDeRetador = poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
+		duelo.poderDeRetado  = poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
 
-		if(ataqueRetador > ataqueRetado) {
+		if(duelo.poderDeRetador > duelo.poderDeRetado) {
 			setearVictoriaDerrotaEnParDePartidas(partidaRetador, partidaRetado)
 		}
-		else if(ataqueRetador < ataqueRetado) {
+		else if(duelo.poderDeRetador < duelo.poderDeRetado) {
 			setearVictoriaDerrotaEnParDePartidas(partidaRetado, partidaRetador)
 		}
 		else {
@@ -132,19 +134,16 @@ class DefinirDuelo extends EtapaDeDuelo {
 	
 	def poderDeAtaque(Jugador jugador, Personaje personaje) {
 		var estadistica = jugador.getEstadisticaDe(personaje)
+
+		if(estadistica.equals(null)){
+			estadistica = crearEstadistica(personaje, jugador)
+		}
+
 		(estadistica.calificacion.valorCalificacion +
 		(estadistica.cantidadDeKills + (estadistica.cantidadDeAssists/2) - estadistica.cantidadDeDeads) *
 		estadistica.cantidadDeVecesQueInicioConPersonaje)  
 	}
-	
-//	El poder de ataque de los personajes dependen de las estadísticas que cada 
-//	jugador tenga para ese personaje y se calcula como:
-//	Valor de la Clasificación + (kills + assists / 2  - deads) * cantidad de veces usado el personaje para iniciar un duelo.
-
-//	NOTA: Si un jugador nunca había jugado con un personaje tomamos como clasificación la más baja (NOOOB).
-//	Tanto el retador como el contrincante del duelo actualizan sus estadísticas una vez finalizado el reto sabiendo el resultado obtenido.
-//	(Ver detalle de estadísticas en la sección Estadísticas)
-	
+			
 	private def void setearVictoriaDerrotaEnParDePartidas(Partida vencedor, Partida perdedor) {
 		vencedor.resultadoPartida = ResultadoPartida.Victoria
 		perdedor.resultadoPartida  = ResultadoPartida.Derrota

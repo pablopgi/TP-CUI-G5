@@ -15,6 +15,18 @@ class Estadistica {
 	var Calificacion calificacion
 	var Personaje personaje
 	
+	new(Personaje pj) {
+		cantidadDeVecesQueInicioConPersonaje = 0
+		cantidadDeVecesQueGano = 0
+		cantidadDeKills = 0
+		cantidadDeDeads = 0
+		cantidadDeAssists = 0
+		ubicacionesUtilizadas = newArrayList
+		mejorUbicacion = null
+		calificacion = new Noob
+		personaje = pj
+	}
+	
 	new( int cantidadDeVecesQueInicioConPersonaje,
 		 int cantidadDeVecesQueGano,
 		 int cantidadDeKills,

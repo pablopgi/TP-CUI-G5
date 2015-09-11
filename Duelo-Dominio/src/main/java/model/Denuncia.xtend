@@ -1,8 +1,10 @@
 package model
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
 @Accessors
+@Observable
 abstract class Denuncia {
 
 	Jugador denunciante
@@ -31,6 +33,7 @@ abstract class Denuncia {
 
 }
 
+@Accessors
 class AbusoDeHabilidad extends Denuncia {
 
 	new(){}
@@ -48,6 +51,7 @@ class AbusoDeHabilidad extends Denuncia {
 
 }
 
+@Accessors
 class ComunicacionAbusiva extends Denuncia {
 
 	new(){}
@@ -65,6 +69,7 @@ class ComunicacionAbusiva extends Denuncia {
 
 }
 
+@Accessors
 class FeedIntencional extends Denuncia {
 
 	new(){}
@@ -82,6 +87,7 @@ class FeedIntencional extends Denuncia {
 
 }
 
+@Accessors
 class AbusoDelSistemaDeDenuncias extends Denuncia {
 
 	new(){}

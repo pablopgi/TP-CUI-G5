@@ -1,7 +1,5 @@
 package model
 
-import javax.swing.text.Position.Bias
-
 class GeneradorDeEstadistica {
 	
 	def static cantidadDeVecesQueInicioConPersonaje(Jugador jugador, Personaje pj){
@@ -37,6 +35,7 @@ class GeneradorDeEstadistica {
 	}
 	
 	def static crearEstadistica(Personaje personaje, Jugador jugador){
+		if(!jugador.partidasConPersonaje(personaje).isEmpty){
 		 new Estadistica(
 		 	cantidadDeVecesQueInicioConPersonaje(jugador,personaje),
 		 	cantidadDeVecesQueGano(jugador,personaje),
@@ -46,7 +45,11 @@ class GeneradorDeEstadistica {
 		 	ubicacionesUtilizadas(jugador,personaje).toList,
 		 	mejorUbicacion(jugador,personaje),
 		 	calificacion(jugador,personaje),
-		 	personaje)
+		 	personaje)			
+		}
+		else{
+			new Estadistica(personaje)
+		}
 	}
 	
 }
