@@ -19,8 +19,8 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 	new(WindowOwner parent, DenunciasAppModel model) {
 		super(parent, model)
 	}
-	
-	override protected createFormPanel(Panel mainPanel) {
+
+	override createMainTemplate(Panel mainPanel) {
 		new Label(mainPanel) => [
 			text = "Hacer denuncia"
 		]
@@ -31,8 +31,11 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		
 		panelColums(mainPanel)
 		panelButtons(mainPanel)
-				
 		
+	}
+
+	override protected createFormPanel(Panel mainPanel) {
+		// No se usa
 	}
 	
 	def panelButtons(Panel simpleWindow){
@@ -40,23 +43,25 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		mainPanelButtons.layout = new HorizontalLayout
 		
 		new Button(mainPanelButtons)=>[
+			caption = "Cancelar"
+			fontSize = 11
+			onClick[this.close]
+		]
+		
+		new Button(mainPanelButtons)=>[
 			caption = "Denunciar"
 			fontSize = 11
 			onClick[
 				try{
 					modelObject.validarDenuncia
+					new DenunciaExitosaWindow(this, modelObject.denunciaSeleccionada).open
 				}
 				catch (DenunciaInvalidaException e){
 					new SancionAntideportivaWindow(this, modelObject.denunciaSeleccionada).open	
 				}
-				new DenunciaExitosaWindow(this, modelObject.denunciaSeleccionada).open
+				this.close
 			]
-		]
-		
-		new Button(mainPanelButtons)=>[
-			caption = "Cancelar"
-			fontSize = 11
-			onClick[this.close]
+			bindEnabledToProperty("datosIngresados")
 		]
 		
 	}
@@ -69,16 +74,14 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		
 		new Label(panelC).text = "Motivo:"
 		
-		new Selector(panelC) => [
+		new Selector<Denuncia>(panelC) => [
 			allowNull = false
-			bindItemsToProperty("denunciasPosibles").adapter = new PropertyAdapter(Denuncia,"motivo")
+			bindItemsToProperty("denunciasPosibles").adapter = new PropertyAdapter(Denuncia, "motivo")
 			bindValueToProperty("denunciaSeleccionada")
 		]
 		
 		new Label(panelC).text = "Detalles:"
 		new TextBox(panelC).bindValueToProperty("detalles")
-		
-		
 		
 	}
 	
