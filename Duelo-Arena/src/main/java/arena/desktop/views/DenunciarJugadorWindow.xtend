@@ -26,7 +26,7 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		]
 		
 		new Label(mainPanel) => [
-			text = "Estas queriendo denunciar a:«jugadorDenunciado»"
+			text = '''Estas queriendo denunciar a:«modelObject.jugadorDenunciado.nombreJugador»'''
 		]
 		
 		panelColums(mainPanel)

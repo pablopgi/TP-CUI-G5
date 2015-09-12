@@ -5,6 +5,14 @@ class ValidadorDeDenuncias{
 	val static int tamanioValido = 20
 	val static int cantidadMinPalabras = 3
 	
+	def static abusoDeDenuncia(Denuncia denuncia) {
+		return new AbusoDelSistemaDeDenuncias(denuncia.denunciante, denuncia.denunciante,
+			'''El jugador intenta denunciar a: «denuncia.denunciado» por: «denuncia.motivo» sin tener una justificacion suficiente: «denuncia.
+				justificacion»''')
+	}
+	
+	
+	
 	def static void validar(Denuncia denuncia){
 		if (!(tamanioValido(denuncia.justificacion) && cantidadValidaPalabras(denuncia.justificacion))){
 			throw new DenunciaInvalidaException

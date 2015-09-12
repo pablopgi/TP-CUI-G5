@@ -18,7 +18,7 @@ class DenunciaExitosaWindow extends SimpleWindow<Denuncia> {
 		title = "Denuncia exitosa!"
 		
 		new Label(mainPanel) => [
-			text = "Hemos sancionado a «model.denunciado»"
+			text = '''Hemos sancionado a «modelObject.denunciado.nombreJugador»'''
 			fontSize = 20
 			foreground = Color::WHITE
 			background = Color::BLACK
