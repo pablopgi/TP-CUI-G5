@@ -52,7 +52,7 @@ class DenunciasAppModel {
 		cambioDatosIngresados
 	}
 	
-	def void validarDenuncia() {
+	def void validarYAgregarDenuncia() {
 		denunciaSeleccionada => [
 			justificacion = detalles
 			denunciante = jugadorDenunciante

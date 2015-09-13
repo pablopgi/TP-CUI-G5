@@ -13,6 +13,7 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import model.DenunciaInvalidaException
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.TextBox
+import java.awt.Color
 
 class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 	
@@ -23,10 +24,14 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 	override createMainTemplate(Panel mainPanel) {
 		new Label(mainPanel) => [
 			text = "Hacer denuncia"
+			fontSize = 20
+			foreground = Color::WHITE
+			background = Color::BLACK
 		]
 		
 		new Label(mainPanel) => [
 			text = '''Estas queriendo denunciar a:«modelObject.jugadorDenunciado.nombreJugador»'''
+			fontSize = 12
 		]
 		
 		panelColums(mainPanel)
@@ -34,10 +39,6 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		
 	}
 
-	override protected createFormPanel(Panel mainPanel) {
-		// No se usa
-	}
-	
 	def panelButtons(Panel simpleWindow){
 		var mainPanelButtons = new Panel(simpleWindow)
 		mainPanelButtons.layout = new HorizontalLayout
@@ -53,7 +54,7 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 			fontSize = 11
 			onClick[
 				try{
-					modelObject.validarDenuncia
+					modelObject.validarYAgregarDenuncia
 					new DenunciaExitosaWindow(this, modelObject.denunciaSeleccionada).open
 				}
 				catch (DenunciaInvalidaException e){
@@ -89,6 +90,8 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 	//No se usa	
 	}
 	
-
-		
+	override protected createFormPanel(Panel mainPanel) {
+		// No se usa
+	}
+	
 }

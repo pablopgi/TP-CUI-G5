@@ -4,6 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import static model.CalculadorDeRanking.*
 import static model.GeneradorDeEstadistica.*
+import static model.CalculadorPoderDeAtaque.*
 
 @Accessors
 class Duelo {
@@ -35,10 +36,6 @@ class Duelo {
 		etapaActual.comenzarDuelo(this)
 	}
 	
-//	def void setearAMR-XComoRival() {
-//		retado = new MRX
-//	}
-	
 }
 
 abstract class EtapaDeDuelo {
@@ -68,6 +65,11 @@ class SeleccionPersonaje extends EtapaDeDuelo {
 		throw new PersonajeNoElegidoException
 	}
 	
+	def void setearAMRXComoRival(Duelo duelo) {
+		duelo.retado = new MRX
+		duelo.etapaActual = new DefinirDuelo
+	}
+
 }
 
 class SeleccionRival extends EtapaDeDuelo {
@@ -112,8 +114,7 @@ class DefinirDuelo extends EtapaDeDuelo {
 		var partidaRetado  = new Partida(duelo.retado, duelo.personajeElegidoPorRetado,
 										 null, duelo.posicionElegidaPorRetado)
 
-		duelo.poderDeRetador = poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
-		duelo.poderDeRetado  = poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
+		setearPoderesDeAtaque(duelo)
 
 		if(duelo.poderDeRetador > duelo.poderDeRetado) {
 			setearVictoriaDerrotaEnParDePartidas(partidaRetador, partidaRetado)
@@ -132,18 +133,11 @@ class DefinirDuelo extends EtapaDeDuelo {
 		duelo.retado.actualizarEstadistica(crearEstadistica(duelo.personajeElegidoPorRetado,duelo.retado))
 	}
 	
-	def poderDeAtaque(Jugador jugador, Personaje personaje) {
-		var estadistica = jugador.getEstadisticaDe(personaje)
-
-		if(estadistica.equals(null)){
-			estadistica = crearEstadistica(personaje, jugador)
-		}
-
-		(estadistica.calificacion.valorCalificacion +
-		(estadistica.cantidadDeKills + (estadistica.cantidadDeAssists/2) - estadistica.cantidadDeDeads) *
-		estadistica.cantidadDeVecesQueInicioConPersonaje)  
+	private def setearPoderesDeAtaque(Duelo duelo) {
+		duelo.poderDeRetador = poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
+		duelo.poderDeRetado  = poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
 	}
-			
+	
 	private def void setearVictoriaDerrotaEnParDePartidas(Partida vencedor, Partida perdedor) {
 		vencedor.resultadoPartida = ResultadoPartida.Victoria
 		perdedor.resultadoPartida  = ResultadoPartida.Derrota
