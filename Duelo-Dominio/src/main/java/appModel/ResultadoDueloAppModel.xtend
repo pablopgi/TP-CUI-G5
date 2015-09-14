@@ -86,6 +86,13 @@ class ResultadoDueloAppModel {
 		else if(poderDeRetado > poderDeRetador) "Perdiste contra " else "Empataste contra "
 	}
 
+	def textoParaBotonCorrepondienteAResultadoDelDuelo() {
+
+		if (poderDeRetador > poderDeRetado)
+			"Ganaste Maquinola "
+		else if(poderDeRetado > poderDeRetador) "Aceptar Derrorta con Honor " else "Bardeaste lincea "
+
+	}
 	def huboGanador() {
 		resultadoPartida != "Empataste contra "
 	}
@@ -98,17 +105,5 @@ class ResultadoDueloAppModel {
 			duelo.retador.nombreJugador
 	}
 
-	def esGanador() {
-
-		poderDeRetador > poderDeRetado
-	}
-
-	def textoParaBotonCorrepondienteAResultadoDelDuelo() {
-
-		if (poderDeRetador > poderDeRetado)
-			"Ganaste Maquinola "
-		else if(poderDeRetado > poderDeRetador) "Aceptar Derrorta con Honor " else "Bardeaste lincea "
-
-	}
 
 }
