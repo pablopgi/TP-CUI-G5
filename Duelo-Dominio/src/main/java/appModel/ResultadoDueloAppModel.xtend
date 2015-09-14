@@ -13,16 +13,26 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class ResultadoDueloAppModel {
 	var Duelo duelo
-	var String nombreRetado 
+	var Jugador retador
+	var Jugador retado
+	var String nombreRetado
 	var Estadistica estadistica
 
 	def static numeroAString(int aConvertir) {
 
 		Integer.toString(aConvertir)
 	}
-	
-	def getNombrePjRetado(){
+
+	def getNombrePjRetado() {
 		duelo.retado.nombreJugador
+	}
+
+	def getRetador() {
+		duelo.retador
+	}
+
+	def getRetado() {
+		duelo.retado
 	}
 
 	def jugadasDeConPersonaje(Jugador jugador, Personaje personaje) {
@@ -75,8 +85,30 @@ class ResultadoDueloAppModel {
 			"Ganaste contra "
 		else if(poderDeRetado > poderDeRetador) "Perdiste contra " else "Empataste contra "
 	}
-	def ganadorDelDuelo(){
-		
-		
+
+	def huboGanador() {
+		resultadoPartida != "Empataste contra "
 	}
+
+	def ganadorDuelo() {
+
+		if (poderDeRetador > poderDeRetado)
+			duelo.retador.nombreJugador
+		else
+			duelo.retador.nombreJugador
+	}
+
+	def esGanador() {
+
+		poderDeRetador > poderDeRetado
+	}
+
+	def textoParaBotonCorrepondienteAResultadoDelDuelo() {
+
+		if (poderDeRetador > poderDeRetado)
+			"Ganaste Maquinola "
+		else if(poderDeRetado > poderDeRetador) "Aceptar Derrorta con Honor " else "Bardeaste lincea "
+
+	}
+
 }
