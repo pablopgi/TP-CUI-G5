@@ -12,10 +12,12 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import appModel.DenunciasAppModel
+import appModel.ResultadoDueloAppModel.*
+import appModel.ResultadoDueloAppModel
 
-class ResultadoDueloWindow extends SimpleWindow<Duelo> {
+class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 	
-	new(WindowOwner parent, Duelo model) {
+	new(WindowOwner parent, ResultadoDueloAppModel model) {
 		super(parent, model)
 	}
 	
@@ -23,7 +25,7 @@ class ResultadoDueloWindow extends SimpleWindow<Duelo> {
 		title = "Resultado duelo"
 		
 		new Label(mainPanel) => [
-			text = '''«modelObject.personajeElegidoPorRetador.nombre» vs «modelObject.personajeElegidoPorRetado.nombre»'''
+			text = '''«modelObject.duelo.personajeElegidoPorRetador.nombre» vs «modelObject.duelo.personajeElegidoPorRetado.nombre»'''
 			fontSize = 20
 			foreground = Color::WHITE
 			background = Color::BLACK
@@ -36,8 +38,8 @@ class ResultadoDueloWindow extends SimpleWindow<Duelo> {
 			background = Color::YELLOW
 		]
 		
-		crearPanelStatJugador(mainPanel, modelObject.retador, modelObject.personajeElegidoPorRetador)
-		crearPanelStatJugador(mainPanel, modelObject.retado, modelObject.personajeElegidoPorRetado)
+		crearPanelStatJugador(mainPanel, modelObject.duelo.retador, modelObject.duelo.personajeElegidoPorRetador)
+		crearPanelStatJugador(mainPanel, modelObject.duelo.retado, modelObject.duelo.personajeElegidoPorRetado)
 		panelIndicadorGanadorYPuntosDeAtaque(mainPanel)
 		panelBotones(mainPanel)
 
@@ -118,12 +120,11 @@ class ResultadoDueloWindow extends SimpleWindow<Duelo> {
 		]
 	}
 	
-	// TODO : Hay que pasar este metodo a un AppModel
-	def resultadoPartida() {
-		if(modelObject.poderDeRetador > modelObject.poderDeRetado) "Ganaste contra "
-		else if(modelObject.poderDeRetado > modelObject.poderDeRetador) "Perdiste contra "
-		else "Empataste contra "
-	}
+	/*
+	 * 
+	 * Aca estaba resultado partida
+	 */
+
 	
 	def panelBotones(Panel mainPanel) {
 		var panel = new Panel(mainPanel)
