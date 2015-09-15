@@ -37,6 +37,10 @@ class Partida {
 	def valorCalificacionObtenida() {
 		calificacionObtenida.valorCalificacion
 	}
+	
+	def esIniciador(Jugador jugador) {
+		iniciador == jugador
+	}
 }
 
 enum ResultadoPartida {

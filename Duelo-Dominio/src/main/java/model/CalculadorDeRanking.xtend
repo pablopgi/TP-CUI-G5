@@ -22,9 +22,11 @@ class CalculadorDeRanking {
 	
 	private def static promedioCalificacionesJugador(List<Partida> partidas) {
 
-		partidas.fold(0)[ resultado, partida | resultado + partida.valorCalificacionObtenida ] /
-		partidas.size
-		
+		if(!partidas.isEmpty){
+			partidas.fold(0)[ resultado, partida | resultado + partida.valorCalificacionObtenida ] /
+			partidas.size
+		}
+		else 0
 	}
 	
 	private def static pesoTotalDenuncias(List<Denuncia> denuncias) {

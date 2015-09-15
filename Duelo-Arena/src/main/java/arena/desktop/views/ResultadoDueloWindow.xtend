@@ -1,7 +1,6 @@
 package arena.desktop.views
 
 import org.uqbar.arena.windows.SimpleWindow
-import model.Duelo
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
@@ -12,7 +11,6 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import appModel.DenunciasAppModel
-import appModel.ResultadoDueloAppModel.*
 import appModel.ResultadoDueloAppModel
 
 class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
@@ -25,8 +23,7 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 		title = "Resultado duelo"
 
 		new Label(mainPanel) => [
-			text = '''«modelObject.duelo.personajeElegidoPorRetador.nombre» vs «modelObject.duelo.
-				personajeElegidoPorRetado.nombre»'''
+			text = '''«modelObject.nombrePjRetador» vs «modelObject.nombrePjRetado»'''
 			fontSize = 20
 			foreground = Color::WHITE
 			background = Color::BLACK
@@ -39,8 +36,8 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 			background = Color::YELLOW
 		]
 
-		crearPanelStatJugador(mainPanel, modelObject.duelo.retador, modelObject.duelo.personajeElegidoPorRetador)
-		crearPanelStatJugador(mainPanel, modelObject.duelo.retado, modelObject.duelo.personajeElegidoPorRetado)
+		crearPanelStatJugador(mainPanel, modelObject.retador, modelObject.pjRetador)
+		crearPanelStatJugador(mainPanel, modelObject.retado, modelObject.pjRetado)
 		panelIndicadorGanadorYPuntosDeAtaque(mainPanel)
 		panelBotones(mainPanel)
 
@@ -100,7 +97,7 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 			]
 
 			new Label(panel) => [
-				text = modelObject.ganadorDuelo + " !!"
+				text = '''«modelObject.ganadorDuelo» !!'''
 				fontSize = 15
 				foreground = Color::GREEN
 				background = Color::YELLOW

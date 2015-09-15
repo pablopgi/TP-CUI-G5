@@ -3,7 +3,6 @@ package model
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import static model.CalculadorDeRanking.*
-import static model.GeneradorDeEstadistica.*
 import static model.CalculadorPoderDeAtaque.*
 
 @Accessors
@@ -24,12 +23,12 @@ class Duelo {
 		etapaActual = new SeleccionPersonaje
 	}
 	
-	def void elegirPersonaje(Personaje pj) {
-		etapaActual.elegirPersonaje(pj, this)
+	def void elegirPersonaje(Personaje pj, Posicion pos) {
+		etapaActual.elegirPersonajeEnPosicion(pj, pos, this)
 	}
 	
-	def void definirRival(List<Jugador> posiblesRivales) {
-		etapaActual.definirRival(posiblesRivales, this)
+	def void definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles) {
+		etapaActual.definirRival(posiblesRivales, personajesPosibles, this)
 	}
 	
 	def void comenzarDuelo() {
@@ -40,24 +39,36 @@ class Duelo {
 
 abstract class EtapaDeDuelo {
 	
-	abstract def void elegirPersonaje(Personaje pj, Duelo duelo)
+	abstract def void elegirPersonajeEnPosicion(Personaje pj, Posicion pos, Duelo duelo)
 	
-	abstract def void definirRival(List<Jugador> posiblesRivales, Duelo duelo)
+	abstract def void definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles, Duelo duelo)
 	
 	abstract def void comenzarDuelo(Duelo duelo)
 	
 }
 
+//El duelo consta de tres etapas, estas son:
+// - SeleccionPersonaje en la que el retador selecciona al personaje y a la posicion
+//   con las cuales se batira a duelo
+// - SeleccionRival en donde se definira al rival retado para el duelo, en esta se
+//   busca un rival que este en el mismo ranking que el retador, se seleccionara un
+//   personaje para el mismo y una posicion, en el caso de no tener rivales en el
+//   mismo ranking en esta etapa se dara la posibilidad de batirse a duelo con MR-X
+// - DefinirDuelo en donde se calculara el poderDeAtaque de los jugadores, se crearan
+//   las partidas con los respectivos datos de la partida para cada jugador y se
+//   actualizarn las estadisticas de cada jugador para el personaje usado
+
 class SeleccionPersonaje extends EtapaDeDuelo {
 	
-	override elegirPersonaje(Personaje pj, Duelo duelo) {
+	override elegirPersonajeEnPosicion(Personaje pj, Posicion pos, Duelo duelo) {
 		
 		duelo.personajeElegidoPorRetador = pj
+		duelo.posicionElegidaPorRetador = pos
 		duelo.etapaActual = new SeleccionRival
 		
 	}
 	
-	override definirRival(List<Jugador> posiblesRivales, Duelo duelo) {
+	override definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles, Duelo duelo) {
 		throw new PersonajeNoElegidoException
 	}
 	
@@ -65,44 +76,59 @@ class SeleccionPersonaje extends EtapaDeDuelo {
 		throw new PersonajeNoElegidoException
 	}
 	
-	def void setearAMRXComoRival(Duelo duelo) {
-		duelo.retado = new MRX
-		duelo.etapaActual = new DefinirDuelo
-	}
-
 }
 
 class SeleccionRival extends EtapaDeDuelo {
 	
-	override elegirPersonaje(Personaje pj, Duelo duelo) {
+	override elegirPersonajeEnPosicion(Personaje pj, Posicion pos, Duelo duelo) {
 		throw new PersonajeYaElegidoException
-	}
-	
-	override definirRival(List<Jugador> posiblesRivales, Duelo duelo) {
-		var rivalEnMismoRanking = posiblesRivales.findFirst[ sonMismoRanking(duelo.retador, it) ]
-		
-		if(rivalEnMismoRanking.equals(null)) {
-			throw new NoHayRivalesPosiblesException
-		}
-		
-		duelo.retado = rivalEnMismoRanking
-		
-		duelo.etapaActual = new DefinirDuelo
 	}
 	
 	override comenzarDuelo(Duelo duelo) {
 		throw new RivalNoDefinidoException
 	}
 	
+	override definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles, Duelo duelo) {
+		setearRival(posiblesRivales, duelo)
+		setearPersonajeRival(personajesPosibles, duelo)
+		duelo.etapaActual = new DefinirDuelo
+	}
+	
+	//Metodos propios de la clase
+	
+	def void setearRival(List<Jugador> posiblesRivales, Duelo duelo) {
+		val rivalEnMismoRanking = posiblesRivales.findFirst[ sonMismoRanking(duelo.retador, it) ]
+				
+		if(rivalEnMismoRanking.equals(null)) throw new NoHayRivalesPosiblesException
+		else duelo.retado = rivalEnMismoRanking
+	}
+	
+	def void setearPersonajeRival(List<Personaje> personajesPosibles, Duelo duelo) {
+		if(!duelo.retado.partidasQueInicio.isEmpty){
+			duelo.personajeElegidoPorRetado = duelo.retado.ultimoPersonajeConElQueInicio
+		}
+		else {
+			duelo.personajeElegidoPorRetado = personajesPosibles.get(personajesPosibles.size / 2)
+		}
+
+		duelo.posicionElegidaPorRetado = duelo.personajeElegidoPorRetado.posicionIdeal
+	}
+	
+	def void setearAMRXComoRival(Duelo duelo) {
+		duelo.retado = new MRX
+		duelo.personajeElegidoPorRetado = duelo.retado.ultimoPersonajeConElQueInicio
+		duelo.posicionElegidaPorRetado = duelo.personajeElegidoPorRetado.posicionIdeal
+		duelo.etapaActual = new DefinirDuelo
+	}
 }
 
 class DefinirDuelo extends EtapaDeDuelo {
 	
-	override elegirPersonaje(Personaje pj, Duelo duelo) {
+	override elegirPersonajeEnPosicion(Personaje pj, Posicion pos, Duelo duelo) {
 		throw new PersonajeYaElegidoException
 	}
 	
-	override definirRival(List<Jugador> posiblesRivales, Duelo duelo) {
+	override definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles, Duelo duelo) {
 		throw new RivalYaDefinidoException
 	}
 	
@@ -126,16 +152,15 @@ class DefinirDuelo extends EtapaDeDuelo {
 			setearEmpateEnParDePartidas(partidaRetador, partidaRetado)
 		}
 		
-		duelo.retador.agregarPartida(partidaRetador)
-		duelo.retado.agregarPartida(partidaRetado)
-		
-		duelo.retador.actualizarEstadistica(crearEstadistica(duelo.personajeElegidoPorRetador,duelo.retador))
-		duelo.retado.actualizarEstadistica(crearEstadistica(duelo.personajeElegidoPorRetado,duelo.retado))
+		duelo.retador.agregarPartidaYActualizarEstadistica(partidaRetador)
+		duelo.retado.agregarPartidaYActualizarEstadistica(partidaRetado)
 	}
 	
+	//Metodos propios de la clase
+	
 	private def setearPoderesDeAtaque(Duelo duelo) {
-		duelo.poderDeRetador = poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
-		duelo.poderDeRetado  = poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
+		duelo.poderDeRetador = calcularPoderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
+		duelo.poderDeRetado  = calcularPoderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
 	}
 	
 	private def void setearVictoriaDerrotaEnParDePartidas(Partida vencedor, Partida perdedor) {

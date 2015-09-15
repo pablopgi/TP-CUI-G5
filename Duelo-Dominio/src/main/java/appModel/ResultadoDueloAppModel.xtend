@@ -1,11 +1,9 @@
 package appModel
 
 import model.Duelo
-import model.Estadistica
 import model.Jugador
 import model.Personaje
 import static model.GeneradorDeEstadistica.*
-import static model.CalculadorPoderDeAtaque.*
 import org.uqbar.commons.utils.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -13,17 +11,33 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class ResultadoDueloAppModel {
 	var Duelo duelo
-	var Jugador retador
-	var Jugador retado
-	var String nombreRetado
-	var Estadistica estadistica
 
 	def static numeroAString(int aConvertir) {
 
 		Integer.toString(aConvertir)
 	}
 
+	def getPjRetador() {
+		duelo.personajeElegidoPorRetador
+	}
+
+	def getPjRetado() {
+		duelo.personajeElegidoPorRetado
+	}
+
+	def getNombrePjRetador() {
+		duelo.personajeElegidoPorRetador.nombre
+	}
+
 	def getNombrePjRetado() {
+		duelo.personajeElegidoPorRetado.nombre
+	}
+
+	def getNombreRetador() {
+		duelo.retador.nombreJugador
+	}
+
+	def getNombreRetado() {
 		duelo.retado.nombreJugador
 	}
 
@@ -36,33 +50,27 @@ class ResultadoDueloAppModel {
 	}
 
 	def jugadasDeConPersonaje(Jugador jugador, Personaje personaje) {
-
-		var numero = crearEstadistica(personaje, jugador).cantidadDeVecesQueInicioConPersonaje
-		numeroAString(numero)
+		numeroAString(jugador.getEstadisticaDe(personaje).cantidadDeVecesQueInicioConPersonaje)
 	}
 
 	def ganadasDeConPersonaje(Jugador jugador, Personaje personaje) {
-		var numero = crearEstadistica(personaje, jugador).cantidadDeVecesQueGano
-		numeroAString(numero)
+		numeroAString(jugador.getEstadisticaDe(personaje).cantidadDeVecesQueGano)
 	}
 
 	def killsDeConPersonaje(Jugador jugador, Personaje personaje) {
-		var numero = crearEstadistica(personaje, jugador).cantidadDeKills
-		numeroAString(numero)
+		numeroAString(jugador.getEstadisticaDe(personaje).cantidadDeKills)
 	}
 
 	def deadsDeConPersonaje(Jugador jugador, Personaje personaje) {
-		var numero = crearEstadistica(personaje, jugador).cantidadDeDeads
-		numeroAString(numero)
+		numeroAString(jugador.getEstadisticaDe(personaje).cantidadDeDeads)
 	}
 
 	def assistsDeConPersonaje(Jugador jugador, Personaje personaje) {
-		var numero = crearEstadistica(personaje, jugador).cantidadDeAssists
-		numeroAString(numero)
+		numeroAString(jugador.getEstadisticaDe(personaje).cantidadDeAssists)
 	}
 
 	def mejorUbicacionDeConPersonaje(Jugador jugador, Personaje personaje) {
-		crearEstadistica(personaje, jugador).mejorUbicacion.toString
+		jugador.getEstadisticaDe(personaje).mejorUbicacion.toString
 	}
 
 	def puntajeDeConPersonaje(Jugador jugador, Personaje personaje) {
@@ -71,13 +79,15 @@ class ResultadoDueloAppModel {
 	}
 
 	def poderDeRetador() {
-
-		poderDeAtaque(duelo.retador, duelo.personajeElegidoPorRetador)
+		duelo.poderDeRetador
 	}
 
 	def poderDeRetado() {
+		duelo.poderDeRetado
+	}
 
-		poderDeAtaque(duelo.retado, duelo.personajeElegidoPorRetado)
+	def huboGanador() {
+		poderDeRetador != poderDeRetado
 	}
 
 	def segunResultado(String ganador, String perdedor, String empate) {
@@ -98,10 +108,6 @@ class ResultadoDueloAppModel {
 
 		segunResultado("Ganaste Maquinola ", "Aceptar Derrorta con Honor ", "Bardeaste lincea ")
 
-	}
-
-	def huboGanador() {
-		resultadoPartida != "Empataste contra "
 	}
 
 	def ganadorDuelo() {

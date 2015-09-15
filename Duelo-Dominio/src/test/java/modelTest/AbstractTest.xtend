@@ -11,6 +11,8 @@ import model.Denuncia
 import model.FeedIntencional
 import model.Dominador
 import model.Rampage
+import model.Duelo
+import java.util.List
 
 @Accessors
 abstract class AbstractTest {
@@ -33,7 +35,10 @@ abstract class AbstractTest {
 	var Denuncia denunciaConMenosDe20CaracteresYMasde3Palabras
 	var Denuncia denunciaConMenosDe20CaracteresYMenosde3Palabras
 	
-	var int contador
+	var Duelo duelo
+	
+	var List<Jugador> posiblesJugadoresParaElDuelo
+	var List<Personaje> posiblesPersonajesParaElDuelo
 	
 	@Before
 	def void setUp() {
@@ -78,6 +83,12 @@ abstract class AbstractTest {
 		denunciaConMenosDe20CaracteresYMenosde3Palabras = new FeedIntencional(jugadorIniciador,
 																              jugadorSinPartidas,
 																              "Aa Bb")
-
+		
+		duelo = new Duelo(jugadorIniciador)
+		posiblesJugadoresParaElDuelo = #[jugadorConVeintePartidasGanadas,
+										 jugadorSinPartidas
+										]
+		posiblesPersonajesParaElDuelo = #[drowRanger]
+		
 	}
 }

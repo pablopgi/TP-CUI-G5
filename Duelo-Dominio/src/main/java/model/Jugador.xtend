@@ -2,6 +2,7 @@ package model
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import static model.GeneradorDeEstadistica.*
 
 @Accessors
 class Jugador {
@@ -38,10 +39,19 @@ class Jugador {
 		partidas.filter[ personajeElegido == personaje ]
 	}
 	
+	def partidasQueInicio() {
+		partidas.filter[ esIniciador(this) ]
+	}
+	
+	def ultimoPersonajeConElQueInicio() {
+		partidasQueInicio.last.personajeElegido
+	}
+	
 	def getEstadisticaDe(Personaje personaje){
 		estadisticas.findFirst[est | est.personaje == personaje]
 		
 	}
+
 	def removeEstadisticaDePersonaje(Personaje personaje){
 		var estPj= getEstadisticaDe(personaje)
 		estadisticas.remove(estPj)
@@ -51,9 +61,21 @@ class Jugador {
 		estadisticas.add(estadistica)
 	}
 	
-	def void actualizarEstadistica(Estadistica estadistica){
-		removeEstadisticaDePersonaje(estadistica.personaje)
-		agregarEstadistica(estadistica)
+	def void agregarPartidaYActualizarEstadistica(Partida partida) {
+		agregarPartida(partida)
+		removeEstadisticaDePersonaje(partida.personajeElegido)
+		agregarEstadistica(crearEstadistica(partida.personajeElegido, this))
+	}
+	
+}
+
+class MRX extends Jugador {
+	new(){
+		super("El legendario MR-X")
+	}
+	
+	override ultimoPersonajeConElQueInicio() {
+		new SubZero
 	}
 	
 }
