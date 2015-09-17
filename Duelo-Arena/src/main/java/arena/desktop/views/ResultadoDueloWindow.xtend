@@ -11,7 +11,7 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import appModel.DenunciasAppModel
-import appModel.DueloAppModel
+import appModel.DueloAppModel.*
 
 class ResultadoDueloWindow extends SimpleWindow<DueloAppModel> {
 
