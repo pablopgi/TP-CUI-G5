@@ -9,6 +9,7 @@ import java.awt.Color
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
+import appModel.ResultadoDueloAppModel
 
 class NoTienesRivalWindows extends SimpleWindow<Duelo> {
 
@@ -20,7 +21,7 @@ class NoTienesRivalWindows extends SimpleWindow<Duelo> {
 		title = "Sin Rival"
 
 		new Label(mainPanel) => [
-			text = "No tines Rival!!!"
+			text = "No tienes Rival!!!"
 			fontSize = 20
 			foreground = Color::WHITE
 			background = Color::BLACK
@@ -61,7 +62,14 @@ class NoTienesRivalWindows extends SimpleWindow<Duelo> {
 		new Button(mainPanelButtons) => [
 			caption = "Retar a MR-X !!!"
 			fontSize = 11
-			onClick[this.close]
+			onClick[
+				
+				modelObject.setearAMRXComoRival
+				modelObject.comenzarDuelo
+				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject)).open	
+				this.close
+					
+			]
 		]
 
 		new Button(mainPanelButtons) => [

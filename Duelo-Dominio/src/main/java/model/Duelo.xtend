@@ -35,6 +35,10 @@ class Duelo {
 		etapaActual.comenzarDuelo(this)
 	}
 	
+	def void setearAMRXComoRival(){
+		etapaActual.setearAMRXComoRival(this)
+	}
+	
 }
 
 abstract class EtapaDeDuelo {
@@ -44,6 +48,8 @@ abstract class EtapaDeDuelo {
 	abstract def void definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles, Duelo duelo)
 	
 	abstract def void comenzarDuelo(Duelo duelo)
+	
+	abstract def void setearAMRXComoRival(Duelo duelo)
 	
 }
 
@@ -74,6 +80,10 @@ class SeleccionPersonaje extends EtapaDeDuelo {
 	
 	override comenzarDuelo(Duelo duelo) {
 		throw new PersonajeNoElegidoException
+	}
+	
+	override setearAMRXComoRival(Duelo duelo) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 }
@@ -114,7 +124,7 @@ class SeleccionRival extends EtapaDeDuelo {
 		duelo.posicionElegidaPorRetado = duelo.personajeElegidoPorRetado.posicionIdeal
 	}
 	
-	def void setearAMRXComoRival(Duelo duelo) {
+	override void setearAMRXComoRival(Duelo duelo) {
 		duelo.retado = new MRX
 		duelo.personajeElegidoPorRetado = duelo.retado.ultimoPersonajeConElQueInicio
 		duelo.posicionElegidaPorRetado = duelo.personajeElegidoPorRetado.posicionIdeal
@@ -171,6 +181,10 @@ class DefinirDuelo extends EtapaDeDuelo {
 	private def void setearEmpateEnParDePartidas(Partida empate1, Partida empate2) {
 		empate1.resultadoPartida = ResultadoPartida.Empate
 		empate2.resultadoPartida  = ResultadoPartida.Empate
+	}
+	
+	override setearAMRXComoRival(Duelo duelo) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 }
