@@ -2,6 +2,7 @@ package model
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
 class VinculadorDeEstadisticaPersonaje {
 	
@@ -14,12 +15,14 @@ class VinculadorDeEstadisticaPersonaje {
 		var String puntaje
 		
 		if(estadistica == null) puntaje = ""
-		else puntaje = estadistica.calificacion.puntaje
+			else if(estadistica.calificacion == null) puntaje = ""
+				else puntaje = estadistica.calificacion.puntaje
 		
 		new PersonajePuntaje(pj, puntaje)
 	}
 }
 
+@Observable
 @Accessors
 class PersonajePuntaje {
 	

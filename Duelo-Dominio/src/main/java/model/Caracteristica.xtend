@@ -2,5 +2,5 @@ package model
 
 enum Caracteristica {
 	
-	PoderDeHabilidad, PoderDeAtaque, PoderDeDefensa
+	PoderDeHabilidad, PoderDeAtaque, PoderDeDefensa, ResistenciaMagica
 }

@@ -23,7 +23,7 @@ class Estadistica {
 		cantidadDeAssists = 0
 		ubicacionesUtilizadas = newArrayList
 		mejorUbicacion = null
-		calificacion = new Noob
+		calificacion = null
 		personaje = pj
 	}
 	

@@ -18,6 +18,7 @@ import org.uqbar.arena.widgets.List
 import model.Posicion
 import model.NoHayRivalesPosiblesException
 import appModel.ResultadoDueloAppModel
+import model.Caracteristica
 
 class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 	
@@ -58,7 +59,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		]
 		
 		new TextBox(panelBusquedaPj) =>[
-			bindValueToProperty("Personaje")
+			bindValueToProperty("personajeABuscar")
 		]
 		
 		var table = new Table<PersonajePuntaje>(mainPanelSelPj, PersonajePuntaje) => [
@@ -97,7 +98,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		
 		//Lista de especialidades (enum)
 		
-		new List<Posicion>(panelDescripcionPj) =>[
+		new List<Caracteristica>(panelDescripcionPj) =>[
 			allowNull = false
 			bindItemsToProperty("personajeSeleccionado.especialidades")
 		]
@@ -110,7 +111,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		]
 		
 		//Lista de debilidades
-		new List<Posicion>(panelDescripcionPj) =>[
+		new List<Caracteristica>(panelDescripcionPj) =>[
 			allowNull = false
 			bindItemsToProperty("personajeSeleccionado.debilidades")
 		]
@@ -122,9 +123,8 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		]
 		
 		//Mejor Posicion
-		new List<Posicion>(panelDescripcionPj) =>[
-			allowNull = false
-			bindItemsToProperty("personajeSeleccionado.posicionIdeal")
+		new Label(panelDescripcionPj) =>[
+			bindValueToProperty("personajeSeleccionado.posicionIdeal")
 		]
 		
 	}
@@ -193,15 +193,9 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 				try {
 					modelObject.setPosicionYJugar(pos)
 					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo)).open					
-					}
-				catch (NoHayRivalesPosiblesException e){
-					
-					new NoTienesRivalWindows(this, modelObject.duelo).open
-					
 				}
-				
+				catch (NoHayRivalesPosiblesException e) new NoTienesRivalWindows(this, modelObject.duelo).open
 			]
-			bindEnabledToProperty("jugadorSeleccionado")
 		]
 	}
 	

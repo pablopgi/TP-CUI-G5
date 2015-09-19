@@ -11,11 +11,11 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import appModel.DenunciasAppModel
-import appModel.DueloAppModel.*
+import appModel.ResultadoDueloAppModel
 
-class ResultadoDueloWindow extends SimpleWindow<DueloAppModel> {
+class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 
-	new(WindowOwner parent, DueloAppModel model) {
+	new(WindowOwner parent, ResultadoDueloAppModel model) {
 		super(parent, model)
 	}
 
