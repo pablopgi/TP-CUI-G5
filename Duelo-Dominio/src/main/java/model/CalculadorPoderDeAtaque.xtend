@@ -13,14 +13,18 @@ class CalculadorPoderDeAtaque {
 	private def static poderDeAtaque(Jugador jugador, Personaje personaje) {
 		var estadistica = jugador.getEstadisticaDe(personaje)
 
-		if(estadistica.equals(null)){
+		if(estadistica == null){
 			estadistica = crearEstadistica(personaje, jugador)
 		}
 
-		(estadistica.calificacion.valorCalificacion +
+		(obtenerValorCalificacion(estadistica) +
 		(estadistica.cantidadDeKills + (estadistica.cantidadDeAssists/2) - estadistica.cantidadDeDeads) *
 		estadistica.cantidadDeVecesQueInicioConPersonaje)  
-		
+	}
+	
+	private def static obtenerValorCalificacion(Estadistica estadistica) {
+		if(estadistica.calificacion != null) estadistica.calificacion.valorCalificacion
+		else new Noob().valorCalificacion
 	}
 	
 }

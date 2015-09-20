@@ -4,6 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import static model.CalculadorDeRanking.*
 import static model.CalculadorPoderDeAtaque.*
+import static model.Calificador.*
 
 @Accessors
 class Duelo {
@@ -161,6 +162,9 @@ class DefinirDuelo extends EtapaDeDuelo {
 		else {
 			setearEmpateEnParDePartidas(partidaRetador, partidaRetado)
 		}
+		
+		calificarPartidaDeJugador(partidaRetador, duelo.retador)
+		calificarPartidaDeJugador(partidaRetado, duelo.retado)
 		
 		duelo.retador.agregarPartidaYActualizarEstadistica(partidaRetador)
 		duelo.retado.agregarPartidaYActualizarEstadistica(partidaRetado)

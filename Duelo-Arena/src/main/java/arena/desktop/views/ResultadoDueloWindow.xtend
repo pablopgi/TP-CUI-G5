@@ -129,7 +129,7 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 		new Button(panel) => [
 			caption = "Denunciar actitud antideportiva"
 			onClick[
-				new DenunciarJugadorWindow(this, new DenunciasAppModel(modelObject.retador, modelObject.retado))
+				new DenunciarJugadorWindow(this, new DenunciasAppModel(modelObject.retador, modelObject.retado)).open
 			]
 		]
 	}

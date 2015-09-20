@@ -4,7 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 class Calificador {
 	
-	static def void calificarPartidaDeJugador(Partida partida, Jugador jugador){
+	def static void calificarPartidaDeJugador(Partida partida, Jugador jugador){
 		var criterios = newArrayList
 		
 		if(partida.gano){

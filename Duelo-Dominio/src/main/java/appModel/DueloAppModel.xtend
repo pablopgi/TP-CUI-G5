@@ -90,6 +90,7 @@ class LobbyDueloAppModel extends DueloAppModel{
 		this.pjPuntaje = pjPuntaje
 		personajeSeleccionado = pjPuntaje.personaje
 		firePropertyChanged(this, "personajeSeleccionado", personajeSeleccionado)
+		avisarCambiosEnPropiedades
 	}
 	
 	def generarVinculos(){
@@ -97,20 +98,33 @@ class LobbyDueloAppModel extends DueloAppModel{
 	 }
 	 
 	def setPosicionYJugar(Posicion pos){
-	 	comprobarQueHayPersonajeSeleccionado
 	 	duelo = new Duelo(jugadorRetador)
 	 	duelo.elegirPersonaje(personajeSeleccionado,pos)
 	 	duelo.definirRival(mainDuelo.jugadoresDEL, mainDuelo.personajesDisponibles)
 	 	duelo.comenzarDuelo
 	 }
 	 
-	def comprobarQueHayPersonajeSeleccionado() {
-	 	if (personajeSeleccionado == null) throw new UserException("Por favor seleccione un personaje")	 	
-	 }
-	
 	def nombreRetador() {
 		jugadorRetador.nombreJugador
 	}
+	
+	def avisarCambiosEnPropiedades() {
+		firePropertyChanged(this, "jugadas", jugadas)
+		firePropertyChanged(this, "ganadas", ganadas)
+		firePropertyChanged(this, "kills", kills)
+		firePropertyChanged(this, "deads", deads)
+		firePropertyChanged(this, "assists", assists)
+		firePropertyChanged(this, "ubicacion", ubicacion)
+		firePropertyChanged(this, "puntaje", puntaje)
+	}
+	
+	def jugadas() { jugadasDeConPersonaje(jugadorRetador, personajeSeleccionado) }
+	def ganadas() { ganadasDeConPersonaje(jugadorRetador, personajeSeleccionado) }
+	def kills() { killsDeConPersonaje(jugadorRetador, personajeSeleccionado) }
+	def deads() { deadsDeConPersonaje(jugadorRetador, personajeSeleccionado) }
+	def assists() { assistsDeConPersonaje(jugadorRetador, personajeSeleccionado) }
+	def ubicacion() { mejorUbicacionDeConPersonaje(jugadorRetador, personajeSeleccionado) }
+	def puntaje() { puntajeDeConPersonaje(jugadorRetador, personajeSeleccionado) }
 }
 
 @Observable

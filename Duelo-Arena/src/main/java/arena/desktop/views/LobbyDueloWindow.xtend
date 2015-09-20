@@ -85,9 +85,9 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		panelDescripcionPj.layout = new VerticalLayout
 		
 		new Label(panelDescripcionPj) => [
-			text = '''«modelObject.personajeSeleccionado.nombre»'''
+			bindValueToProperty("personajeSeleccionado.nombre")
 			fontSize = 15
-			foreground = Color::BLUE		
+			foreground = Color::BLUE
 		]
 		
 		new Label(panelDescripcionPj) => [
@@ -136,6 +136,13 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		]
 	}
 	
+	def etiquetaBindeadaAPropiedad(Panel mainPanel , String propiedad) {
+		new Label(mainPanel) => [
+			bindValueToProperty(propiedad)
+			fontSize = 8
+		]
+	}
+	
 	def statsDePersonajeEnColumna(Panel mainPanel) {
 		var panelDatosDeStats = new Panel(mainPanel)
 		panelDatosDeStats.layout = new ColumnLayout(2)
@@ -146,23 +153,20 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 			foreground = Color :: GREEN
 		]
 		
-		var pj = modelObject.personajeSeleccionado
-		var jugador = modelObject.jugadorRetador
-
 		etiquetaConString(panelDatosDeStats, "Jugadas")
-		etiquetaConString(panelDatosDeStats, modelObject.jugadasDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "jugadas")
 		etiquetaConString(panelDatosDeStats, "Ganadas")
-		etiquetaConString(panelDatosDeStats, modelObject.ganadasDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "ganadas")
 		etiquetaConString(panelDatosDeStats, "Kills")
-		etiquetaConString(panelDatosDeStats, modelObject.killsDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "kills")
 		etiquetaConString(panelDatosDeStats, "Deads")
-		etiquetaConString(panelDatosDeStats, modelObject.deadsDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "deads")
 		etiquetaConString(panelDatosDeStats, "Assists")
-		etiquetaConString(panelDatosDeStats, modelObject.assistsDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "assists")
 		etiquetaConString(panelDatosDeStats, "Mejor ubicacion")
-		etiquetaConString(panelDatosDeStats, modelObject.mejorUbicacionDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "ubicacion")
 		etiquetaConString(panelDatosDeStats, "Puntaje")
-		etiquetaConString(panelDatosDeStats, modelObject.puntajeDeConPersonaje(jugador, pj))
+		etiquetaBindeadaAPropiedad(panelDatosDeStats, "puntaje")
 	}
 	
 	def panelJugarPosicion(Panel mainPanel){

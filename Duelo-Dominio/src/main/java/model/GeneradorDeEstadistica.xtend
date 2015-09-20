@@ -2,7 +2,7 @@ package model
 
 class GeneradorDeEstadistica {
 	
-	def static cantidadDeVecesQueInicioConPersonaje(Jugador jugador, Personaje pj){
+	def static int cantidadDeVecesQueInicioConPersonaje(Jugador jugador, Personaje pj){
 		jugador.partidasConPersonaje(pj).filter[ iniciador == jugador ].size
 	}
 	
@@ -27,7 +27,9 @@ class GeneradorDeEstadistica {
 	}
 	
 	def static mejorUbicacion(Jugador jugador, Personaje pj){
-		jugador.partidasConPersonaje(pj).filter[ iniciador == jugador && gano ].last.posicionElegida
+		var ultimaPartidaIniciadaPorJugador = jugador.partidasConPersonaje(pj).filter[ iniciador == jugador && gano ].last
+		if(ultimaPartidaIniciadaPorJugador == null) null
+		else ultimaPartidaIniciadaPorJugador.posicionElegida
 	}
 	
 	def static calificacion(Jugador jugador, Personaje pj){
