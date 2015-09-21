@@ -10,7 +10,6 @@ import org.uqbar.commons.utils.Observable
 import model.PersonajePuntaje
 import static org.uqbar.commons.model.ObservableUtils.*
 import model.Posicion
-import org.uqbar.commons.model.UserException
 import model.Estadistica
 
 @Observable
@@ -90,7 +89,7 @@ class LobbyDueloAppModel extends DueloAppModel{
 		this.pjPuntaje = pjPuntaje
 		personajeSeleccionado = pjPuntaje.personaje
 		firePropertyChanged(this, "personajeSeleccionado", personajeSeleccionado)
-		avisarCambiosEnPropiedades
+		avisarCambiosEnPropiedadesDeStat
 	}
 	
 	def generarVinculos(){
@@ -108,7 +107,11 @@ class LobbyDueloAppModel extends DueloAppModel{
 		jugadorRetador.nombreJugador
 	}
 	
-	def avisarCambiosEnPropiedades() {
+	def avisarCambiosListado() {
+		firePropertyChanged(this, "generarVinculos", generarVinculos)
+	}
+	
+	def avisarCambiosEnPropiedadesDeStat() {
 		firePropertyChanged(this, "jugadas", jugadas)
 		firePropertyChanged(this, "ganadas", ganadas)
 		firePropertyChanged(this, "kills", kills)
@@ -132,9 +135,18 @@ class LobbyDueloAppModel extends DueloAppModel{
 class ResultadoDueloAppModel extends DueloAppModel {
 	
 	var Duelo duelo
+	var boolean noSeEnvioDenuncia
+	var LobbyDueloAppModel lobbyAppModel
 	
-	new(Duelo duelo) {
+	new(Duelo duelo, LobbyDueloAppModel lobbyApp) {
 		this.duelo = duelo
+		lobbyAppModel = lobbyApp
+		noSeEnvioDenuncia = true
+	}
+	
+	def setNoSeEnvioDenuncia(boolean seEnvio) {
+		noSeEnvioDenuncia = seEnvio
+		firePropertyChanged(this, "noSeEnvioDenuncia", noSeEnvioDenuncia)
 	}
 	
 	def getPjRetador() {
@@ -206,7 +218,11 @@ class ResultadoDueloAppModel extends DueloAppModel {
 		if (poderDeRetador > poderDeRetado)
 			duelo.retador.nombreJugador
 		else
-			duelo.retador.nombreJugador
+			duelo.retado.nombreJugador
+	}
+	
+	def refrescarLobby() {
+		lobbyAppModel.avisarCambiosListado
 	}
 
 }

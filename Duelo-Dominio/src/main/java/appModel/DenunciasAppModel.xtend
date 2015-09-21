@@ -19,13 +19,15 @@ class DenunciasAppModel {
 	var Jugador jugadorDenunciado
 	var Denuncia denunciaSeleccionada
 	var boolean datosIngresados
+	var ResultadoDueloAppModel resAppModel
 	
-	new(Jugador jugadorDenunciante, Jugador jugadorDenunciado) {
+	new(Jugador jugadorDenunciante, Jugador jugadorDenunciado, ResultadoDueloAppModel resultApp) {
 		denunciaSeleccionada = null
 		detalles = null
 		datosIngresados = false
 		this.jugadorDenunciante = jugadorDenunciante
 		this.jugadorDenunciado = jugadorDenunciado
+		resAppModel = resultApp
 	}
 
 	def isDatosIngresados() {
@@ -61,13 +63,14 @@ class DenunciasAppModel {
 
 		try {
 			validar(denunciaSeleccionada)
+			jugadorDenunciado.agregarDenuncia(denunciaSeleccionada)
 		}
 		catch(DenunciaInvalidaException e) {
-			denunciaSeleccionada = abusoDeDenuncia(denunciaSeleccionada)
+			jugadorDenunciante.agregarDenuncia(abusoDeDenuncia(denunciaSeleccionada))
 			throw e
 		}
-		finally{
-			denunciaSeleccionada.denunciado.agregarDenuncia(denunciaSeleccionada)
+		finally {
+			resAppModel.noSeEnvioDenuncia = false
 		}
 	}
 	

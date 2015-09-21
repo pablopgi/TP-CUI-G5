@@ -196,7 +196,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 			onClick[
 				try {
 					modelObject.setPosicionYJugar(pos)
-					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo)).open					
+					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo, modelObject)).open					
 				}
 				catch (NoHayRivalesPosiblesException e) new NoTienesRivalWindows(this, modelObject.duelo).open
 			]

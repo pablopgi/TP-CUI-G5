@@ -12,6 +12,7 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import appModel.DenunciasAppModel
 import appModel.ResultadoDueloAppModel
+import org.uqbar.arena.layout.VerticalLayout
 
 class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 
@@ -22,6 +23,19 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 	override createMainTemplate(Panel mainPanel) {
 		title = "Resultado duelo"
 
+		crearPanelEncabezado(mainPanel)
+		
+		var panelStats = new Panel(mainPanel)
+		panelStats.layout = new HorizontalLayout
+		crearPanelStatJugador(panelStats, modelObject.retador, modelObject.pjRetador)
+		crearPanelStatJugador(panelStats, modelObject.retado, modelObject.pjRetado)
+		
+		panelIndicadorGanadorYPuntosDeAtaque(mainPanel)
+		panelBotones(mainPanel)
+
+	}
+
+	def crearPanelEncabezado(Panel mainPanel) {
 		new Label(mainPanel) => [
 			text = '''«modelObject.nombrePjRetador» vs «modelObject.nombrePjRetado»'''
 			fontSize = 20
@@ -34,24 +48,21 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 			fontSize = 15
 			foreground = Color::GREEN
 			background = Color::YELLOW
-		]
-
-		crearPanelStatJugador(mainPanel, modelObject.retador, modelObject.pjRetador)
-		crearPanelStatJugador(mainPanel, modelObject.retado, modelObject.pjRetado)
-		panelIndicadorGanadorYPuntosDeAtaque(mainPanel)
-		panelBotones(mainPanel)
-
+		]		
 	}
 
 	def crearPanelStatJugador(Panel mainPanel, Jugador jugador, Personaje personaje) {
-		new Label(mainPanel) => [
+		var panelStatJugador = new Panel(mainPanel)
+		panelStatJugador.layout = new VerticalLayout()
+		
+		new Label(panelStatJugador) => [
 			text = jugador.nombreJugador
 			fontSize = 20
 			foreground = Color::WHITE
 			background = Color::BLUE
 		]
 
-		statsDePersonajeEnColumna(mainPanel, jugador, personaje)
+		statsDePersonajeEnColumna(panelStatJugador, jugador, personaje)
 	}
 
 	def etiquetaConString(Panel mainPanel, String texto) {
@@ -123,14 +134,20 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 
 		new Button(panel) => [
 			caption = modelObject.textoParaBotonCorrepondienteAResultadoDelDuelo
-			onClick[this.close]
+			onClick[
+				modelObject.refrescarLobby
+				this.close
+			]
 		]
 
 		new Button(panel) => [
 			caption = "Denunciar actitud antideportiva"
 			onClick[
-				new DenunciarJugadorWindow(this, new DenunciasAppModel(modelObject.retador, modelObject.retado)).open
+				new DenunciarJugadorWindow(this, new DenunciasAppModel(modelObject.retador,
+																	   modelObject.retado,
+																	   modelObject)).open
 			]
+			bindEnabledToProperty("noSeEnvioDenuncia")
 		]
 	}
 

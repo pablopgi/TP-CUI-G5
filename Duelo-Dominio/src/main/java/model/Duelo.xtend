@@ -5,6 +5,7 @@ import java.util.List
 import static model.CalculadorDeRanking.*
 import static model.CalculadorPoderDeAtaque.*
 import static model.Calificador.*
+import java.util.Random
 
 @Accessors
 class Duelo {
@@ -119,7 +120,8 @@ class SeleccionRival extends EtapaDeDuelo {
 			duelo.personajeElegidoPorRetado = duelo.retado.ultimoPersonajeConElQueInicio
 		}
 		else {
-			duelo.personajeElegidoPorRetado = personajesPosibles.get(personajesPosibles.size / 2)
+			var posicionPersonajeRandom = new Random().nextInt(personajesPosibles.size)
+			duelo.personajeElegidoPorRetado = personajesPosibles.get(posicionPersonajeRandom)
 		}
 
 		duelo.posicionElegidaPorRetado = duelo.personajeElegidoPorRetado.posicionIdeal
