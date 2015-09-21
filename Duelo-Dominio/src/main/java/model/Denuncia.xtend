@@ -29,7 +29,7 @@ abstract class Denuncia {
 @Accessors
 class AbusoDeHabilidad extends Denuncia {
 
-	new(){}
+	new(){penalizacion = 5}
 
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
 
@@ -47,7 +47,7 @@ class AbusoDeHabilidad extends Denuncia {
 @Accessors
 class ComunicacionAbusiva extends Denuncia {
 
-	new(){}
+	new(){penalizacion = 7}
 
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
 
@@ -65,7 +65,7 @@ class ComunicacionAbusiva extends Denuncia {
 @Accessors
 class FeedIntencional extends Denuncia {
 
-	new(){}
+	new(){penalizacion = 10}
 
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
 
@@ -83,7 +83,7 @@ class FeedIntencional extends Denuncia {
 @Accessors
 class AbusoDelSistemaDeDenuncias extends Denuncia {
 
-	new(){}
+	new(){penalizacion = 25}
 
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
 

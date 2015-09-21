@@ -1,7 +1,6 @@
 package arena.desktop.views
 
 import org.uqbar.arena.windows.SimpleWindow
-import model.Duelo
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
@@ -10,10 +9,11 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import appModel.ResultadoDueloAppModel
+import appModel.LobbyDueloAppModel
 
-class NoTienesRivalWindows extends SimpleWindow<Duelo> {
+class NoTienesRivalWindows extends SimpleWindow<LobbyDueloAppModel> {
 
-	new(WindowOwner parent, Duelo model) {
+	new(WindowOwner parent, LobbyDueloAppModel model) {
 		super(parent, model)
 	}
 
@@ -64,9 +64,9 @@ class NoTienesRivalWindows extends SimpleWindow<Duelo> {
 			fontSize = 11
 			onClick[
 				
-				modelObject.setearAMRXComoRival
-				modelObject.comenzarDuelo
-				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject)).open	
+				modelObject.duelo.setearAMRXComoRival
+				modelObject.duelo.comenzarDuelo
+				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo, modelObject)).open	
 				this.close
 					
 			]

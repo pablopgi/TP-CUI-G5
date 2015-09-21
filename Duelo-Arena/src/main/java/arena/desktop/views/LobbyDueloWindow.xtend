@@ -31,7 +31,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		mainPanel.layout = new VerticalLayout 
 		
 		new Label(mainPanel)=>[
-			text = '''Bienvenido: «modelObject.nombreRetador»! Desde esta pantalla podrás elegir un personaje para batirte a duelo con otro jugador. Recuerda siempre revisar tus stats!'''
+			text = '''Bienvenido: «modelObject.nombreRetador»! Desde esta pantalla podrás elegir un personaje para batirte a duelo con otro jugador.Recuerda siempre revisar tus stats!'''
 			fontSize = 10
 		]
 		
@@ -198,7 +198,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 					modelObject.setPosicionYJugar(pos)
 					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo, modelObject)).open					
 				}
-				catch (NoHayRivalesPosiblesException e) new NoTienesRivalWindows(this, modelObject.duelo).open
+				catch (NoHayRivalesPosiblesException e) new NoTienesRivalWindows(this, modelObject).open
 			]
 		]
 	}
