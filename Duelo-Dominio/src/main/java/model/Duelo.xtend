@@ -111,7 +111,7 @@ class SeleccionRival extends EtapaDeDuelo {
 	def void setearRival(List<Jugador> posiblesRivales, Duelo duelo) {
 		val rivalEnMismoRanking = posiblesRivales.findFirst[ sonMismoRanking(duelo.retador, it) ]
 				
-		if(rivalEnMismoRanking.equals(null)) throw new NoHayRivalesPosiblesException
+		if(rivalEnMismoRanking == null) throw new NoHayRivalesPosiblesException
 		else duelo.retado = rivalEnMismoRanking
 	}
 	
