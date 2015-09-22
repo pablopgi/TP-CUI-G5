@@ -83,6 +83,12 @@ class LobbyDueloAppModel extends DueloAppModel{
 		jugadorRetador = retador
 		mainDuelo = main
 		personajeSeleccionado = mainDuelo.personajesDisponibles.get(0)
+		personajeABuscar = ""
+	}
+	
+	def void setPersonajeABuscar(String pj){
+		personajeABuscar = pj
+		firePropertyChanged(this, "generarVinculos", generarVinculos)
 	}
 
 	def void setPjPuntaje(PersonajePuntaje pjPuntaje) {
@@ -93,7 +99,8 @@ class LobbyDueloAppModel extends DueloAppModel{
 	}
 	
 	def generarVinculos(){
-	 	generarVinculosDeTodosLosPersonajes(mainDuelo.personajesDisponibles, jugadorRetador.estadisticas)
+		var pjs = mainDuelo.personajesDisponibles.filter[ nombre.toLowerCase.startsWith(personajeABuscar.toLowerCase.trim)].toList
+	 	generarVinculosDeTodosLosPersonajes(pjs, jugadorRetador.estadisticas)
 	 }
 	 
 	def setPosicionYJugar(Posicion pos){
