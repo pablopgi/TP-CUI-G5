@@ -36,7 +36,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		]
 		
 		new Label(mainPanel)=>[
-			text = "Selecciona tu personaje para el duelo wachiiiin!"
+			text = "Selecciona tu personaje para el duelo!"
 			fontSize = 20
 			foreground = Color::WHITE
 			background = Color::BLACK
