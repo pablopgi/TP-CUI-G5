@@ -1,19 +1,19 @@
 package arena.desktop.views
 
-import org.uqbar.arena.windows.SimpleWindow
-import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.Label
+import appModel.ResultadoDueloAppModel
 import java.awt.Color
-import org.uqbar.arena.widgets.Button
+import model.Duelo
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
-import appModel.ResultadoDueloAppModel
-import appModel.LobbyDueloAppModel
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 
-class NoTienesRivalWindows extends SimpleWindow<LobbyDueloAppModel> {
+class NoTienesRivalWindows extends SimpleWindow<Duelo> {
 
-	new(WindowOwner parent, LobbyDueloAppModel model) {
+	new(WindowOwner parent, Duelo model) {
 		super(parent, model)
 	}
 
@@ -64,9 +64,8 @@ class NoTienesRivalWindows extends SimpleWindow<LobbyDueloAppModel> {
 			fontSize = 11
 			onClick[
 				
-				modelObject.duelo.setearAMRXComoRival
-				modelObject.duelo.comenzarDuelo
-				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo, modelObject)).open	
+				modelObject.lucharContraMrEx
+				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject, modelObject)).open	
 				this.close
 					
 			]

@@ -72,42 +72,44 @@ abstract class DueloAppModel {
 @Accessors
 class LobbyDueloAppModel extends DueloAppModel{
 	
-	var PersonajePuntaje pjPuntaje
-	var Personaje personajeSeleccionado
+	var PersonajePuntaje personajeCalificadoSeleccionado
 	var DueloDeLeyendasMain mainDuelo
 	var Jugador jugadorRetador
-	var Duelo duelo
 	var String personajeABuscar
 	
 	new(Jugador retador, DueloDeLeyendasMain main){
 		jugadorRetador = retador
 		mainDuelo = main
-		personajeSeleccionado = mainDuelo.personajesDisponibles.get(0)
 		personajeABuscar = ""
+	}
+	
+	def void setPersonajeCalificadoSeleccionado(PersonajePuntaje p){
+		this.personajeCalificadoSeleccionado = p
+		firePropertyChanged(this, "personajeSeleccionado")
+		avisarCambiosEnPropiedadesDeStat
+	}
+	
+	def getPersonajeSeleccionado(){
+		if(personajeCalificadoSeleccionado != null) personajeCalificadoSeleccionado.personaje
 	}
 	
 	def void setPersonajeABuscar(String pj){
 		personajeABuscar = pj
-		firePropertyChanged(this, "generarVinculos", generarVinculos)
+		firePropertyChanged(this, "personajesCalificados")
 	}
 
-	def void setPjPuntaje(PersonajePuntaje pjPuntaje) {
-		this.pjPuntaje = pjPuntaje
-		personajeSeleccionado = pjPuntaje.personaje
-		firePropertyChanged(this, "personajeSeleccionado", personajeSeleccionado)
-		avisarCambiosEnPropiedadesDeStat
-	}
 	
-	def generarVinculos(){
+	def getPersonajesCalificados(){
 		var pjs = mainDuelo.personajesDisponibles.filter[ nombre.toLowerCase.startsWith(personajeABuscar.toLowerCase.trim)].toList
 	 	generarVinculosDeTodosLosPersonajes(pjs, jugadorRetador.estadisticas)
 	 }
 	 
-	def setPosicionYJugar(Posicion pos){
-	 	duelo = new Duelo(jugadorRetador)
+	def Duelo setPosicionYJugar(Posicion pos){
+	 	var duelo = new Duelo(jugadorRetador)
 	 	duelo.elegirPersonaje(personajeSeleccionado,pos)
 	 	duelo.definirRival(mainDuelo.jugadoresDEL, mainDuelo.personajesDisponibles)
 	 	duelo.comenzarDuelo
+	 	duelo
 	 }
 	 
 	def nombreRetador() {
@@ -115,7 +117,7 @@ class LobbyDueloAppModel extends DueloAppModel{
 	}
 	
 	def avisarCambiosListado() {
-		firePropertyChanged(this, "generarVinculos", generarVinculos)
+		firePropertyChanged(this, "generarVinculos", personajesCalificados)
 	}
 	
 	def avisarCambiosEnPropiedadesDeStat() {

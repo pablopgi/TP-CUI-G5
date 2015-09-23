@@ -41,6 +41,11 @@ class Duelo {
 		etapaActual.setearAMRXComoRival(this)
 	}
 	
+	def lucharContraMrEx() {
+		setearAMRXComoRival
+		this.comenzarDuelo
+	}
+	
 }
 
 abstract class EtapaDeDuelo {

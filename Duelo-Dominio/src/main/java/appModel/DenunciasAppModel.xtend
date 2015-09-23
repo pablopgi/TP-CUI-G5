@@ -10,57 +10,45 @@ import model.Denuncia
 import org.uqbar.commons.utils.Observable
 import static org.uqbar.commons.model.ObservableUtils.*
 import model.DenunciaInvalidaException
+import model.Motivo
 
 @Observable
 @Accessors
 class DenunciasAppModel {
-	var String detalles
-	var Jugador jugadorDenunciante
-	var Jugador jugadorDenunciado
+//	var String detalles
+//	var Jugador jugadorDenunciante
+//	var Jugador jugadorDenunciado
 	var Denuncia denunciaSeleccionada
-	var boolean datosIngresados
-	var ResultadoDueloAppModel resAppModel
+//	var boolean datosIngresados
+//	var ResultadoDueloAppModel resAppModel
 	
 	new(Jugador jugadorDenunciante, Jugador jugadorDenunciado, ResultadoDueloAppModel resultApp) {
 		denunciaSeleccionada = null
 		detalles = null
-		datosIngresados = false
-		this.jugadorDenunciante = jugadorDenunciante
-		this.jugadorDenunciado = jugadorDenunciado
-		resAppModel = resultApp
+//		datosIngresados = false
+//		this.jugadorDenunciante = jugadorDenunciante
+//		this.jugadorDenunciado = jugadorDenunciado
+//		resAppModel = resultApp
 	}
 
-	def isDatosIngresados() {
-		detalles != null && denunciaSeleccionada != null
+	def Boolean isDatosIngresados() {
+		denunciaSeleccionada.justificacion != null && denunciaSeleccionada.motivo != null
 	}
 	
-	def void cambioDatosIngresados() {
-		datosIngresados = this.isDatosIngresados
-		firePropertyChanged(this, "datosIngresados", datosIngresados)
-	}
-	
-	def void setDenunciaSeleccionada(Denuncia denuncia) {
-		denunciaSeleccionada = denuncia
+	def void setMotivo(Motivo motivo) {
+		denunciaSeleccionada.motivo = motivo
 		cambioDatosIngresados
+	}
+	def Motivo getMotivo(){
+		denunciaSeleccionada.motivo
 	}
 
 	def void setDetalles(String detalles) {
-		if(detalles.equals("")) {
-			this.detalles = null
-		}
-		else {
-			this.detalles = detalles			
-		}
+		denunciaSeleccionada.justificacion  = detalles
 		cambioDatosIngresados
 	}
 	
 	def void validarYAgregarDenuncia() {
-		denunciaSeleccionada => [
-			justificacion = detalles
-			denunciante = jugadorDenunciante
-			denunciado = jugadorDenunciado
-		]
-
 		try {
 			validar(denunciaSeleccionada)
 			jugadorDenunciado.agregarDenuncia(denunciaSeleccionada)
@@ -75,7 +63,9 @@ class DenunciasAppModel {
 	}
 	
 	def getDenunciasPosibles() {
-		#[new AbusoDeHabilidad, new FeedIntencional, new ComunicacionAbusiva]
+		Motivo.values
+		
+		//#[new AbusoDeHabilidad, new FeedIntencional, new ComunicacionAbusiva]
 	}
 	
 }

@@ -10,7 +10,7 @@ abstract class Denuncia {
 	Jugador denunciante
 	Jugador denunciado
 	String justificacion
-	Integer penalizacion
+	Motivo motivo
 
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
 
@@ -23,6 +23,10 @@ abstract class Denuncia {
 	new(){}
 
 	def abstract String getMotivo()
+	
+	def Integer getPenalizacion(){
+		motivo.penalizacion
+	}
 
 }
 

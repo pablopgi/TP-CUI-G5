@@ -6,7 +6,7 @@ import model.PersonajePuntaje
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.Panel
+import org.jugadorRetadoruqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
@@ -65,8 +65,8 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 		var table = new Table<PersonajePuntaje>(mainPanelSelPj, PersonajePuntaje) => [
 			height = 300
 			width = 200
-			bindItemsToProperty("generarVinculos")
-			bindValueToProperty("pjPuntaje")
+			bindItemsToProperty("personajesCalificados")
+			bindValueToProperty("personajeCalificadoSeleccionado")
 		]
 		
 		new Column<PersonajePuntaje>(table) => [
@@ -195,10 +195,10 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 			caption = pos.toString
 			onClick[
 				try {
-					modelObject.setPosicionYJugar(pos)
-					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.duelo, modelObject)).open					
+					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.setPosicionYJugar(pos), modelObject)).open					
+				}catch (NoHayRivalesPosiblesException e) {
+					new NoTienesRivalWindows(this, e.duelo).open
 				}
-				catch (NoHayRivalesPosiblesException e) new NoTienesRivalWindows(this, modelObject).open
 			]
 		]
 	}
