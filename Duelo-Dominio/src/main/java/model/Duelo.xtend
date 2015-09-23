@@ -109,10 +109,10 @@ class SeleccionRival extends EtapaDeDuelo {
 	//Metodos propios de la clase
 	
 	def void setearRival(List<Jugador> posiblesRivales, Duelo duelo) {
-		val rivalEnMismoRanking = posiblesRivales.findFirst[ sonMismoRanking(duelo.retador, it) ]
+		val rivalesEnMismoRanking = posiblesRivales.filter[ sonMismoRanking(duelo.retador, it) ]
 				
-		if(rivalEnMismoRanking == null) throw new NoHayRivalesPosiblesException
-		else duelo.retado = rivalEnMismoRanking
+		if(rivalesEnMismoRanking.isEmpty) throw new NoHayRivalesPosiblesException
+		else duelo.retado = rivalesEnMismoRanking.get(new Random().nextInt(rivalesEnMismoRanking.size))
 	}
 	
 	def void setearPersonajeRival(List<Personaje> personajesPosibles, Duelo duelo) {

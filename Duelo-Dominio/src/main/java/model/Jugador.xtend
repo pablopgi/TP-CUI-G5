@@ -75,7 +75,7 @@ class MRX extends Jugador {
 	}
 	
 	override ultimoPersonajeConElQueInicio() {
-		new Personaje("Sub-Zero", Posicion.MIDDLE)
+		new Personaje("El Maestruli", Posicion.MIDDLE)
 	}
 	
 }
