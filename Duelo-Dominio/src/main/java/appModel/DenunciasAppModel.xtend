@@ -65,7 +65,6 @@ class DenunciasAppModel {
 	def getDenunciasPosibles() {
 		Motivo.values
 		
-		//#[new AbusoDeHabilidad, new FeedIntencional, new ComunicacionAbusiva]
 	}
 	
 }

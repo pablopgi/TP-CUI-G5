@@ -28,7 +28,7 @@ class CalculadorDeRanking {
 	
 	private def static pesoTotalDenuncias(List<Denuncia> denuncias) {
 		if(!denuncias.isEmpty) {
-			denuncias.fold(0)[ resultado, denuncia | resultado + denuncia.penalizacion ]
+			denuncias.fold(0)[ resultado, denuncia | resultado + denuncia.motivo.penalizacion ]
 		}
 		else 0
 	}

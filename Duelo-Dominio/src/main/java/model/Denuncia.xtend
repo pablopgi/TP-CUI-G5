@@ -2,10 +2,11 @@ package model
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import static model.CondicionParaValidador.*
 
 @Accessors
 @Observable
-abstract class Denuncia {
+class Denuncia {
 
 	Jugador denunciante
 	Jugador denunciado
@@ -20,84 +21,26 @@ abstract class Denuncia {
 
 	}
 
-	new(){}
-
-	def abstract String getMotivo()
-	
-	def Integer getPenalizacion(){
-		motivo.penalizacion
-	}
-
-}
-
-@Accessors
-class AbusoDeHabilidad extends Denuncia {
-
-	new(){penalizacion = 5}
-
-	new(Jugador denunciante, Jugador denunciado, String justificacion) {
-
-		super(denunciante, denunciado, justificacion)
-		this.penalizacion = 5
+	def validar(Denuncia denuncia) {
+		!(tamanioValido(denuncia.justificacion) && cantidadValidaPalabras(denuncia.justificacion))
 
 	}
-	
-	override getMotivo() {
-		"Abuso de Habilidad"
-	}
 
-}
+	def denunciar(Jugador denunciado, Jugador denunciante) {
+		if (validar(this)) {
 
-@Accessors
-class ComunicacionAbusiva extends Denuncia {
+			denunciado.agregarDenuncia(this)
+		} else {
 
-	new(){penalizacion = 7}
-
-	new(Jugador denunciante, Jugador denunciado, String justificacion) {
-
-		super(denunciante, denunciado, justificacion)
-		this.penalizacion = 7
+			denunciante.agregarDenuncia(abusoDeDenuncia(this))
+		}
 
 	}
-	
-	override getMotivo() {
-		"Comunicacion abusiva"
+
+	def abusoDeDenuncia(Denuncia denuncia) {
+		denuncia.motivo = Motivo.Abuso_Del_Sistema_De_Denuncias
+		denuncia.justificacion = '''El jugador intenta denunciar a: «denuncia.denunciado» por: «denuncia.motivo.
+			descripcion» sin tener una justificacion suficiente: «denuncia.justificacion»'''
+		return denuncia
 	}
-
-}
-
-@Accessors
-class FeedIntencional extends Denuncia {
-
-	new(){penalizacion = 10}
-
-	new(Jugador denunciante, Jugador denunciado, String justificacion) {
-
-		super(denunciante, denunciado, justificacion)
-		this.penalizacion = 10
-
-	}
-	
-	override getMotivo() {
-		"Feed intencional"
-	}
-
-}
-
-@Accessors
-class AbusoDelSistemaDeDenuncias extends Denuncia {
-
-	new(){penalizacion = 25}
-
-	new(Jugador denunciante, Jugador denunciado, String justificacion) {
-
-		super(denunciante, denunciado, justificacion)
-		this.penalizacion = 25
-
-	}
-	
-	override getMotivo() {
-		//No hace falta, no se selecciona como motivo
-	}
-
 }
