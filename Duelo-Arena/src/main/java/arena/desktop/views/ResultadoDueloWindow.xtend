@@ -135,7 +135,6 @@ class ResultadoDueloWindow extends SimpleWindow<ResultadoDueloAppModel> {
 		new Button(panel) => [
 			caption = modelObject.textoParaBotonCorrepondienteAResultadoDelDuelo
 			onClick[
-				modelObject.refrescarLobby
 				this.close
 			]
 		]

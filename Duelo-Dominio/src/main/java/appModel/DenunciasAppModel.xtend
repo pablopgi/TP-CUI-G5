@@ -1,70 +1,53 @@
 package appModel
 
-import model.Jugador
-import static model.ValidadorDeDenuncias.*
-import model.ComunicacionAbusiva
-import model.FeedIntencional
-import model.AbusoDeHabilidad
-import org.eclipse.xtend.lib.annotations.Accessors
 import model.Denuncia
+import model.Jugador
+import model.Motivo
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import static org.uqbar.commons.model.ObservableUtils.*
-import model.DenunciaInvalidaException
-import model.Motivo
 
 @Observable
 @Accessors
 class DenunciasAppModel {
-//	var String detalles
-//	var Jugador jugadorDenunciante
-//	var Jugador jugadorDenunciado
-	var Denuncia denunciaSeleccionada
-//	var boolean datosIngresados
-//	var ResultadoDueloAppModel resAppModel
+	var String detalles
+	var Denuncia denuncia
+	var ResultadoDueloAppModel resAppModel
 	
 	new(Jugador jugadorDenunciante, Jugador jugadorDenunciado, ResultadoDueloAppModel resultApp) {
-		denunciaSeleccionada = null
+		denuncia = new Denuncia(jugadorDenunciante, jugadorDenunciado)
 		detalles = null
-//		datosIngresados = false
-//		this.jugadorDenunciante = jugadorDenunciante
-//		this.jugadorDenunciado = jugadorDenunciado
-//		resAppModel = resultApp
+		resAppModel = resultApp
 	}
 
 	def Boolean isDatosIngresados() {
-		denunciaSeleccionada.justificacion != null && denunciaSeleccionada.motivo != null
+		denuncia.justificacion != null && denuncia.motivo != null
+	}
+	
+	def getNombreJugadorDenunciado() {
+		denuncia.denunciado.nombreJugador
 	}
 	
 	def void setMotivo(Motivo motivo) {
-		denunciaSeleccionada.motivo = motivo
-		cambioDatosIngresados
+		denuncia.motivo = motivo
+		firePropertyChanged(this, "datosIngresados")
 	}
 	def Motivo getMotivo(){
-		denunciaSeleccionada.motivo
+		denuncia.motivo
 	}
 
 	def void setDetalles(String detalles) {
-		denunciaSeleccionada.justificacion  = detalles
-		cambioDatosIngresados
+		denuncia.justificacion  = detalles
+		firePropertyChanged(this, "datosIngresados")
 	}
 	
-	def void validarYAgregarDenuncia() {
-		try {
-			validar(denunciaSeleccionada)
-			jugadorDenunciado.agregarDenuncia(denunciaSeleccionada)
-		}
-		catch(DenunciaInvalidaException e) {
-			jugadorDenunciante.agregarDenuncia(abusoDeDenuncia(denunciaSeleccionada))
-			throw e
-		}
-		finally {
+	def void denunciar() {
 			resAppModel.noSeEnvioDenuncia = false
-		}
+			denuncia.denunciar(denuncia.denunciado, denuncia.denunciante)
 	}
 	
 	def getDenunciasPosibles() {
-		Motivo.values
-		
+		Motivo.values.toList
 	}
 	
 }

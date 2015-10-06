@@ -1,24 +1,24 @@
 package arena.desktop.views
 
 import appModel.LobbyDueloAppModel
+import appModel.ResultadoDueloAppModel
 import java.awt.Color
+import model.Caracteristica
+import model.NoHayRivalesPosiblesException
 import model.PersonajePuntaje
+import model.Posicion
+import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
-import org.jugadorRetadoruqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.List
-import model.Posicion
-import model.NoHayRivalesPosiblesException
-import appModel.ResultadoDueloAppModel
-import model.Caracteristica
+import org.uqbar.arena.widgets.Panel
 
 class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 	
@@ -195,7 +195,7 @@ class LobbyDueloWindow extends SimpleWindow<LobbyDueloAppModel> {
 			caption = pos.toString
 			onClick[
 				try {
-					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.setPosicionYJugar(pos), modelObject)).open					
+					new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject.setPosicionYJugar(pos))).open					
 				}catch (NoHayRivalesPosiblesException e) {
 					new NoTienesRivalWindows(this, e.duelo).open
 				}

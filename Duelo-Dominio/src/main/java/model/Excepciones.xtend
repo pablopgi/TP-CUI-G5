@@ -1,5 +1,7 @@
 package model
 
+import org.eclipse.xtend.lib.annotations.Accessors
+
 class PersonajeNoElegidoException extends Throwable {
 	
 	new(){
@@ -7,8 +9,9 @@ class PersonajeNoElegidoException extends Throwable {
 	}
 }
 
+@Accessors
 class NoHayRivalesPosiblesException extends Throwable {
-	private var Duelo duelo
+	var Duelo duelo
 	
 	new(Duelo duelo) {
 		super("No hay rivales con el mismo ranking del retador")

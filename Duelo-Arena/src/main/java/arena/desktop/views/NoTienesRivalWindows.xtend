@@ -65,7 +65,7 @@ class NoTienesRivalWindows extends SimpleWindow<Duelo> {
 			onClick[
 				
 				modelObject.lucharContraMrEx
-				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject, modelObject)).open	
+				new ResultadoDueloWindow(this, new ResultadoDueloAppModel(modelObject)).open	
 				this.close
 					
 			]

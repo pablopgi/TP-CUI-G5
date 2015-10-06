@@ -1,19 +1,19 @@
 package arena.desktop.views
 
-import org.uqbar.arena.windows.SimpleWindow
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
-import model.Denuncia
+import appModel.DenunciasAppModel
+import java.awt.Color
+import model.DenunciaInvalidaException
+import model.Motivo
+import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
-import appModel.DenunciasAppModel
-import org.uqbar.arena.bindings.PropertyAdapter
-import model.DenunciaInvalidaException
-import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.TextBox
-import java.awt.Color
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.WindowOwner
 
 class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 	
@@ -30,7 +30,7 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		]
 		
 		new Label(mainPanel) => [
-			text = '''Estas queriendo denunciar a:«modelObject.jugadorDenunciado.nombreJugador»'''
+			text = '''Estas queriendo denunciar a:«modelObject.nombreJugadorDenunciado»'''
 			fontSize = 12
 		]
 		
@@ -54,11 +54,11 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 			fontSize = 11
 			onClick[
 				try{
-					modelObject.validarYAgregarDenuncia
-					new DenunciaExitosaWindow(this, modelObject.denunciaSeleccionada).open
+					modelObject.denunciar
+					new DenunciaExitosaWindow(this, modelObject.denuncia).open
 				}
 				catch (DenunciaInvalidaException e){
-					new SancionAntideportivaWindow(this, modelObject.denunciaSeleccionada).open	
+					new SancionAntideportivaWindow(this, modelObject.denuncia).open	
 				}
 				this.close
 			]
@@ -75,10 +75,10 @@ class DenunciarJugadorWindow extends SimpleWindow<DenunciasAppModel>{
 		
 		new Label(panelC).text = "Motivo:"
 		
-		new Selector<Denuncia>(panelC) => [
+		new Selector<Motivo>(panelC) => [
 			allowNull = false
-			bindItemsToProperty("denunciasPosibles").adapter = new PropertyAdapter(Denuncia, "motivo")
-			bindValueToProperty("denunciaSeleccionada")
+			bindItemsToProperty("denunciasPosibles").adapter = new PropertyAdapter(Motivo, "descripcion")
+			bindValueToProperty("motivo")
 		]
 		
 		new Label(panelC).text = "Detalles:"

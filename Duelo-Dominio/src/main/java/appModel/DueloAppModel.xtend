@@ -147,9 +147,8 @@ class ResultadoDueloAppModel extends DueloAppModel {
 	var boolean noSeEnvioDenuncia
 	var LobbyDueloAppModel lobbyAppModel
 	
-	new(Duelo duelo, LobbyDueloAppModel lobbyApp) {
+	new(Duelo duelo) {
 		this.duelo = duelo
-		lobbyAppModel = lobbyApp
 		noSeEnvioDenuncia = true
 	}
 	
@@ -203,35 +202,24 @@ class ResultadoDueloAppModel extends DueloAppModel {
 	}
 
 	def segunResultado(String ganador, String perdedor, String empate) {
-
 		if (poderDeRetador > poderDeRetado)
 			ganador
 		else if(poderDeRetado > poderDeRetador) perdedor else empate
-
 	}
 
 	def resultadoPartida() {
-
 		segunResultado("Ganaste contra ", "Perdiste contra ", "Empataste contra ")
-
 	}
 
 	def textoParaBotonCorrepondienteAResultadoDelDuelo() {
-
 		segunResultado("Ganaste Maquinola ", "Aceptar Derrota con Honor ", "Empataste lince ")
-
 	}
 
 	def ganadorDuelo() {
-
 		if (poderDeRetador > poderDeRetado)
 			duelo.retador.nombreJugador
 		else
 			duelo.retado.nombreJugador
 	}
 	
-	def refrescarLobby() {
-		lobbyAppModel.avisarCambiosListado
-	}
-
 }

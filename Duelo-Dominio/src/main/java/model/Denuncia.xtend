@@ -13,6 +13,11 @@ class Denuncia {
 	String justificacion
 	Motivo motivo
 
+	new(Jugador denunciante, Jugador denunciado) {
+		this.denunciante = denunciante
+		this.denunciado = denunciado
+	}
+
 	new(Jugador denunciante, Jugador denunciado, String justificacion) {
 
 		this.denunciante = denunciante
@@ -21,20 +26,20 @@ class Denuncia {
 
 	}
 
-	def validar(Denuncia denuncia) {
-		!(tamanioValido(denuncia.justificacion) && cantidadValidaPalabras(denuncia.justificacion))
-
+	def validar() {
+		if (!(tamanioValido(this.justificacion) && cantidadValidaPalabras(this.justificacion)))
+			throw new DenunciaInvalidaException
 	}
 
 	def denunciar(Jugador denunciado, Jugador denunciante) {
-		if (validar(this)) {
-
+		try{
+			validar()
 			denunciado.agregarDenuncia(this)
-		} else {
-
+		} 
+		catch (DenunciaInvalidaException denunciaException) {
 			denunciante.agregarDenuncia(abusoDeDenuncia(this))
+			throw denunciaException
 		}
-
 	}
 
 	def abusoDeDenuncia(Denuncia denuncia) {

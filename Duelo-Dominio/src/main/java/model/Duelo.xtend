@@ -37,13 +37,8 @@ class Duelo {
 		etapaActual.comenzarDuelo(this)
 	}
 	
-	def void setearAMRXComoRival(){
-		etapaActual.setearAMRXComoRival(this)
-	}
-	
 	def lucharContraMrEx() {
-		setearAMRXComoRival
-		this.comenzarDuelo
+		etapaActual.setearAMRXComoRival(this)
 	}
 	
 }
@@ -116,7 +111,7 @@ class SeleccionRival extends EtapaDeDuelo {
 	def void setearRival(List<Jugador> posiblesRivales, Duelo duelo) {
 		val rivalesEnMismoRanking = posiblesRivales.filter[ sonMismoRanking(duelo.retador, it) ]
 				
-		if(rivalesEnMismoRanking.isEmpty) throw new NoHayRivalesPosiblesException
+		if(rivalesEnMismoRanking.isEmpty) throw new NoHayRivalesPosiblesException(duelo)
 		else duelo.retado = rivalesEnMismoRanking.get(new Random().nextInt(rivalesEnMismoRanking.size))
 	}
 	
