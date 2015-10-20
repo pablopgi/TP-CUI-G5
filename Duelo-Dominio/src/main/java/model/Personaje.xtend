@@ -6,9 +6,10 @@ import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
-class Personaje {
+class Personaje implements IdInterface {
 	
 	var String nombre
+	var int id
 	var Posicion posicionIdeal
 	var List<Caracteristica> especialidades
 	var List<Caracteristica> debilidades 
@@ -31,4 +32,9 @@ class Personaje {
 	def esPosicionIdeal(Posicion posicionElegida){
 		posicionIdeal == posicionElegida
 	}
+	
+	override getId() {
+		id
+	}
+	
 }

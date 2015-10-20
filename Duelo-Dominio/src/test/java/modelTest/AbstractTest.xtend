@@ -1,18 +1,18 @@
 package modelTest
 
-import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.List
+import model.Denuncia
+import model.Dominador
+import model.Duelo
 import model.Jugador
+import model.Motivo
 import model.Partida
-import org.junit.Before
 import model.Personaje
 import model.Posicion
-import model.ResultadoPartida
-import model.Denuncia
-import model.FeedIntencional
-import model.Dominador
 import model.Rampage
-import model.Duelo
-import java.util.List
+import model.ResultadoPartida
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.junit.Before
 
 @Accessors
 abstract class AbstractTest {
@@ -72,17 +72,20 @@ abstract class AbstractTest {
 		
 		(1..3).forEach[jugadorConTresPartidasConPosicionTop.agregarPartida(partidaGanadaConPosicionIdealTop)]
 		
-		denunciaConMasDe20CaracteresYMasde3Palabras = new FeedIntencional(jugadorIniciador,
+		denunciaConMasDe20CaracteresYMasde3Palabras = new Denuncia(jugadorIniciador,
 															        	  jugadorSinPartidas,
-																          "Un motivo de denuncia de un jugador")	
-																   
-		denunciaConMenosDe20CaracteresYMasde3Palabras = new FeedIntencional(jugadorIniciador,
+																          "Un motivo de denuncia de un jugador")
+		denunciaConMasDe20CaracteresYMasde3Palabras.motivo = Motivo.FEED_INTENCIONAL
+		
+		denunciaConMenosDe20CaracteresYMasde3Palabras = new Denuncia(jugadorIniciador,
 																            jugadorSinPartidas,
 																            "Ab Cd Ef Gh")
+		denunciaConMenosDe20CaracteresYMasde3Palabras.motivo = Motivo.FEED_INTENCIONAL
 																     
-		denunciaConMenosDe20CaracteresYMenosde3Palabras = new FeedIntencional(jugadorIniciador,
+		denunciaConMenosDe20CaracteresYMenosde3Palabras = new Denuncia(jugadorIniciador,
 																              jugadorSinPartidas,
 																              "Aa Bb")
+		denunciaConMenosDe20CaracteresYMenosde3Palabras.motivo = Motivo.FEED_INTENCIONAL
 		
 		duelo = new Duelo(jugadorIniciador)
 		posiblesJugadoresParaElDuelo = #[jugadorConVeintePartidasGanadas,

@@ -3,42 +3,47 @@ package modelTest
 import org.junit.Assert
 import org.junit.Test
 
-import static model.ValidadorDeDenuncias.*
 import model.DenunciaInvalidaException
 
 class ValidadorDeDenunciasTest extends AbstractTest{
 	
 	@Test
 	def void unaDenunciaConMasDe20CaracteresYMasDe3PalabrasDeberiaSerValida(){
-		validar(denunciaConMasDe20CaracteresYMasde3Palabras)
+		var denunciado = denunciaConMasDe20CaracteresYMasde3Palabras.denunciado
+		var denunciante = denunciaConMasDe20CaracteresYMasde3Palabras.denunciante
+		
+		Assert.assertTrue(denunciado.denunciasRecibidas.isEmpty)
+		
+		denunciaConMasDe20CaracteresYMasde3Palabras.denunciar(denunciado, denunciante)
+		
+		Assert.assertEquals(denunciaConMasDe20CaracteresYMasde3Palabras, denunciado.denunciasRecibidas.get(0))
 	}
 	
 	@Test
 	def void unaDenunciaConMenosDe20CaracteresYMasDe3PalabrasDeberiaSerNoValida(){
+		var denunciante = denunciaConMenosDe20CaracteresYMasde3Palabras.denunciante
+		var denunciado = denunciaConMenosDe20CaracteresYMasde3Palabras.denunciado
+		
+		Assert.assertTrue(denunciante.denunciasRecibidas.isEmpty)
+		
 		try{
-			validar(denunciaConMenosDe20CaracteresYMasde3Palabras)
-			Assert.fail("Tenia menos de 20 caracteres, no deberia ser valida")
+			denunciaConMasDe20CaracteresYMasde3Palabras.denunciar(denunciado, denunciante)
 		}catch (DenunciaInvalidaException e){
-			
+			Assert.assertFalse(denunciante.denunciasRecibidas.isEmpty)
 		}
 	}
-	
-	@Test
-	def void unaDenunciaConMasDe20CaracteresYMenosDe3PalabrasDeberiaSerNoValida(){
-		try {
-			validar(denunciaConMenosDe20CaracteresYMenosde3Palabras)
-			Assert.fail("Tenia menos de 3 palabras, no deberia ser valida")
-		} 
-		catch (DenunciaInvalidaException e){
-
-		}
-	}
-	
+		
 	@Test
 	def void unaDenunciaConMenosDe20CaracteresYMenosDe3PalabrasDeberiaSerNoValida(){
-		try  validar(denunciaConMenosDe20CaracteresYMenosde3Palabras)
-		catch (Exception e){
-			Assert.assertTrue(true)
+		var denunciante = denunciaConMenosDe20CaracteresYMenosde3Palabras.denunciante
+		var denunciado = denunciaConMenosDe20CaracteresYMenosde3Palabras.denunciado
+		
+		Assert.assertTrue(denunciante.denunciasRecibidas.isEmpty)
+		
+		try{
+			denunciaConMasDe20CaracteresYMasde3Palabras.denunciar(denunciado, denunciante)
+		}catch (DenunciaInvalidaException e){
+			Assert.assertFalse(denunciante.denunciasRecibidas.isEmpty)
 		}
 	}
 	

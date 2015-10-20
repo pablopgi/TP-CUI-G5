@@ -5,9 +5,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import static model.GeneradorDeEstadistica.*
 
 @Accessors
-class Jugador {
+class Jugador implements IdInterface {
 	
 	var String nombreJugador
+	var int id
 	var List<Partida> partidas
 	var List<Denuncia> denunciasRecibidas
 	var List<Estadistica> estadisticas
@@ -65,6 +66,10 @@ class Jugador {
 		agregarPartida(partida)
 		removeEstadisticaDePersonaje(partida.personajeElegido)
 		agregarEstadistica(crearEstadistica(partida.personajeElegido, this))
+	}
+	
+	override getId() {
+		id
 	}
 	
 }
