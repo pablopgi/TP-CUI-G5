@@ -1,0 +1,129 @@
+.margen5 {
+	margin: 5px;
+}
+
+.margen10 {
+	margin: 10px;
+}
+
+.paddingButton {
+	padding: 3px;
+}
+
+.headerStyle{
+	text-align: center;
+	background: black;
+	color: white;
+	font-size: x-large;
+}
+
+.noPaddNoBorde{
+	padding: 0px;
+	border: 0px;
+	outline-width: 0px;
+}
+
+.letraVerde{
+	color: #00CC00;
+}
+
+.caracteristica{
+	text-align: right;
+	font-size: 15;
+	font-weight: bold;
+}
+
+.letraAzulTamanio25Centrada{
+	text-align: center;
+	color: blue;
+	font-size: x-large;
+}
+
+.letraChica{
+	font-size: 12px
+}
+
+.statsUnstyled {
+	color: black;
+	font-size: small;
+	background-color: white;
+}
+
+.fondoVictoria {
+	background-color: #A2C35E;
+}
+
+.fondoDerrota {
+	background-color: #F55F8A;
+}
+
+.letraVerdeOscuro{
+	color: #576E26;
+	font-weight: bold;
+	font-size: x-large;
+	text-align: center;
+}
+
+.letraRoja{
+	color: red;
+	font-weight: bold;
+	font-size: x-large;
+	text-align: center;	
+}
+
+.letraNegraTamanioGrande{
+	text-align: center;
+	font-size: x-large;
+}
+
+.bloqueCentrado{
+	position: absolute;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.scrollableColumn {
+	height: 500px;
+	overflow: auto;
+}
+
+.atributosImagenPrincipal{
+	width: 200px;
+	height: 400px;
+}
+
+body {
+	height: 100%;
+	overflow: hidden;
+}
+
+body.modal-open {
+	overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+}
+
+.modal {
+	overflow: auto;
+}
+
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.row-eq-height.col-xs-6:last-of-type {
+	position: relative;
+}
+
+.row-eq-height.col-xs-6:last-of-type > div::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	bottom: 0;
+	width: calc(100% - 30px); /* 100% of .col-xs-6 minus left and right padding */
+}

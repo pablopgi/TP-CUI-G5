@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html ng-App="dueloDeLeyendasApp">
+<head>
+	<link rel="stylesheet" href="style/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style/css/custom.css">
+	<script src="script/js/jquery-1.11.3.min.js"></script>	
+	<script src="script/js/bootstrap.min.js"></script>
+	<script src="lib/angular.min.js"></script>
+	<script src="script/js/dueloDeLeyendasApp.js"></script>
+	<script src="script/js/dueloDeLeyendasController.js"></script>
+	<link href="style/css/hover-min.css" rel="stylesheet" media="all">
+	<title>Duelo de Leyendas</title>
+	<style>
+		body {
+			background-color: #CCC;
+			background-image: url(resources/background.png);
+			background-repeat: repeat;
+		}
+	</style>
+</head>
+<body class="margen10 container-fluid" ng-controller="DueloDeLeyendasCtrl">
+<header class="headerStyle">Selecciona tu personaje para el duelo!</header>
+<br>
+<div class="row-eq-height">
+	<div class="col-md-4 scrollableColumn">
+   <!--Listado personajes-->
+		<div class="row-fluid margen5">
+		<!--Seleccion de personaje-->
+		  <div class="col-md-6 img-responsive paddingButton text-center" ng-repeat="pj in pjs">
+		  	<button class="noPaddNoBorde img-rounded hvr-shrink" ng-click="refreshPj(pj)">
+		  		<img ng-src="{{pj.dir}}" class="img-rounded">
+		  	</button>
+		  </div>		  
+		</div>
+	</div>
+	<div class="col-md-4">
+		<!--Personaje seleccionado-->
+	  	<p class="headerStyle">{{nombrePj}}</p>
+	  	<img ng-src="{{fullImage}}" class="img-responsive">
+	</div>
+
+	<div class="col-md-4 scrollableColumn">
+		<!--Jugar -->
+		<p class="letraVerde">Especialidades:</p>
+  		<div class="caracteristica" ng-repeat="especialidad in especialidadesPj">
+  			<p>{{especialidad}}</p>
+		</div>
+		<p class="letraVerde">Debilidad:</p>
+  		<div class="caracteristica" ng-repeat="debilidad in debilidadesPj">
+  			<p>{{debilidad}}</p>
+		</div>
+		<p class="letraVerde">Mejor Posicion:</p>
+  		<div class="caracteristica">
+  			<p>{{posicionPj}}</p>
+		</div>
+		<p class="letraAzulTamanio25Centrada">Jugar!</p>
+		<div class="btn-group-vertical btn-block" role="group">
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#dueloModal">TOP</button>
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#mrxModal">BOT</button>
+			<button type="button" class="btn btn-default">MID</button>
+			<button type="button" class="btn btn-default">JUNGLE</button>
+		</div>
+		<!-- Declaracion de ventana Modal -->
+		<div class="modal fade" id="dueloModal" role="dialog">
+	   	<div class="modal-dialog modal-lg">
+	   	   <!-- Contenido de ventana Modal-->
+		      <div class="modal-content">
+		       	<div class="modal-header">
+		         	<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+		         	<h4 class="modal-title text-center headerStyle">Resultado</h4>
+		       	</div>
+		       	<div class="modal-body margen5">
+		         	<div class="row row-eq-height">
+		          		<!-- Columna stats -->
+		            	<div class="col-md-6">
+			            	<div class="col-md-5 col-sm-12 headerStyle"><p >Retadordordordor</p></div>
+			            	<div class="col-md-2 col-sm-12 headerStyle"><p >vs</p></div>
+			            	<div class="col-md-5 col-sm-12 headerStyle"><p >Retado</p></div>
+			            	<div class="col-md-6 headerStyle"><img src="resources/amumu.png"></div>
+			            	<div class="col-md-6 headerStyle"><img src="resources/riki.png"></div>
+			            	<!--Stats-->
+								<div class="col-md-6">
+									<div class="col-md-6">Jugadas</div>
+					  				<div class="col-md-6">.col-md-6</div>
+					 				<div class="col-md-6">Ganadas</div>
+					  				<div class="col-md-6">.col-md-6</div>
+					 				<div class="col-md-6">Kill</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Deads</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Assist</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Mejor Ubicacion</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Puntaje</div>
+									<div class="col-md-6">.col-md-6</div>
+								</div>
+								<div class="col-md-6">
+									<div class="col-md-6">Jugadas</div>
+					  				<div class="col-md-6">.col-md-6</div>
+					 				<div class="col-md-6">Ganadas</div>
+					  				<div class="col-md-6">.col-md-6</div>
+					 				<div class="col-md-6">Kill</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Deads</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Assist</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Mejor Ubicacion</div>
+									<div class="col-md-6">.col-md-6</div>
+									<div class="col-md-6">Puntaje</div>
+									<div class="col-md-6">.col-md-6</div>
+								</div>
+						</div>
+						<!-- Columna resultado Victoria -->
+						<div class="col-md-6 fondoVictoria" ng-show="resultadoBool()">
+							<div class="bloqueCentrado">
+								<P class="letraVerdeOscuro">GANASTE</P>
+								<P class="letraNegraTamanioGrande">Resultado</P>
+								<P class="letraNegraTamanioGrande">En Hora Buena</P>				            	
+							</div>
+						</div>
+			            <!-- Columna resultado Derrota -->
+			            <div class="col-md-6 fondoDerrota" ng-show="!resultadoBool()">
+				            <div class="bloqueCentrado">
+				            	<P class="letraRoja">PERDISTE!</P>
+				            	<P class="letraNegraTamanioGrande">Resultado</P>
+								<P class="letraNegraTamanioGrande">Honores al ganador:</P>
+								<P class="letraNegraTamanioGrande">Honores al ganador:</P>
+							</div>
+						</div>
+			         </div>
+	        		</div>
+			   	<div class="modal-footer">
+			      	<button type="button" class="btn btn-default btn-block" data-dismiss="modal" style="background: black; color: white; text-align: center">
+							Celebrar victoria
+						</button>
+					</div>
+				</div>    
+			</div>
+		</div>
+		<!-- Declaracion de ventana Modal -->
+		<div class="modal fade" id="mrxModal" role="dialog">
+	   	<div class="modal-dialog modal-md">    
+	   	   <!-- Contenido de ventana Modal-->
+		      <div class="modal-content">
+		       	<div class="modal-header">
+		         	<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+		       		<h4 class="headerStyle">NO TIENES RIVAL!</h4>
+		       	</div>
+		       	<div class="modal-body margen5">
+		       		<p>NO HAY QUIEN SE TE ANIME EN TU RANKING ACTUAL</p>
+		       		<p>Puedes optar por retar al bot del nivel y tratar de avanzar de nivel en el ranking o disfrutar de tu gloria y descansar</p>
+		       		<p>&iquestQue quieres hacer?</p>
+		        </div>
+			   	<div class="modal-footer">
+			      	<button type="button" class="btn btn-default" data-dismiss="modal" style="background: black; color: white; text-align: center">
+							Retar a MR-X
+					</button>
+			      	<button type="button" class="btn btn-default" data-dismiss="modal" style="background: black; color: white; text-align: center">
+							Descansar
+					</button>
+
+				</div>
+			  </div>    
+		</div>
+		</div>
+		<hr>
+		<p class="letraAzulTamanio25Centrada">Stats!</p>
+	  	<div class="row">
+		<!--Stats personaje seleccionado-->
+			<div class="col-md-6 letraVerde letraChica">Jugadas</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-6 letraVerde letraChica">Ganadas</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-6 letraVerde letraChica">Kill</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-6 letraVerde letraChica">Deads</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-6 letraVerde letraChica">Assist</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-6 letraVerde letraChica">Mejor Ubicacion</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-6 letraVerde letraChica">Puntaje</div>
+			<div class="col-md-6">.col-md-6</div>
+		</div>
+		<hr>
+	</div>
+</div>
+</body>
+</html>

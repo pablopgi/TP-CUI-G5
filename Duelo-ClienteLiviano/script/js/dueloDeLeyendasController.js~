@@ -1,0 +1,26 @@
+angular.module('dueloDeLeyendasApp', [])
+  .controller('DueloDeLeyendasCtrl', function($scope) {
+    var main = this;
+
+    main.fullImage = 'resources/AmumuSquare.png';
+
+	$scope.pjs = [
+        {'dir':'resources/AmumuSquare.png','nombre':'Amumu','fulldir':'resources/AmumuFull.jpg'},
+        {'dir':'resources/hero-rikimaru.png','nombre':'Riki','fulldir':'resources/rikiFull.jpg'},
+        {'dir':'resources/AmumuSquare.png','nombre':'Amumu','fulldir':'resources/AmumuSquare.png'},
+        {'dir':'resources/hero-rikimaru.png','nombre':'Riki','fulldir':'resources/hero-rikimaru.png'}
+    ];
+
+  $scope.habilidades = [
+        {'dir':'resources/AmumuSquare.png','nombre':'Amumu','fulldir':'resources/AmumuFull.jpg'},
+        {'dir':'resources/hero-rikimaru.png','nombre':'Riki','fulldir':'resources/rikiFull.jpg'},
+        {'dir':'resources/AmumuSquare.png','nombre':'Amumu','fulldir':'resources/AmumuSquare.png'},
+        {'dir':'resources/hero-rikimaru.png','nombre':'Riki','fulldir':'resources/hero-rikimaru.png'}
+    ];    
+
+	$scope.refreshPj = function(pj) {
+		$scope.nombrePj = pj.nombre;
+		$scope.fullImage = pj.fulldir;
+	};
+    
+  });
