@@ -8,6 +8,7 @@
 	<script src="lib/angular.min.js"></script>
 	<script src="script/js/dueloDeLeyendasApp.js"></script>
 	<script src="script/js/dueloDeLeyendasController.js"></script>
+	<script src="script/js/dueloDeLeyendasService.js"></script>
 	<link href="style/css/hover-min.css" rel="stylesheet" media="all">
 	<title>Duelo de Leyendas</title>
 	<style>
@@ -54,11 +55,8 @@
   			<p>{{posicionPj}}</p>
 		</div>
 		<p class="letraAzulTamanio25Centrada">Jugar!</p>
-		<div class="btn-group-vertical btn-block" role="group">
-			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#dueloModal">TOP</button>
-			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#mrxModal">BOT</button>
-			<button type="button" class="btn btn-default">MID</button>
-			<button type="button" class="btn btn-default">JUNGLE</button>
+		<div class="btn-group-vertical btn-block" role="group" ng-repeat="posicion in posicionesPosibles">
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#dueloModal">{{posicion}}</button>
 		</div>
 		<!-- Declaracion de ventana Modal -->
 		<div class="modal fade" id="dueloModal" role="dialog">
