@@ -16,7 +16,20 @@ angular.module('dueloDeLeyendasApp')
 	};
 
     $scope.resultadoBool = function() {
-        return false;
+        return true;
     };
+
+    $scope.retarMrX = function(){
+        $scope.noRival = false;
+        $scope.resultado = true;
+        $scope.ganador = true;
+        $scope.perdedor = false;
+    };
+
+    $scope.ganador = false;
+    $scope.perdedor = false;
+
+    $scope.noRival = true;
+    $scope.resultado = false;
     
   });

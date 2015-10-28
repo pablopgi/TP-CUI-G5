@@ -1,0 +1,77 @@
+<!-- Contenido de ventana Modal-->
+<div class="modal-header">
+	<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+	<h4 class="modal-title text-center headerStyle">Resultado</h4>
+</div>
+<div class="modal-body margen5">
+	<div class="row row-eq-height">
+		<!-- Columna stats -->
+	<div class="col-md-6">
+    	<div class="col-md-5 col-sm-12 headerStyle"><p >Retadordordordor</p></div>
+    	<div class="col-md-2 col-sm-12 headerStyle"><p >vs</p></div>
+    	<div class="col-md-5 col-sm-12 headerStyle"><p >Retado</p></div>
+    	<div class="col-md-6 headerStyle"><img src="resources/amumu.png"></div>
+    	<div class="col-md-6 headerStyle"><img src="resources/riki.png"></div>
+    	<!--Stats-->
+			<div class="col-md-6">
+				<div class="col-md-6">Jugadas</div>
+  				<div class="col-md-6">.col-md-6</div>
+ 				<div class="col-md-6">Ganadas</div>
+  				<div class="col-md-6">.col-md-6</div>
+ 				<div class="col-md-6">Kill</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Deads</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Assist</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Mejor Ubicacion</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Puntaje</div>
+				<div class="col-md-6">.col-md-6</div>
+			</div>
+			<div class="col-md-6">
+				<div class="col-md-6">Jugadas</div>
+  				<div class="col-md-6">.col-md-6</div>
+ 				<div class="col-md-6">Ganadas</div>
+  				<div class="col-md-6">.col-md-6</div>
+ 				<div class="col-md-6">Kill</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Deads</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Assist</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Mejor Ubicacion</div>
+				<div class="col-md-6">.col-md-6</div>
+				<div class="col-md-6">Puntaje</div>
+				<div class="col-md-6">.col-md-6</div>
+			</div>
+	</div>
+	<!-- Columna resultado Victoria -->
+	<div class="col-md-6 fondoVictoria" ng-show="ganador">
+		<div class="bloqueCentrado">
+			<P class="letraVerdeOscuro">GANASTE</P>
+			<P class="letraNegraTamanioGrande">Resultado</P>
+			<P class="letraNegraTamanioGrande">En Hora Buena</P>				            	
+		</div>
+	</div>
+    <!-- Columna resultado Derrota -->
+    <div class="col-md-6 fondoDerrota" ng-show="perdedor">
+        <div class="bloqueCentrado">
+        	<P class="letraRoja">PERDISTE!</P>
+        	<P class="letraNegraTamanioGrande">Resultado</P>
+			<P class="letraNegraTamanioGrande">Honores al ganador:</P>
+			<P class="letraNegraTamanioGrande">Honores al ganador:</P>
+		</div>
+	</div>
+ </div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default btn-block" data-dismiss="modal" style="background: black; color: white; text-align: center">
+		<div ng-show="ganador">
+			Celebrar victoria
+		</div>
+		<div ng-show="perdedor">
+			Perdi :(
+		</div>
+	</button>
+</div>
