@@ -73,7 +73,6 @@ class SeleccionPersonaje extends EtapaDeDuelo {
 		duelo.personajeElegidoPorRetador = pj
 		duelo.posicionElegidaPorRetador = pos
 		duelo.etapaActual = new SeleccionRival
-		
 	}
 	
 	override definirRival(List<Jugador> posiblesRivales, List<Personaje> personajesPosibles, Duelo duelo) {
@@ -104,6 +103,7 @@ class SeleccionRival extends EtapaDeDuelo {
 		setearRival(posiblesRivales, duelo)
 		setearPersonajeRival(personajesPosibles, duelo)
 		duelo.etapaActual = new DefinirDuelo
+		duelo.comenzarDuelo
 	}
 	
 	//Metodos propios de la clase
@@ -158,11 +158,8 @@ class DefinirDuelo extends EtapaDeDuelo {
 		if(duelo.poderDeRetador > duelo.poderDeRetado) {
 			setearVictoriaDerrotaEnParDePartidas(partidaRetador, partidaRetado)
 		}
-		else if(duelo.poderDeRetador < duelo.poderDeRetado) {
-			setearVictoriaDerrotaEnParDePartidas(partidaRetado, partidaRetador)
-		}
 		else {
-			setearEmpateEnParDePartidas(partidaRetador, partidaRetado)
+			setearVictoriaDerrotaEnParDePartidas(partidaRetado, partidaRetador)
 		}
 		
 		calificarPartidaDeJugador(partidaRetador, duelo.retador)
@@ -183,12 +180,7 @@ class DefinirDuelo extends EtapaDeDuelo {
 		vencedor.resultadoPartida = ResultadoPartida.Victoria
 		perdedor.resultadoPartida  = ResultadoPartida.Derrota
 	}
-	
-	private def void setearEmpateEnParDePartidas(Partida empate1, Partida empate2) {
-		empate1.resultadoPartida = ResultadoPartida.Empate
-		empate2.resultadoPartida  = ResultadoPartida.Empate
-	}
-	
+		
 	override setearAMRXComoRival(Duelo duelo) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
