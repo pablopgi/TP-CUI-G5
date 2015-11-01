@@ -9,14 +9,14 @@ class ResultadoPartidaToSend {
 	boolean noRival // indica que no hay rival posible
 
 	// datos retador
-	int idPersonajeRetador
+	String nombrePjRetador
 	int ataqueRetador
 	EstadisticaToSend estadisticaRetador
 
 	// datos retado
-	int idPersonajeRetado
+	String nombrePjRetado
 	int ataqueRetado
-	String retado
+	String nombreJugadorRetado
 	EstadisticaToSend estadisticaRetado
 
 	// constructor para el caso que no haya rival
@@ -25,20 +25,20 @@ class ResultadoPartidaToSend {
 	}
 
 	// constructor para el caso que haya un resultado
-	new (boolean ganador, int idPjRetador, int ataqueRetador, Estadistica estadisticaRetador,
-		 int idPjRetado, int ataqueRetado, String nombreRetado, Estadistica estadisticaRetado) {
+	new (boolean ganador, String nombrePjRetador, int ataqueRetador, Estadistica estadisticaRetador,
+		 String nombrePjRetado, int ataqueRetado, String nombreRetado, Estadistica estadisticaRetado) {
 		// datos resultado
 	 	this.noRival = false
 	 	this.ganador = ganador
 	 	this.perdedor = !ganador
 	 	// datos retador
-	 	this.idPersonajeRetador = idPjRetador
+	 	this.nombrePjRetador = nombrePjRetador
 	 	this.ataqueRetador = ataqueRetador
 	 	this.estadisticaRetador = new EstadisticaToSend(estadisticaRetador)
 	 	// datos retado
-	 	this.idPersonajeRetado = idPjRetado
+	 	this.nombrePjRetado = nombrePjRetado
 	 	this.ataqueRetado = ataqueRetado
-	 	retado = nombreRetado
+	 	nombreJugadorRetado = nombreRetado
 	 	this.estadisticaRetado = new EstadisticaToSend(estadisticaRetador)
 	}
 }

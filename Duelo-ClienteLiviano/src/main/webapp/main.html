@@ -35,28 +35,29 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<!--Personaje seleccionado-->
-	  	<p class="headerStyle">{{nombrePj}}</p>
-	  	<img ng-src="{{fullImage}}" class="img-responsive">
+		<!--Personaje seleccionado Center-->
+	  	<p class="headerStyle">{{pjSeleccionado.nombre}}</p>
+	  	<img ng-src="resources/{{pjSeleccionado.nombre}}Full.jpg" class="img-responsive">
 	</div>
 
 	<div class="col-md-4 scrollableColumn">
-		<!--Jugar -->
+		<!-- Caracteristicas personaje seleccionado -->
 		<p class="letraVerde">Especialidades:</p>
-  		<div class="caracteristica" ng-repeat="especialidad in especialidadesPj">
+  		<div class="caracteristica" ng-repeat="especialidad in pjSeleccionado.especialidades">
   			<p>{{especialidad}}</p>
 		</div>
 		<p class="letraVerde">Debilidad:</p>
-  		<div class="caracteristica" ng-repeat="debilidad in debilidadesPj">
+  		<div class="caracteristica" ng-repeat="debilidad in pjSeleccionado.debilidades">
   			<p>{{debilidad}}</p>
 		</div>
 		<p class="letraVerde">Mejor Posicion:</p>
   		<div class="caracteristica">
-  			<p>{{posicionPj}}</p>
+  			<p>{{pjSeleccionado.posicionIdeal}}</p>
 		</div>
+		<!--Jugar -->
 		<p class="letraAzulTamanio25Centrada">Jugar!</p>
 		<div class="btn-group-vertical btn-block" role="group" ng-repeat="posicion in posicionesPosibles">
-			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#dueloModal">{{posicion}}</button>
+			<button type="button" class="btn btn-default" ng-click="jugar(posicion)">{{posicion}}</button>
 		</div>
 		<!-- Declaracion de ventana Modal -->
 		<div class="modal fade" id="dueloModal" role="dialog">
@@ -73,9 +74,9 @@
 			</div>
 		</div>
 		<hr>
+		<!--Stats personaje seleccionado-->
 		<p class="letraAzulTamanio25Centrada">Stats!</p>
 	  	<div class="row" ng-repeat="estadistica in estadisticaPjActual">
-		<!--Stats personaje seleccionado-->
 			<div class="col-md-6 letraVerde letraChica">{{estadistica.nombre}}</div>
 			<div class="col-md-6">{{estadistica.valor}}</div>
 		</div>

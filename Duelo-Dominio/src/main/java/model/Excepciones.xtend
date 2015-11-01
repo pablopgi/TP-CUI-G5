@@ -46,3 +46,15 @@ class DenunciaInvalidaException extends Throwable {
 		super("La denuncia es inválida")
 	}
 }
+
+class NoExisteJugadorConEseId extends Throwable {
+	new() {
+		super("No existe ningun jugador con ese id en el sistema")
+	}
+}
+
+class NoExistePersonajeConEseId extends Throwable {
+	new() {
+		super("No existe ningun personaje con ese id en el sistema")
+	}
+}

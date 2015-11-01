@@ -1,6 +1,10 @@
 angular.module('dueloDeLeyendasApp')
 	.service('DueloDeLeyendasService', function(){
 
+		this.resultadoPartida = function() {
+
+		};
+
 		this.estadisticaPj = function() {
 			return [
 					{
@@ -34,46 +38,46 @@ angular.module('dueloDeLeyendasApp')
 				'personajes' : [
 			        {
 			            'dir':'resources/amumu.png',
-			            'nombre':'amumu',
+			            'nombre':'Amumu',
 			            'fulldir':'resources/amumuFull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
-			            'posicion':'Jungle'
+			            'posicionIdeal':'Jungle'
 			        } , {
 			            'dir':'resources/riki.png',
 			            'nombre':'Riki',
 			            'fulldir':'resources/rikiFull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
-			            'posicion':'Jungle'
+			            'posicionIdeal':'Jungle'
 			        } , {
 			            'dir':'resources/amumu.png',
 			            'nombre':'Amumu',
 			            'fulldir':'resources/amumuFull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
-			            'posicion':'Jungle'
+			            'posicionIdeal':'Jungle'
 			        } , {
 			            'dir':'resources/riki.png',
 			            'nombre':'Riki',
 			            'fulldir':'resources/rikiFull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
-			            'posicion':'Jungle'
+			            'posicionIdeal':'Jungle'
 			        } , {
 				        'dir':'resources/amumu.png',
 			            'nombre':'Amumu',
 			            'fulldir':'resources/amumuFull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
-			            'posicion':'Jungle'
+			            'posicionIdeal':'Jungle'
 			        } , {
 			            'dir':'resources/riki.png',
 			            'nombre':'Riki',
 			            'fulldir':'resources/rikiFull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
-			            'posicion':'Jungle'
+			            'posicionIdeal':'Jungle'
 			        } , {
 			            'dir':'resources/amumu.png',
 			            'nombre':'Amumu',

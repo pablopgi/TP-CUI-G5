@@ -7,14 +7,13 @@ angular.module('dueloDeLeyendasApp')
     $scope.pjs = datosJuego.personajes;
     $scope.posicionesPosibles = datosJuego.posicionesPosibles;
 
+    $scope.pjSeleccionado;
     $scope.estadisticaPjActual = DueloDeLeyendasService.estadisticaPj();
 
+    $scope.resultadoPartida = DueloDeLeyendasService.resultadoPartida();
+
 	$scope.refreshPj = function(pj) {
-		$scope.nombrePj = pj.nombre;
-		$scope.fullImage = pj.fulldir;
-        $scope.especialidadesPj = pj.especialidades
-        $scope.debilidadesPj = pj.debilidades
-        $scope.posicionPj = pj.posicion
+		$scope.pjSeleccionado = pj
 	};
 
     $scope.retarMrX = function(){
@@ -22,6 +21,10 @@ angular.module('dueloDeLeyendasApp')
         $scope.ganador = false;
         $scope.perdedor = true;
     };
+
+    $scope.jugar = function(pos) {
+        $("#dueloModal").modal();
+    }
 
     $scope.ganador = false;
     $scope.perdedor = false;
