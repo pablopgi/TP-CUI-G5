@@ -51,14 +51,14 @@ angular.module('dueloDeLeyendasApp')
 			        {
 			            'dir':'resources/amumu.png',
 			            'nombre':'Amumu',
-			            'fulldir':'resources/amumuFull.jpg',
+			            'fulldir':'resources/amumufull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
 			            'dir':'resources/riki.png',
 			            'nombre':'Riki',
-			            'fulldir':'resources/rikiFull.jpg',
+			            'fulldir':'resources/rikifull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
@@ -70,7 +70,7 @@ angular.module('dueloDeLeyendasApp')
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/Tryndamere.png',
+			            'dir':'resources/tryndamere.png',
 			            'nombre':'Tryndamere',
 			            'fulldir':'resources/tryndamerefull.jpg',
 			            'especialidades':['Poder de Habilidad'],
@@ -84,9 +84,9 @@ angular.module('dueloDeLeyendasApp')
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/Death Prophet.png',
+			            'dir':'resources/deathprophet.png',
 			            'nombre':'Death Prophet',
-			            'fulldir':'resources/deathprophefull.jpg',
+			            'fulldir':'resources/deathprophetfull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
@@ -98,7 +98,7 @@ angular.module('dueloDeLeyendasApp')
 			            'debilidades':['Poder de Habilidad'],
 			            'posicion':'Jungle'
 			        } , {
-			            'dir':'resources/Fiddlesticks.png',
+			            'dir':'resources/fiddlesticks.png',
 			            'nombre':'Fiddlesticks',
 			            'fulldir':'resources/fiddlesticksfull.jpg',
 			            'especialidades':['Poder de Habilidad'],

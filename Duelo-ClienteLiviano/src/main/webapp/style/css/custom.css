@@ -128,3 +128,7 @@ body.modal-open {
 	bottom: 0;
 	width: calc(100% - 30px); /* 100% of .col-xs-6 minus left and right padding */
 }
+
+.imageSize {
+	height: 700px;
+}

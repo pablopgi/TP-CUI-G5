@@ -29,7 +29,7 @@
 		<!--Seleccion de personaje-->
 		  <div class="col-md-6 img-responsive paddingButton text-center" ng-repeat="pj in pjs">
 		  	<button class="noPaddNoBorde img-rounded hvr-shrink" ng-click="refreshPj(pj)">
-		  		<img ng-src="resources/{{pj.nombre}}.png" class="img-rounded">
+		  		<img ng-src="{{pj.dir}}" class="img-rounded">
 		  	</button>
 		  </div>
 		</div>
@@ -37,7 +37,7 @@
 	<div class="col-md-4">
 		<!--Personaje seleccionado Center-->
 	  	<p class="headerStyle">{{pjSeleccionado.nombre}}</p>
-	  	<img ng-src="resources/{{pjSeleccionado.nombre}}Full.jpg" class="img-responsive">
+	  	<img ng-src="{{pjSeleccionado.fulldir}}" class="img-responsive" style="height: 350px; width: 450px" >
 	</div>
 
 	<div class="col-md-4 scrollableColumn">
