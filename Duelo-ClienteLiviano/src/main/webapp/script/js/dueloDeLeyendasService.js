@@ -51,44 +51,44 @@ angular.module('dueloDeLeyendasApp')
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/amumu.png',
-			            'nombre':'Amumu',
-			            'fulldir':'resources/amumuFull.jpg',
+			            'dir':'resources/axe.png',
+			            'nombre':'Axe',
+			            'fulldir':'resources/axefull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/riki.png',
-			            'nombre':'Riki',
-			            'fulldir':'resources/rikiFull.jpg',
+			            'dir':'resources/Tryndamere.png',
+			            'nombre':'Tryndamere',
+			            'fulldir':'resources/tryndamerefull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-				        'dir':'resources/amumu.png',
-			            'nombre':'Amumu',
-			            'fulldir':'resources/amumuFull.jpg',
+				        'dir':'resources/Drow Ranger.png',
+			            'nombre':'Drow Ranger',
+			            'fulldir':'resources/drowrangerfull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/riki.png',
-			            'nombre':'Riki',
-			            'fulldir':'resources/rikiFull.jpg',
+			            'dir':'resources/Death Prophet.png',
+			            'nombre':'Death Prophet',
+			            'fulldir':'resources/deathprophefull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/amumu.png',
-			            'nombre':'Amumu',
-			            'fulldir':'resources/amumuFull.jpg',
+			            'dir':'resources/Lee Sin.png',
+			            'nombre':'Lee Sin',
+			            'fulldir':'resources/leesinfull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicion':'Jungle'
 			        } , {
-			            'dir':'resources/riki.png',
-			            'nombre':'Riki',
-			            'fulldir':'resources/rikiFull.jpg',
+			            'dir':'resources/Fiddlesticks.png',
+			            'nombre':'Fiddlesticks',
+			            'fulldir':'resources/fiddlesticksfull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicion':'Jungle'

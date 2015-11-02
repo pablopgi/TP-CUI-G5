@@ -2,24 +2,35 @@ package controller
 
 import model.Duelo
 import model.DueloDeLeyendasMain
-import toSendClasses.DecisionUsuarioToSend
 import model.NoExisteJugadorConEseId
 import model.NoExistePersonajeConEseId
 import model.NoHayRivalesPosiblesException
-import toSendClasses.ResultadoPartidaToSend
+import org.uqbar.xtrest.api.Result
+import org.uqbar.xtrest.api.XTRest
+import org.uqbar.xtrest.api.annotation.Body
+import org.uqbar.xtrest.api.annotation.Controller
+import org.uqbar.xtrest.api.annotation.Get
+import org.uqbar.xtrest.http.ContentType
+import org.uqbar.xtrest.json.JSONUtils
+import toSendClasses.DecisionUsuarioToSend
 import toSendClasses.EstadisticaToSend
+import toSendClasses.ResultadoPartidaToSend
+import toSendClasses.DatosJuegoToSend
 
 @Controller
 class DueloEntreLeyendaController {
 	extension JSONUtils = new JSONUtils
 	Duelo dueloSinRival
 	
+	
+	
 	//Envia la respuesta inicial con los datos del juego
 	@Get("/del/:id")
 	def Result datosJuego() {
 		val idParam = Integer.valueOf(id)
     	DueloDeLeyendasMain.instance.setMainPlayer(idParam)
-		val datos = DueloDeLeyendasMain.instance.datosDeJuego
+		val pjsDelJuego = DueloDeLeyendasMain.instance.personajesDisponibles
+		val datos = new DatosJuegoToSend(pjsDelJuego)
 		
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(datos.toJson)
