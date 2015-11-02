@@ -34,11 +34,11 @@ class EstadisticaToSend {
 			),
 			new EstadisticaDatoParticular(
 				"Mejor Ubicacion",
-				mejorUbicacion.toString
+				if(mejorUbicacion != null) mejorUbicacion.toString else ""
 			),
 			new EstadisticaDatoParticular(
 				"Puntaje",
-				calificacion.puntaje
+				if(calificacion != null) calificacion.puntaje else ""
 			)
 		]
 	}
