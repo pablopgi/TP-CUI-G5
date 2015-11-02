@@ -49,58 +49,58 @@ angular.module('dueloDeLeyendasApp')
 				'posicionesPosibles' : [ 'TOP', 'BOT', 'MID', 'JUNGLE'],
 				'personajes' : [
 			        {
-			            'dir':'resources/amumu.png',
+			            'dir':'resources/Amumu.png',
 			            'nombre':'Amumu',
-			            'fulldir':'resources/amumufull.jpg',
+			            'fulldir':'resources/Amumufull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/riki.png',
+			            'dir':'resources/Riki.png',
 			            'nombre':'Riki',
-			            'fulldir':'resources/rikifull.jpg',
+			            'fulldir':'resources/Rikifull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/axe.png',
+			            'dir':'resources/Axe.png',
 			            'nombre':'Axe',
-			            'fulldir':'resources/axefull.jpg',
+			            'fulldir':'resources/Axefull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/tryndamere.png',
+			            'dir':'resources/Tryndamere.png',
 			            'nombre':'Tryndamere',
-			            'fulldir':'resources/tryndamerefull.jpg',
+			            'fulldir':'resources/Tryndamerefull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
 			        } , {
 				        'dir':'resources/Drow Ranger.png',
 			            'nombre':'Drow Ranger',
-			            'fulldir':'resources/drowrangerfull.jpg',
+			            'fulldir':'resources/Drow Rangerfull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/deathprophet.png',
+			            'dir':'resources/Death Prophet.png',
 			            'nombre':'Death Prophet',
-			            'fulldir':'resources/deathprophetfull.jpg',
+			            'fulldir':'resources/Death Prophetfull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicionIdeal':'Jungle'
 			        } , {
-			            'dir':'resources/Lee Sin.png',
+			            'dir':'resources/LeeSin.png',
 			            'nombre':'Lee Sin',
-			            'fulldir':'resources/leesinfull.jpg',
+			            'fulldir':'resources/Lee Sinfull.jpg',
 			            'especialidades':['Poder de Defensa','Poder de Habilidad'],
 			            'debilidades':['Poder de Habilidad'],
 			            'posicion':'Jungle'
 			        } , {
-			            'dir':'resources/fiddlesticks.png',
+			            'dir':'resources/Fiddlesticks.png',
 			            'nombre':'Fiddlesticks',
-			            'fulldir':'resources/fiddlesticksfull.jpg',
+			            'fulldir':'resources/Fiddlesticksfull.jpg',
 			            'especialidades':['Poder de Habilidad'],
 			            'debilidades':['Resistencia Magica', 'Control de Masas'],
 			            'posicion':'Jungle'
