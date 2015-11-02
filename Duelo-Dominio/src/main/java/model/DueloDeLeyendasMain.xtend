@@ -2,7 +2,6 @@ package model
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import toSendClasses.DatosJuegoToSend
 
 @Accessors
 class DueloDeLeyendasMain {
@@ -45,10 +44,6 @@ class DueloDeLeyendasMain {
 		val pj = personajesDisponibles.findFirst[ it.id == id ]
 		if (pj == null) throw new NoExistePersonajeConEseId
 		pj
-	}
-	
-	def datosDeJuego() {
-		new DatosJuegoToSend(personajesDisponibles)
 	}
 	
 	static def instance() {

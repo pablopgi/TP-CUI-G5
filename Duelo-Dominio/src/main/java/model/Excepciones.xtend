@@ -58,3 +58,9 @@ class NoExistePersonajeConEseId extends Throwable {
 		super("No existe ningun personaje con ese id en el sistema")
 	}
 }
+
+class ParametrosInvalidos extends Throwable {
+	new() {
+		super("Los valores son invalidos")
+	}
+}

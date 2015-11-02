@@ -1,9 +1,21 @@
 angular.module('dueloDeLeyendasApp')
 	.service('DueloDeLeyendasService', function(){
 
-		this.resultadoPartida = function() {
+        this.datosJuego = function(idPlayer, callback) {
+            $http.get('/del' + idPlayer).success(callback).error(errorHandler);
+        }
 
-		};
+        this.jugar = function(decision, callback) {
+            $http.get('/del', decision).success(callback).error(errorHandler);
+        }
+
+        this.jugarContraMrx = function(callback) {
+            $http.get('/del/mrx').success(callback).error(errorHandler);
+        }
+
+        this.estadisticaPj = function(pj, callback) {
+            $http.get('/del/estPj' + pj.id).success(callback).error(errorHandler);
+        }
 
 		this.estadisticaPj = function() {
 			return [

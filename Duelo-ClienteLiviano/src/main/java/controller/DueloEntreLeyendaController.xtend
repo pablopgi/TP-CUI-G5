@@ -21,9 +21,7 @@ import toSendClasses.DatosJuegoToSend
 class DueloEntreLeyendaController {
 	extension JSONUtils = new JSONUtils
 	Duelo dueloSinRival
-	
-	
-	
+		
 	//Envia la respuesta inicial con los datos del juego
 	@Get("/del/:id")
 	def Result datosJuego() {
@@ -37,7 +35,7 @@ class DueloEntreLeyendaController {
 	}
 
 	//Envia el resultado de la partida
-	@Get("/del/")
+	@Get("/del")
 	def Result jugar(@Body String decisionParam) {
 		dueloSinRival = null
 		val decision = decisionParam.fromJson(DecisionUsuarioToSend)
@@ -62,13 +60,13 @@ class DueloEntreLeyendaController {
 		}
 	}
 	
-	@Get("del")
+	@Get("/del/mrx")
 	def Result jugarContraMrX() {
 		dueloSinRival.lucharContraMrEx
-		ok(dueloToResultadoPartidaToSend(dueloActual).toJson)
+		ok(dueloToResultadoPartidaToSend(dueloSinRival).toJson)
 	}
 	
-	@Get("del/:id")
+	@Get("/del/estPj/:id")
 	def Result estadisticaDePersonaje() {
 		val idParam = Integer.valueOf(id)
 		val estadistica = DueloDeLeyendasMain.instance.estadisticaDeMainPlayerParaPj(idParam)
