@@ -37,7 +37,6 @@ class DueloDeLeyendasMain {
 		if(mainPlayer == null) throw new NoExisteJugadorConEseId
 		
 		this.mainPlayer = mainPlayer
-		jugadoresDEL.remove(mainPlayer)
 	}
 	
 	def getPersonajePorId(int id) {
@@ -54,15 +53,15 @@ class DueloDeLeyendasMain {
 	def nuevoDuelo(int idUsuario, int idPjSeleccionado, Posicion posicionSeleccionado) {
 		val dueloActual = new Duelo(mainPlayer)
 		dueloActual.elegirPersonaje(getPersonajePorId(idPjSeleccionado), posicionSeleccionado)
-		dueloActual.definirRival(jugadoresDEL, personajesDisponibles)
+		dueloActual.definirRival(jugadoresDEL.filter[ it != mainPlayer ].toList, personajesDisponibles)
 		dueloActual
 	}
 	
 	def estadisticaDeMainPlayerParaPj(int id) {
 		val pj = getPersonajePorId(id)
 		var estadistica = mainPlayer.getEstadisticaDe(pj)
-		if(estadistica == null) estadistica = new Estadistica(pj)
-		estadistica
+		if(estadistica == null) new Estadistica(pj)
+		else estadistica
 	}
 	
 }

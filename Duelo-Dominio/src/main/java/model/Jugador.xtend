@@ -50,7 +50,6 @@ class Jugador implements IdInterface {
 	
 	def getEstadisticaDe(Personaje personaje){
 		estadisticas.findFirst[est | est.personaje == personaje]
-		
 	}
 
 	def removeEstadisticaDePersonaje(Personaje personaje){

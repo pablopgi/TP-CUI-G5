@@ -2,15 +2,19 @@ package toSendClasses
 
 import java.util.List
 import model.Estadistica
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class EstadisticaToSend {
 	List<EstadisticaDatoParticular> estadistica
+
+	new(){}
 
 	new (Estadistica estadistica) {
 		estadistica = listarEstadisticaConValor(estadistica)
 	}
 
-	def listarEstadisticaConValor(extension Estadistica estadistica) {
+	def listarEstadisticaConValor(Estadistica it) {
 		#[
 			new EstadisticaDatoParticular(
 				"Jugadas",
@@ -44,9 +48,12 @@ class EstadisticaToSend {
 	}
 }
 
+@Accessors
 class EstadisticaDatoParticular {
 	String nombre
 	String valor
+	
+	new(){}
 	
 	new (String nombre, String valor) {
 		this.nombre = nombre

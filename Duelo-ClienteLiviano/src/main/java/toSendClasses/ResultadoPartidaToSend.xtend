@@ -1,7 +1,9 @@
 package toSendClasses
 
 import model.Estadistica
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class ResultadoPartidaToSend {
 	// booleanos para verificar estado del duelo
 	boolean ganador // indica si el retador gano
@@ -19,9 +21,11 @@ class ResultadoPartidaToSend {
 	String nombreJugadorRetado
 	EstadisticaToSend estadisticaRetado
 
+	new() {}
+
 	// constructor para el caso que no haya rival
-	new () {
-		noRival = true
+	new (boolean noRival) {
+		this.noRival = noRival
 	}
 
 	// constructor para el caso que haya un resultado

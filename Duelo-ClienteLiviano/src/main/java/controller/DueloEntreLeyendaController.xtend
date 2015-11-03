@@ -46,6 +46,7 @@ class DueloEntreLeyendaController {
 																	  decision.idPjSeleccionado,
 																	  decision.posicionSeleccionado
 														   )
+			response.contentType = ContentType.APPLICATION_JSON
 			ok(dueloToResultadoPartidaToSend(dueloActual).toJson)
 		}
 		catch (NoExisteJugadorConEseId noPlyr) {
@@ -56,7 +57,8 @@ class DueloEntreLeyendaController {
 		}
 		catch (NoHayRivalesPosiblesException noRival) {
 			dueloSinRival = noRival.duelo
-			ok(new ResultadoPartidaToSend().toJson)
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(new ResultadoPartidaToSend(true).toJson)
 		}
 	}
 	
@@ -70,6 +72,7 @@ class DueloEntreLeyendaController {
 	def Result estadisticaDePersonaje() {
 		val idParam = Integer.valueOf(id)
 		val estadistica = DueloDeLeyendasMain.instance.estadisticaDeMainPlayerParaPj(idParam)
+		response.contentType = ContentType.APPLICATION_JSON
 		ok(new EstadisticaToSend(estadistica).toJson)
 	}
 	
