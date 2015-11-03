@@ -7,9 +7,9 @@
 	<div class="row row-eq-height">
 		<!-- Columna stats -->
 	<div class="col-md-6">
-    	<div class="col-md-5 col-sm-12 headerStyle"><p >Retador</p></div>
+    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{resultadPartida.nombrePjRetador}}</p></div>
     	<div class="col-md-2 col-sm-12 headerStyle"><p >vs</p></div>
-    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{resultadoPartida.nombreJugadorRetado}}</p></div>
+    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{resultadoPartida.nombrePjRetado}}</p></div>
     	<div class="col-md-6 headerStyle"><img ng-src="resources/{{resultadoPartida.nombrePjRetador}}full.png"></div>
     	<div class="col-md-6 headerStyle"><img ng-src="resources/{{resultadoPartida.nombrePjRetado}}full.png"></div>
     	<!--Stats-->
@@ -21,40 +21,6 @@
 			<div class="col-md-6">{{estadistica.nombre}}</div>
 			<div class="col-md-6">{{estadistica.valor}}</div>
 		</div>
-			<!--
-			<div class="col-md-6">
-				<div class="col-md-6">Jugadas</div>
-  				<div class="col-md-6">.col-md-6</div>
- 				<div class="col-md-6">Ganadas</div>
-  				<div class="col-md-6">.col-md-6</div>
- 				<div class="col-md-6">Kill</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Deads</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Assist</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Mejor Ubicacion</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Puntaje</div>
-				<div class="col-md-6">.col-md-6</div>
-			</div>
-			<div class="col-md-6">
-				<div class="col-md-6">Jugadas</div>
-  				<div class="col-md-6">.col-md-6</div>
- 				<div class="col-md-6">Ganadas</div>
-  				<div class="col-md-6">.col-md-6</div>
- 				<div class="col-md-6">Kill</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Deads</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Assist</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Mejor Ubicacion</div>
-				<div class="col-md-6">.col-md-6</div>
-				<div class="col-md-6">Puntaje</div>
-				<div class="col-md-6">.col-md-6</div>
-			</div>
-			-->
 	</div>
 	<!-- Columna resultado Victoria -->
 	<div class="col-md-6 fondoVictoria" ng-show="resultadPartida.ganador">

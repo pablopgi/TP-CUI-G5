@@ -16,7 +16,7 @@ angular.module('dueloDeLeyendasApp')
         this.estadisticaPj = function(pj, callback) {
             $http.get('/del/estPj' + pj.id).success(callback).error(errorHandler);
         }
-
+/*
 		this.estadisticaPj = function() {
 			return [
 					{
@@ -107,5 +107,5 @@ angular.module('dueloDeLeyendasApp')
 			        }
 		    	]
 			};
-		}
+		}*/
 	});

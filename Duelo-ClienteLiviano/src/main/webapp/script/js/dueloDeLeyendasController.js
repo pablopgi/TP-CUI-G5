@@ -18,19 +18,12 @@ angular.module('dueloDeLeyendasApp')
 
     $scope.jugar = function(pos) {
         $scope.decision.posicionSeleccionado = pos;
-        //$scope.resultadoPartida = DueloDeLeyendasService.jugar($scope.decision)
+        $scope.resultadoPartida = DueloDeLeyendasService.jugar($scope.decision)
         $("#dueloModal").modal();
     }
 
     $scope.retarMrX = function(){
-        $scope.noRival = false;
-        $scope.ganador = false;
-        $scope.perdedor = true;
+        $scope.resultadoPartida = DueloDeLeyendasService.jugarContraMrX();
     };
-
-    $scope.ganador = false;
-    $scope.perdedor = false;
-
-    $scope.noRival = true;
     
   });
