@@ -17,6 +17,7 @@ import toSendClasses.DatosJuegoToSend
 import toSendClasses.DecisionUsuarioToSend
 import toSendClasses.EstadisticaToSend
 import toSendClasses.ResultadoPartidaToSend
+import model.ParametrosInvalidos
 
 @Controller
 class DueloEntreLeyendaController {
@@ -27,12 +28,17 @@ class DueloEntreLeyendaController {
 	@Get("/del/:id")
 	def Result datosJuego() {
 		val idParam = Integer.valueOf(id)
-    	DueloDeLeyendasMain.instance.setMainPlayer(idParam)
-		val pjsDelJuego = DueloDeLeyendasMain.instance.personajesDisponibles
-		val datos = new DatosJuegoToSend(pjsDelJuego)
-		
-		response.contentType = ContentType.APPLICATION_JSON
-		ok(datos.toJson)
+		try {
+	    	DueloDeLeyendasMain.instance.setMainPlayer(idParam)
+			val pjsDelJuego = DueloDeLeyendasMain.instance.personajesDisponibles
+			val datos = new DatosJuegoToSend(pjsDelJuego)
+			
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(datos.toJson)			
+		}
+		catch (NoExisteJugadorConEseId noPlayer) {
+			notFound("No existe jugador con id '" + idParam + "'")
+		}
 	}
 
 	//Envia el resultado de la partida
@@ -49,6 +55,9 @@ class DueloEntreLeyendaController {
 														   )
 			response.contentType = ContentType.APPLICATION_JSON
 			ok(dueloToResultadoPartidaToSend(dueloActual).toJson)
+		}
+		catch(ParametrosInvalidos wrngParams) {
+			badRequest("Parametros invalidos")
 		}
 		catch (NoExisteJugadorConEseId noPlyr) {
 			notFound("No existe jugador con id '" + decision.idUsuario + "'")
@@ -72,9 +81,14 @@ class DueloEntreLeyendaController {
 	@Get("/del/estPj/:id")
 	def Result estadisticaDePersonaje() {
 		val idParam = Integer.valueOf(id)
-		val estadistica = DueloDeLeyendasMain.instance.estadisticaDeMainPlayerParaPj(idParam)
-		response.contentType = ContentType.APPLICATION_JSON
-		ok(new EstadisticaToSend(estadistica).toJson)
+		try {
+			val estadistica = DueloDeLeyendasMain.instance.estadisticaDeMainPlayerParaPj(idParam)
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(new EstadisticaToSend(estadistica).toJson)			
+		}
+		catch(NoExistePersonajeConEseId noPj) {
+			notFound("No existe personaje con id : " + idParam)
+		}
 	}
 	
 	def dueloToResultadoPartidaToSend(Duelo duelo) {
