@@ -49,7 +49,9 @@ class Jugador implements IdInterface {
 	}
 	
 	def getEstadisticaDe(Personaje personaje){
-		estadisticas.findFirst[est | est.personaje == personaje]
+		var estadistica = estadisticas.findFirst[est | est.personaje == personaje]
+		if(estadistica == null) new Estadistica(personaje)
+		else estadistica
 	}
 
 	def removeEstadisticaDePersonaje(Personaje personaje){
@@ -80,6 +82,10 @@ class MRX extends Jugador {
 	
 	override ultimoPersonajeConElQueInicio() {
 		new Personaje("El Maestruli", Posicion.MIDDLE)
+	}
+	
+	override getEstadisticaDe(Personaje personaje){
+		new Estadistica(this.ultimoPersonajeConElQueInicio)
 	}
 	
 }

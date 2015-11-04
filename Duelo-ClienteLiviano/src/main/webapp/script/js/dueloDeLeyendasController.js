@@ -40,7 +40,18 @@ angular.module('dueloDeLeyendasApp')
     };
 
     $scope.retarMrX = function(){
-        $scope.resultadoPartida = DueloDeLeyendasService.jugarContraMrX();
+        DueloDeLeyendasService.jugarContraMrx(function(data){
+            $scope.ganador = data.ganador;
+            $scope.perdedor = data.perdedor;
+            $scope.noRival = data.noRival;
+            $scope.nombrePjRetador = data.nombrePjRetador;
+            $scope.ataqueRetador = data.ataqueRetador;
+            $scope.estadisticaRetador = data.estadisticaRetador;
+            $scope.nombrePjRetado = data.nombrePjRetado;
+            $scope.ataqueRetado = data.ataqueRetado;
+            $scope.nombreJugadorRetado = data.nombreJugadorRetado;
+            $scope.estadisticaRetado = data.estadisticaRetado;
+        });
     };
 
   });

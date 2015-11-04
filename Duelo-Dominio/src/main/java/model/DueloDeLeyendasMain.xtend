@@ -59,9 +59,7 @@ class DueloDeLeyendasMain {
 	
 	def estadisticaDeMainPlayerParaPj(int id) {
 		val pj = getPersonajePorId(id)
-		var estadistica = mainPlayer.getEstadisticaDe(pj)
-		if(estadistica == null) new Estadistica(pj)
-		else estadistica
+		mainPlayer.getEstadisticaDe(pj)
 	}
 	
 }

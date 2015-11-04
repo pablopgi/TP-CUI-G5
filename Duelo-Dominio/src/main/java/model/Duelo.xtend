@@ -182,7 +182,7 @@ class DefinirDuelo extends EtapaDeDuelo {
 	}
 		
 	override setearAMRXComoRival(Duelo duelo) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 }

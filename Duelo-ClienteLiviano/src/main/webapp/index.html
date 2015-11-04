@@ -64,10 +64,10 @@
 		   	<div class="modal-dialog modal-lg">
 		   	   <!-- Contenido de ventana Modal-->
 				<div class="modal-content">
-			   		<div ng-show="!resultadoPartida.noRival">
+			   		<div ng-show="!noRival">
 			   			<div ng-include="'modalResultado.html'"></div>
 			   		</div>
-			   		<div ng-show="resultadoPartida.noRival">
+			   		<div ng-show="noRival">
 			   			<div ng-include="'modalNoRival.html'"></div>
 			   		</div>
 		   		</div>

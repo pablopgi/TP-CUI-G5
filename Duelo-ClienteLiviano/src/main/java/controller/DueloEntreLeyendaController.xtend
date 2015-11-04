@@ -63,7 +63,7 @@ class DueloEntreLeyendaController {
 		}
 	}
 	
-	@Get("/del/mrx")
+	@Get("/del/mrx/")
 	def Result jugarContraMrX() {
 		dueloSinRival.lucharContraMrEx
 		ok(dueloToResultadoPartidaToSend(dueloSinRival).toJson)

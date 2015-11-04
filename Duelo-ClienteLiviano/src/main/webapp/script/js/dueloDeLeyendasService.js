@@ -18,7 +18,7 @@ angular.module('dueloDeLeyendasApp')
         }
 
         this.jugarContraMrx = function(callback) {
-            $http.get('/del/mrx')
+            $http.get('/del/mrx/')
             	.success(callback)
             	.error(function(error){
             		alert('Error en el duelo con MrX')

@@ -43,6 +43,6 @@ class ResultadoPartidaToSend {
 	 	this.nombrePjRetado = nombrePjRetado
 	 	this.ataqueRetado = ataqueRetado
 	 	nombreJugadorRetado = nombreRetado
-	 	this.estadisticaRetado = new EstadisticaToSend(estadisticaRetador)
+	 	this.estadisticaRetado = new EstadisticaToSend(estadisticaRetado)
 	}
 }
