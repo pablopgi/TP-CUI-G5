@@ -7,34 +7,34 @@
 	<div class="row row-eq-height">
 		<!-- Columna stats -->
 	<div class="col-md-6">
-    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{resultadPartida.nombrePjRetador}}</p></div>
+    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{nombrePjRetador}}</p></div>
     	<div class="col-md-2 col-sm-12 headerStyle"><p >vs</p></div>
-    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{resultadoPartida.nombrePjRetado}}</p></div>
-    	<div class="col-md-6 headerStyle"><img ng-src="resources/{{resultadoPartida.nombrePjRetador}}full.png"></div>
-    	<div class="col-md-6 headerStyle"><img ng-src="resources/{{resultadoPartida.nombrePjRetado}}full.png"></div>
+    	<div class="col-md-5 col-sm-12 headerStyle"><p >{{nombrePjRetado}}</p></div>
+    	<div class="col-md-6 headerStyle"><img ng-src="resources/{{nombrePjRetador}}.png"></div>
+    	<div class="col-md-6 headerStyle"><img ng-src="resources/{{nombrePjRetado}}.png"></div>
     	<!--Stats-->
-	  	<div class="row" ng-repeat="estadistica in resultadoPartida.estadisticaRetador">
+	  	<div class="col-md-6" ng-repeat="estadistica in estadisticaRetador.estadistica">
 			<div class="col-md-6">{{estadistica.nombre}}</div>
 			<div class="col-md-6">{{estadistica.valor}}</div>
 		</div>
-	  	<div class="row" ng-repeat="estadistica in resultadoPartida.estadisticaRetado">
+	  	<div class="col-md-6" ng-repeat="estadistica in estadisticaRetado.estadistica">
 			<div class="col-md-6">{{estadistica.nombre}}</div>
 			<div class="col-md-6">{{estadistica.valor}}</div>
 		</div>
 	</div>
 	<!-- Columna resultado Victoria -->
-	<div class="col-md-6 fondoVictoria" ng-show="resultadPartida.ganador">
+	<div class="col-md-6 fondoVictoria" ng-show="ganador">
 		<div class="bloqueCentrado">
 			<P class="letraVerdeOscuro">GANASTE</P>
-			<P class="letraNegraTamanioGrande">{{resultadPartida.ataqueRetador}} A {{resultadoPartida.ataqueRetado}}</P>
+			<P class="letraNegraTamanioGrande">{{ataqueRetador}} A {{ataqueRetado}}</P>
 			<P class="letraNegraTamanioGrande">En Hora Buena</P>				            	
 		</div>
 	</div>
     <!-- Columna resultado Derrota -->
-    <div class="col-md-6 fondoDerrota" ng-show="resultadoPartida.perdedor">
+    <div class="col-md-6 fondoDerrota" ng-show="perdedor">
         <div class="bloqueCentrado">
         	<P class="letraRoja">PERDISTE!</P>
-        	<P class="letraNegraTamanioGrande">{{resultadPartida.ataqueRetador}} A {{resultadoPartida.ataqueRetado}}</P>
+        	<P class="letraNegraTamanioGrande">{{ataqueRetador}} A {{ataqueRetado}}</P>
 			<P class="letraNegraTamanioGrande">Honores al ganador:{{nombreJugadorRetado}}</P>
 		</div>
 	</div>
@@ -42,10 +42,10 @@
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default btn-block" data-dismiss="modal" style="background: black; color: white; text-align: center">
-		<div ng-show="resultadoPartida.ganador">
+		<div ng-show="ganador">
 			Celebrar victoria
 		</div>
-		<div ng-show="resultadoPartida.perdedor">
+		<div ng-show="perdedor">
 			Perdi :(
 		</div>
 	</button>

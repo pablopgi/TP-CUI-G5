@@ -10,12 +10,13 @@ import org.uqbar.xtrest.api.XTRest
 import org.uqbar.xtrest.api.annotation.Body
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
+import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
+import toSendClasses.DatosJuegoToSend
 import toSendClasses.DecisionUsuarioToSend
 import toSendClasses.EstadisticaToSend
 import toSendClasses.ResultadoPartidaToSend
-import toSendClasses.DatosJuegoToSend
 
 @Controller
 class DueloEntreLeyendaController {
@@ -35,7 +36,7 @@ class DueloEntreLeyendaController {
 	}
 
 	//Envia el resultado de la partida
-	@Get("/del")
+	@Post("/del/")
 	def Result jugar(@Body String decisionParam) {
 		dueloSinRival = null
 		val decision = decisionParam.fromJson(DecisionUsuarioToSend)

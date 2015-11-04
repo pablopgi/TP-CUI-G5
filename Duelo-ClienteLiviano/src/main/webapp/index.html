@@ -29,7 +29,7 @@
 		<!--Seleccion de personaje-->
 		  <div class="col-md-6 img-responsive paddingButton text-center" ng-repeat="pj in pjs">
 		  	<button class="noPaddNoBorde img-rounded hvr-shrink" ng-click="refreshPj(pj)">
-		  		<img ng-src="/resources/{{pjSeleccionado.nombre}}.png" class="img-rounded">
+		  		<img ng-src="/resources/{{pj.nombre}}.png" class="img-rounded">
 		  	</button>
 		  </div>
 		</div>
@@ -76,7 +76,7 @@
 		<hr>
 		<!--Stats personaje seleccionado-->
 		<p class="letraAzulTamanio25Centrada">Stats!</p>
-	  	<div class="row" ng-repeat="estadistica in estadisticaPjActual">
+	  	<div class="row" ng-repeat="estadistica in estadisticaPjActual.estadistica">
 			<div class="col-md-6 letraVerde letraChica">{{estadistica.nombre}}</div>
 			<div class="col-md-6">{{estadistica.valor}}</div>
 		</div>
