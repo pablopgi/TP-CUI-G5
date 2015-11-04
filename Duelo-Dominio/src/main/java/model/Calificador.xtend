@@ -8,9 +8,9 @@ class Calificador {
 		var criterios = newArrayList
 		
 		if(partida.gano){
+			criterios.add(new CriterioKillingSpread)
 			criterios.add(new CriterioRampage)
 			criterios.add(new CriterioDominador)
-			criterios.add(new CriterioKillingSpread)
 		}
 		else{
 			criterios.add(new CriterioShameOnYou)
@@ -73,8 +73,7 @@ class CriterioKillingSpread extends CriterioCalificacion {
 	}
 	
 	override cumpleCondicion(Partida partida, Jugador jugador) {
-		partida.gano &&
-		jugador.partidasEnLaPosicion(partida.posicionElegida).size < 2
+		partida.gano
 	}
 
 }

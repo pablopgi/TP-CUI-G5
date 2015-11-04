@@ -13,13 +13,19 @@
     	<div class="col-md-6 headerStyle"><img ng-src="resources/{{nombrePjRetador}}.png"></div>
     	<div class="col-md-6 headerStyle"><img ng-src="resources/{{nombrePjRetado}}.png"></div>
     	<!--Stats-->
-	  	<div class="col-md-6" ng-repeat="estadistica in estadisticaRetador.estadistica">
-			<div class="col-md-6">{{estadistica.nombre}}</div>
-			<div class="col-md-6">{{estadistica.valor}}</div>
-		</div>
-	  	<div class="col-md-6" ng-repeat="estadistica in estadisticaRetado.estadistica">
-			<div class="col-md-6">{{estadistica.nombre}}</div>
-			<div class="col-md-6">{{estadistica.valor}}</div>
+    	<div>
+		  	<div class="col-md-6">
+		  		<div class="row" ng-repeat="estadistica in estadisticaRetador.estadistica">
+					<div class="col-md-6">{{estadistica.nombre}}</div>
+					<div class="col-md-6">{{estadistica.valor}}</div>
+				</div>
+			</div>
+		  	<div class="col-md-6" >
+		  		<div class="row" ng-repeat="estadistica in estadisticaRetado.estadistica">
+					<div class="col-md-6">{{estadistica.nombre}}</div>
+					<div class="col-md-6">{{estadistica.valor}}</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Columna resultado Victoria -->
