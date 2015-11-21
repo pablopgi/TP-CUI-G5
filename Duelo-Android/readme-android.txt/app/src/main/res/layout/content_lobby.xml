@@ -14,9 +14,19 @@
     tools:context="tp.ui.unq.duelodeleyendas.LobbyActivity">
 
     <TextView
-        android:text="Hello World!"
+        android:text="Especialidades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:textSize="25dp"
+        android:padding="2dp"
+        android:id="@+id/textView2"
+        />
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView2"
+        android:background="@android:color/darker_gray"/>
 
 </RelativeLayout>
