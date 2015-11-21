@@ -17,7 +17,6 @@ angular.module('dueloDeLeyendasApp')
 		$scope.pjSeleccionado = pj
         $scope.decision.idPjSeleccionado = pj.id
         DueloDeLeyendasService.estadisticaPj(pj, function(data) {
-            console.log(data);
             $scope.estadisticaPjActual = data;
         })
 	};
