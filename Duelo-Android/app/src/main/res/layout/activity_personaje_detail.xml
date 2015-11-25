@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout android:id="@+id/app_bar"
         android:layout_width="match_parent" android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:backgroundTint="@color/black"
+        android:background="@color/black"
 
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -35,7 +35,8 @@
                 android:id="@+id/imgPj"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:src="@drawable/amumu" />
+                android:background="@color/black"
+                />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 

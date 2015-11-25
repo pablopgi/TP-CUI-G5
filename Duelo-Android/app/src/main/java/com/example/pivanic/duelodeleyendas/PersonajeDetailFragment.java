@@ -54,8 +54,12 @@ public class PersonajeDetailFragment extends Fragment {
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null ) {
                 appBarLayout.setTitle(personaje.toString());
+                ImageView imgPj = ((ImageView) appBarLayout.findViewById(R.id.imgPj));
+                imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
             } else {
                 activity.setTitle(personaje.toString());
+                ImageView imgPj = ((ImageView) activity.findViewById(R.id.imgPj));
+                imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
             }
         }
     }
@@ -66,10 +70,8 @@ public class PersonajeDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_personaje_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-        if (personaje != null) {
-            TextView textView = ((TextView) rootView.findViewById(R.id.lblPersonajeSelect));
-            textView.setText(personaje.toString());
-            //((TextView) rootView.findViewById(R.id.lblPersonajeSelect)).setText(personaje.toString());
+        if (personaje == null) {
+            ((TextView) rootView.findViewById(R.id.lblPersonajeSelect)).setText(personaje.toString());
             ImageView imgPj = ((ImageView) rootView.findViewById(R.id.imgPj));
             imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
         }
