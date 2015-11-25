@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,34 +49,31 @@ public class PersonajeDetailFragment extends Fragment {
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
             personaje = (Personaje) getArguments().get(ARG_ITEM_ID);
-
-
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null ) {
-                appBarLayout.setTitle(personaje.toString());
-                ImageView imgPj = ((ImageView) appBarLayout.findViewById(R.id.imgPj));
-                imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
-            } else {
-                activity.setTitle(personaje.toString());
-                ImageView imgPj = ((ImageView) activity.findViewById(R.id.imgPj));
-                imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
-            }
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_personaje_detail, container, false);
-
+        /*
         // Show the dummy content as text in a TextView.
-        if (personaje == null) {
+        if (personaje != null) {
+            Log.e("DEBUG", " paso por el if del onCreateView");
+            Log.e("DEBUG", personaje.toString());
             ((TextView) rootView.findViewById(R.id.lblPersonajeSelect)).setText(personaje.toString());
             ImageView imgPj = ((ImageView) rootView.findViewById(R.id.imgPj));
             imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
-        }
+        }*/
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Activity activity = this.getActivity();
+        ((PersonajeDetailActivity) activity).setToolBarAndButton(personaje);
+
     }
 }

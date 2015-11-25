@@ -1,5 +1,6 @@
 package com.example.pivanic.duelodeleyendas;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,10 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
+import com.example.pivanic.duelodeleyendas.model.Personaje;
 
 /**
  * An activity representing a single Personaje detail screen. This
@@ -53,13 +58,31 @@ public class PersonajeDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
+
             arguments.putSerializable(PersonajeDetailFragment.ARG_ITEM_ID,
                     getIntent().getSerializableExtra(PersonajeDetailFragment.ARG_ITEM_ID));
+
             PersonajeDetailFragment fragment = new PersonajeDetailFragment();
+
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.personaje_detail_container, fragment)
                     .commit();
+        }
+    }
+
+
+
+    public void setToolBarAndButton(Personaje personaje) {
+        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) this.findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null ) {
+            appBarLayout.setTitle(personaje.toString());
+            ImageView imgPj = ((ImageView) appBarLayout.findViewById(R.id.imgPj));
+            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
+        } else {
+            this.setTitle(personaje.toString());
+            ImageView imgPj = ((ImageView) this.findViewById(R.id.imgPj));
+            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
         }
     }
 
