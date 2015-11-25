@@ -11,8 +11,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.pivanic.duelodeleyendas.dummy.DummyContent;
+import com.example.pivanic.duelodeleyendas.model.DatosJuego;
+import com.example.pivanic.duelodeleyendas.model.Estadistica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
 import com.example.pivanic.duelodeleyendas.model.Repo;
+import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
+import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
+
+import java.util.List;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+import retrofit.http.Path;
 
 /**
  * A list fragment representing a list of Personajes. This fragment
@@ -41,6 +53,8 @@ public class PersonajeListFragment extends ListFragment{
      * The current activated item position. Only used on tablets.
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
+    private int unIdJugadorHardcodeado = 0;
+    private List<Personaje> personajes;
 
 
     /**
@@ -76,12 +90,14 @@ public class PersonajeListFragment extends ListFragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
+        //Guardo los personajes en una variable de instancia
+        getDatosJuego();
+
         setListAdapter(new ArrayAdapter<Personaje>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                Repo.instance().pjs()));
+                personajes));
     }
 
     @Override
@@ -157,6 +173,24 @@ public class PersonajeListFragment extends ListFragment{
         }
 
         mActivatedPosition = position;
+    }
+
+    private void getDatosJuego(){
+        DueloDeLeyendasService delService = new DueloDeLeyendasConnect().getService();
+
+        Call<DatosJuego> datosCall = delService.getDatosJuego(unIdJugadorHardcodeado);
+
+        datosCall.enqueue(new Callback<DatosJuego>() {
+            @Override
+            public void onResponse(Response<DatosJuego> response, Retrofit retrofit) {
+                personajes = response.body().getPersonajes();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //TODO: tirar un mensaje de error o algo
+            }
+        });
     }
 
 }

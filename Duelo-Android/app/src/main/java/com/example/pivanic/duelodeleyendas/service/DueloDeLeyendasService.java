@@ -13,8 +13,8 @@ import retrofit.http.Path;
 public interface DueloDeLeyendasService {
 
     @GET("del/{idJugador}")
-    public Call<DatosJuego> getDatosJuego(@Path("idJugador") String idJugador);
+    public Call<DatosJuego> getDatosJuego(@Path("idJugador") int idJugador);
 
     @GET("del/estPj/{idPj}")
-    public Call<Estadistica> getEstadisticaPersonaje(@Path("idPj") String idPj);
+    public Call<Estadistica> getEstadisticaPersonaje(@Path("idPj") int idPj);
 }
