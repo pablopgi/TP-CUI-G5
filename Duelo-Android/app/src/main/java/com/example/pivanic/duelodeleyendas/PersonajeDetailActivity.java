@@ -1,5 +1,6 @@
 package com.example.pivanic.duelodeleyendas;
 
+import android.app.AlertDialog;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -39,9 +40,8 @@ public class PersonajeDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstadisticasDialog.class);
+                intent.putExtra(PersonajeDetailFragment.ARG_ITEM_ID, );
                 startActivity(intent);
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 
