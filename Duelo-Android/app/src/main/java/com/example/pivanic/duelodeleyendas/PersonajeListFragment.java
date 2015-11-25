@@ -3,9 +3,12 @@ package com.example.pivanic.duelodeleyendas;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.pivanic.duelodeleyendas.dummy.DummyContent;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
@@ -20,7 +23,7 @@ import com.example.pivanic.duelodeleyendas.model.Repo;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class PersonajeListFragment extends ListFragment {
+public class PersonajeListFragment extends ListFragment{
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -39,6 +42,7 @@ public class PersonajeListFragment extends ListFragment {
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
 
+
     /**
      * A callback interface that all activities containing this fragment must
      * implement. This mechanism allows activities to be notified of item
@@ -48,7 +52,7 @@ public class PersonajeListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(String id);
+        public void onItemSelected(Personaje pj);
     }
 
     /**
@@ -57,7 +61,7 @@ public class PersonajeListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onItemSelected(Personaje pj) {
         }
     };
 
@@ -117,7 +121,11 @@ public class PersonajeListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+
+        Personaje personaje = (Personaje) listView.getAdapter().getItem(position);
+        Toast.makeText(getContext(), personaje.toString(), Toast.LENGTH_LONG).show();
+
+        mCallbacks.onItemSelected(personaje);
     }
 
     @Override
@@ -150,4 +158,5 @@ public class PersonajeListFragment extends ListFragment {
 
         mActivatedPosition = position;
     }
+
 }

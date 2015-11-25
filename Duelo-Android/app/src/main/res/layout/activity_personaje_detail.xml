@@ -9,7 +9,17 @@
     <android.support.design.widget.AppBarLayout android:id="@+id/app_bar"
         android:layout_width="match_parent" android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
+        android:backgroundTint="@color/black"
+
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/lblPersonajeSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:context=".PersonajeDetailFragment"/>
 
         <android.support.design.widget.CollapsingToolbarLayout android:id="@+id/toolbar_layout"
             android:layout_width="match_parent" android:layout_height="match_parent"
@@ -20,6 +30,12 @@
                 android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <ImageView
+                android:id="@+id/imgPj"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/amumu" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -32,7 +48,8 @@
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|start" android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/stat_notify_chat"
+        android:src="@drawable/estadisticasbtn"
+        app:backgroundTint="@color/red"
         app:layout_anchor="@+id/personaje_detail_container" app:layout_anchorGravity="top|end" />
 
 </android.support.design.widget.CoordinatorLayout>

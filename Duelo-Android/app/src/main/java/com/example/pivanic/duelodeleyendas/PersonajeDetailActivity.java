@@ -53,8 +53,8 @@ public class PersonajeDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(PersonajeDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(PersonajeDetailFragment.ARG_ITEM_ID));
+            arguments.putSerializable(PersonajeDetailFragment.ARG_ITEM_ID,
+                    getIntent().getSerializableExtra(PersonajeDetailFragment.ARG_ITEM_ID));
             PersonajeDetailFragment fragment = new PersonajeDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

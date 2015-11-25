@@ -1,9 +1,11 @@
 package com.example.pivanic.duelodeleyendas.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Morlock on 24/11/2015.
  */
-public class Personaje {
+public class Personaje implements Serializable {
     Integer id;
     String name;
 
@@ -22,4 +24,7 @@ public class Personaje {
         return id;
     }
 
+    public String getAvatar() {
+        return name.toLowerCase();
+    }
 }
