@@ -27,6 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PersonajeListActivity" />
         </activity>
+        <activity android:name=".EstadisticasDialog"></activity>
     </application>
 
 </manifest>

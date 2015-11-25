@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
+import com.example.pivanic.duelodeleyendas.model.Estadistica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
 
 /**
@@ -37,6 +38,8 @@ public class PersonajeDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EstadisticasDialog.class);
+                startActivity(intent);
                 Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
