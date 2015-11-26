@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DueloDeLeyendas</string>
     <string name="title_personaje_detail">Personaje Detail</string>
+    <string name="estadistica">Estadistica</string>
 </resources>

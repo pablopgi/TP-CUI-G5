@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Personaje implements Serializable {
     Integer id;
-    String name;
+    String nombre;
     Posicion posicionIdeal;
     List<Caracteristica> especialidades;
     List<Caracteristica> debilidades;
@@ -14,16 +14,16 @@ public class Personaje implements Serializable {
 
     public Personaje(Integer id, String name){
         this.id = id;
-        this.name = name;
+        this.nombre = name;
     }
 
-    public String toString(){ return name; }
+    public String toString(){ return nombre; }
 
     public Integer getId(){ return id; }
     public void setId(Integer id) { this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() { return nombre; }
+    public void setName(String name) { this.nombre = name; }
 
     public Posicion getPosicionIdeal() { return posicionIdeal; }
     public void setPosicionIdeal(Posicion posicionIdeal) { this.posicionIdeal = posicionIdeal; }
@@ -36,6 +36,6 @@ public class Personaje implements Serializable {
 
 
     public String getAvatar() {
-        return name.toLowerCase();
+        return nombre.toLowerCase();
     }
 }

@@ -27,7 +27,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PersonajeListActivity" />
         </activity>
-        <activity android:name=".EstadisticasDialog"></activity>
+        <activity
+            android:name=".EstadisticasDialog"
+            android:label="@string/estadistica"
+            android:parentActivityName=".PersonajeDetailActivity"
+            android:theme="@android:style/Theme.Holo.Dialog" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EstadisticasDialog" />
+        </activity>
+
     </application>
 
 </manifest>
