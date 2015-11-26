@@ -34,7 +34,7 @@
             android:theme="@android:style/Theme.Holo.Dialog" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".EstadisticasDialog" />
+                android:value=".PersonajeDetailActivity" />
         </activity>
 
     </application>
