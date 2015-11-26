@@ -18,6 +18,7 @@ import com.example.pivanic.duelodeleyendas.model.Repo;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Call;
@@ -54,7 +55,7 @@ public class PersonajeListFragment extends ListFragment{
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
     private int unIdJugadorHardcodeado = 0;
-    private List<Personaje> personajes;
+    private List<Personaje> personajes = new ArrayList<>();
 
 
     /**
@@ -183,7 +184,8 @@ public class PersonajeListFragment extends ListFragment{
         datosCall.enqueue(new Callback<DatosJuego>() {
             @Override
             public void onResponse(Response<DatosJuego> response, Retrofit retrofit) {
-                personajes = response.body().getPersonajes();
+                personajes.clear();
+                personajes.addAll(response.body().getPersonajes());
             }
 
             @Override

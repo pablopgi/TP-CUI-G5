@@ -1,8 +1,10 @@
 package com.example.pivanic.duelodeleyendas;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class PersonajeDetailFragment extends Fragment {
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
             personaje = (Personaje) getArguments().get(ARG_ITEM_ID);
+
         }
     }
 

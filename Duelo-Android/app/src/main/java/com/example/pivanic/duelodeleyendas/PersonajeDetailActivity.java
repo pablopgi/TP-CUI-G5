@@ -16,6 +16,13 @@ import android.widget.ImageView;
 import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
 import com.example.pivanic.duelodeleyendas.model.Estadistica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
+import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
+import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * An activity representing a single Personaje detail screen. This
@@ -40,13 +47,11 @@ public class PersonajeDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstadisticasDialog.class);
-                intent.putExtra(PersonajeDetailFragment.ARG_ITEM_ID, );
+                int idPj = ((Personaje) getIntent().getSerializableExtra(PersonajeDetailFragment.ARG_ITEM_ID)).getId();
+                intent.putExtra(PersonajeDetailFragment.ARG_ITEM_ID, idPj);
                 startActivity(intent);
             }
         });
-
-        // Show the Up button in the action bar.
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -73,8 +78,6 @@ public class PersonajeDetailActivity extends AppCompatActivity {
                     .commit();
         }
     }
-
-
 
     public void setToolBarAndButton(Personaje personaje) {
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) this.findViewById(R.id.toolbar_layout);
@@ -105,4 +108,6 @@ public class PersonajeDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
