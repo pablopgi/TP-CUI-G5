@@ -51,15 +51,6 @@ public class PersonajeDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_personaje_detail, container, false);
-        /*
-        // Show the dummy content as text in a TextView.
-        if (personaje != null) {
-            Log.e("DEBUG", " paso por el if del onCreateView");
-            Log.e("DEBUG", personaje.toString());
-            ((TextView) rootView.findViewById(R.id.lblPersonajeSelect)).setText(personaje.toString());
-            ImageView imgPj = ((ImageView) rootView.findViewById(R.id.imgPj));
-            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
-        }*/
 
         return rootView;
     }

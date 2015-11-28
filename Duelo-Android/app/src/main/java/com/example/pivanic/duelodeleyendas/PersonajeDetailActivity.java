@@ -91,11 +91,7 @@ public class PersonajeDetailActivity extends AppCompatActivity {
         if (appBarLayout != null ) {
             appBarLayout.setTitle(personaje.toString());
             ImageView imgPj = ((ImageView) appBarLayout.findViewById(R.id.imgPj));
-            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
-        } else {
-            this.setTitle(personaje.toString());
-            ImageView imgPj = ((ImageView) this.findViewById(R.id.imgPj));
-            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
+            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(this, personaje)));
         }
     }
 

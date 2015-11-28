@@ -1,5 +1,7 @@
 package com.example.pivanic.duelodeleyendas.adapter;
 
+import android.app.Activity;
+
 import com.example.pivanic.duelodeleyendas.R;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
 
@@ -22,12 +24,16 @@ public class AvatarAdapter {
         return mapaAvatares;
     }
 
-    public int getAvatar(Personaje personaje) {
+    public int getAvatar(Activity context, Personaje personaje) {
+        return context.getResources().getIdentifier(personaje.getAvatar(), "drawable", context.getPackageName());
+
+        /*
         Integer result = getMapaAvatares().get(personaje.getAvatar());
         if (result == null) {
             return R.drawable.amumu;
         }
         return result.intValue();
+        */
     }
 
 }

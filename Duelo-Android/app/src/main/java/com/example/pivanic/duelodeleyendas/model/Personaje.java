@@ -36,6 +36,6 @@ public class Personaje implements Serializable {
 
 
     public String getAvatar() {
-        return nombre.toLowerCase();
+        return nombre.toLowerCase().replace(" ", "_");
     }
 }
