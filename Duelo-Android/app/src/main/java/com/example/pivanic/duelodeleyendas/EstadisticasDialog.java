@@ -33,25 +33,9 @@ public class EstadisticasDialog extends AppCompatActivity {
         namePj = getIntent().getStringExtra("nombrePj");
         obtenerEstadisticaDePj(idPj);
 
-        ((TextView) this.findViewById(R.id.coso)).setText("cosito");
         setTitle(namePj);
-
         ((ListView) findViewById(R.id.estadisticas_list)).setAdapter(new EstadisticaDatoParticularAdapter(this, estadisticas));
-
-        java.lang.System.out.println("La concha de la lora");
     }
-
-    /*
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        ((TextView) this.findViewById(R.id.coso)).setText("cosito");
-        setTitle(namePj);
-
-        setValuesInTable();
-    }
-*/
 
     private void obtenerEstadisticaDePj(int idPj){
         DueloDeLeyendasService ddlService = new DueloDeLeyendasConnect().getService();
