@@ -1,13 +1,11 @@
 package com.example.pivanic.duelodeleyendas;
 
-import android.app.AlertDialog;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -18,15 +16,7 @@ import android.widget.TextView;
 
 import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
 import com.example.pivanic.duelodeleyendas.model.Caracteristica;
-import com.example.pivanic.duelodeleyendas.model.Estadistica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
-import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
-import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
-
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * An activity representing a single Personaje detail screen. This

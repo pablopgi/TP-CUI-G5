@@ -3,18 +3,13 @@ package com.example.pivanic.duelodeleyendas;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.pivanic.duelodeleyendas.dummy.DummyContent;
 import com.example.pivanic.duelodeleyendas.model.DatosJuego;
-import com.example.pivanic.duelodeleyendas.model.Estadistica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
-import com.example.pivanic.duelodeleyendas.model.Repo;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
 
@@ -25,7 +20,6 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
-import retrofit.http.Path;
 
 /**
  * A list fragment representing a list of Personajes. This fragment

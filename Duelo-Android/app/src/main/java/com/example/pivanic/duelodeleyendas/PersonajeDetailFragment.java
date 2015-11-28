@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
 
-import java.util.List;
-
 /**
  * A fragment representing a single Personaje detail screen.
  * This fragment is either contained in a {@link PersonajeListActivity}

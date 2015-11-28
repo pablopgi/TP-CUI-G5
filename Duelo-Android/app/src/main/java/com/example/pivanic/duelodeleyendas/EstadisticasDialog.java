@@ -3,7 +3,6 @@ package com.example.pivanic.duelodeleyendas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.pivanic.duelodeleyendas.adapter.EstadisticaDatoParticularAdapter;
 import com.example.pivanic.duelodeleyendas.model.Estadistica;
@@ -32,6 +31,11 @@ public class EstadisticasDialog extends AppCompatActivity {
         idPj = getIntent().getIntExtra("idPj", 0);
         namePj = getIntent().getStringExtra("nombrePj");
         obtenerEstadisticaDePj(idPj);
+
+        // Disabling 'back' button in toolbar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
 
         setTitle(namePj);
         ((ListView) findViewById(R.id.estadisticas_list)).setAdapter(new EstadisticaDatoParticularAdapter(this, estadisticas));

@@ -23,19 +23,11 @@
             android:label="@string/title_personaje_detail"
             android:parentActivityName=".PersonajeListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PersonajeListActivity" />
         </activity>
         <activity
             android:name=".EstadisticasDialog"
             android:label="@string/estadistica"
-            android:parentActivityName=".PersonajeDetailActivity"
-            >
-            <!-- android:theme="@android:style/Theme.Holo.Dialog" -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".PersonajeDetailActivity" />
+            android:parentActivityName=".PersonajeDetailActivity" >
         </activity>
 
     </application>
