@@ -1,15 +1,17 @@
 package com.example.pivanic.duelodeleyendas;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.pivanic.duelodeleyendas.adapter.EstadisticaDatoParticularAdapter;
 import com.example.pivanic.duelodeleyendas.model.Estadistica;
+import com.example.pivanic.duelodeleyendas.model.EstadisticaDatoParticular;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
+
+import java.util.ArrayList;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -18,9 +20,9 @@ import retrofit.Retrofit;
 
 public class EstadisticasDialog extends AppCompatActivity {
 
-    Estadistica estadistica = new Estadistica();
-    String namePj = "";
-    int idPj;
+    private ArrayList<EstadisticaDatoParticular> estadisticas = new ArrayList<>();
+    private String namePj = "";
+    private int idPj = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,24 @@ public class EstadisticasDialog extends AppCompatActivity {
         obtenerEstadisticaDePj(idPj);
 
         ((TextView) this.findViewById(R.id.coso)).setText("cosito");
+        setTitle(namePj);
 
+        ((ListView) findViewById(R.id.estadisticas_list)).setAdapter(new EstadisticaDatoParticularAdapter(this, estadisticas));
 
+        java.lang.System.out.println("La concha de la lora");
     }
+
+    /*
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        ((TextView) this.findViewById(R.id.coso)).setText("cosito");
+        setTitle(namePj);
+
+        setValuesInTable();
+    }
+*/
 
     private void obtenerEstadisticaDePj(int idPj){
         DueloDeLeyendasService ddlService = new DueloDeLeyendasConnect().getService();
@@ -43,7 +60,9 @@ public class EstadisticasDialog extends AppCompatActivity {
 
             @Override
             public void onResponse(Response<Estadistica> response, Retrofit retrofit) {
-                estadistica = response.body();
+                estadisticas.clear();
+                Estadistica est = response.body();
+                estadisticas.addAll(est.getEstadisticasDatoParticular());
             }
 
             @Override
@@ -52,6 +71,4 @@ public class EstadisticasDialog extends AppCompatActivity {
             }
         });
     }
-
 }
-

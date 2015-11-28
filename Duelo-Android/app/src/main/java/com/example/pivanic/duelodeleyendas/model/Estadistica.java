@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Estadistica {
 
-    List<EstadisticaDatoParticular> estadisticaParticular;
+    List<EstadisticaDatoParticular> estadistica;
 
     public Estadistica(){}
 
@@ -13,11 +13,11 @@ public class Estadistica {
     }
 
     public void setEstadisticaParticular(List<EstadisticaDatoParticular> estadisticas){
-        estadisticaParticular = estadisticas;
+        estadistica = estadisticas;
     }
 
     public List<EstadisticaDatoParticular> getEstadisticasDatoParticular(){
-        return estadisticaParticular;
+        return estadistica;
     }
 
 }

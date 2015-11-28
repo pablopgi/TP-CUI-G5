@@ -140,7 +140,7 @@ public class PersonajeListFragment extends ListFragment{
         // fragment is attached to one) that an item has been selected.
 
         Personaje personaje = (Personaje) listView.getAdapter().getItem(position);
-        Toast.makeText(getContext(), personaje.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), personaje.toString(), Toast.LENGTH_SHORT).show();
 
         mCallbacks.onItemSelected(personaje);
     }
@@ -190,7 +190,7 @@ public class PersonajeListFragment extends ListFragment{
 
             @Override
             public void onFailure(Throwable t) {
-                //TODO: tirar un mensaje de error o algo
+                Toast.makeText(getContext(), "Por favor revise su conexion", Toast.LENGTH_LONG).show();
             }
         });
     }
