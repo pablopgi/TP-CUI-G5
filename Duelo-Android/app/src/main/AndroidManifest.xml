@@ -31,7 +31,8 @@
             android:name=".EstadisticasDialog"
             android:label="@string/estadistica"
             android:parentActivityName=".PersonajeDetailActivity"
-            android:theme="@android:style/Theme.Holo.Dialog" >
+            >
+            <!-- android:theme="@android:style/Theme.Holo.Dialog" -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PersonajeDetailActivity" />

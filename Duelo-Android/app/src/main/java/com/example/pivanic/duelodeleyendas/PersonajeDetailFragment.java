@@ -1,21 +1,14 @@
 package com.example.pivanic.duelodeleyendas;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
-import com.example.pivanic.duelodeleyendas.dummy.DummyContent;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
+
+import java.util.List;
 
 /**
  * A fragment representing a single Personaje detail screen.
@@ -77,6 +70,7 @@ public class PersonajeDetailFragment extends Fragment {
 
         Activity activity = this.getActivity();
         ((PersonajeDetailActivity) activity).setToolBarAndButton(personaje);
+        ((PersonajeDetailActivity) activity).setDatosPersonaje(personaje);
 
     }
 }

@@ -11,9 +11,13 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
+import com.example.pivanic.duelodeleyendas.model.Caracteristica;
 import com.example.pivanic.duelodeleyendas.model.Estadistica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
@@ -47,8 +51,11 @@ public class PersonajeDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstadisticasDialog.class);
-                int idPj = ((Personaje) getIntent().getSerializableExtra(PersonajeDetailFragment.ARG_ITEM_ID)).getId();
-                intent.putExtra(PersonajeDetailFragment.ARG_ITEM_ID, idPj);
+
+                Personaje pj = (Personaje) getIntent().getSerializableExtra(PersonajeDetailFragment.ARG_ITEM_ID);
+
+                intent.putExtra("idPj", pj.getId());
+                intent.putExtra("nombrePj", pj.getName());
                 startActivity(intent);
             }
         });
@@ -90,6 +97,27 @@ public class PersonajeDetailActivity extends AppCompatActivity {
             ImageView imgPj = ((ImageView) this.findViewById(R.id.imgPj));
             imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(personaje)));
         }
+    }
+
+    public void setDatosPersonaje(Personaje personaje){
+        ListView listEspecialidades = (ListView) findViewById(R.id.especialidades_list);
+
+        listEspecialidades.setAdapter(new ArrayAdapter<Caracteristica>(
+                this,
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                personaje.getEspecialidades()));
+
+        ListView listDebilidades = (ListView) findViewById(R.id.debilidades_list);
+
+        listDebilidades.setAdapter(new ArrayAdapter<Caracteristica>(
+                this,
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                personaje.getDebilidades()));
+
+        ((TextView) findViewById(R.id.posicion)).setText(personaje.getPosicionIdeal().toString());
+
     }
 
     @Override

@@ -1,15 +1,13 @@
 package com.example.pivanic.duelodeleyendas;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialogFragment;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.pivanic.duelodeleyendas.model.Estadistica;
-import com.example.pivanic.duelodeleyendas.model.Personaje;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasConnect;
 import com.example.pivanic.duelodeleyendas.service.DueloDeLeyendasService;
 
@@ -20,15 +18,22 @@ import retrofit.Retrofit;
 
 public class EstadisticasDialog extends AppCompatActivity {
 
-    Estadistica estadistica;
+    Estadistica estadistica = new Estadistica();
+    String namePj = "";
+    int idPj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        int idPj = getIntent().getIntExtra(PersonajeDetailFragment.ARG_ITEM_ID,0);
-        obtenerEstadisticaDePj(idPj);
         setContentView(R.layout.activity_estadisticas_dialog);
+
+        idPj = getIntent().getIntExtra("idPj", 0);
+        namePj = getIntent().getStringExtra("nombrePj");
+        obtenerEstadisticaDePj(idPj);
+
+        ((TextView) this.findViewById(R.id.coso)).setText("cosito");
+
+
     }
 
     private void obtenerEstadisticaDePj(int idPj){

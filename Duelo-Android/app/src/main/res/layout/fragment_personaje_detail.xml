@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Especialidades"/>
+            android:text="@string/especialidades_title"/>
 
         <LinearLayout
             android:paddingLeft="50dp"
@@ -34,12 +34,12 @@
                 android:layout_height="5dp"
                 android:background="@android:color/darker_gray"/>
 
-            <TextView
+            <ListView android:id="@+id/especialidades_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Especialidades" />
+                tools:layout="@android:layout/list_content" />
         </LinearLayout>
     </LinearLayout>
 
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Debilidades"/>
+            android:text="@string/debilidades_title"/>
 
         <LinearLayout
             android:paddingLeft="50dp"
@@ -70,12 +70,12 @@
                 android:layout_height="5dp"
                 android:background="@android:color/darker_gray"/>
 
-            <TextView
+            <ListView android:id="@+id/debilidades_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Especialidades" />
+                tools:layout="@android:layout/list_content" />
         </LinearLayout>
     </LinearLayout>
 
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Mejor posicion"/>
+            android:text="@string/posicion_title"/>
 
         <LinearLayout
             android:paddingLeft="50dp"
@@ -106,12 +106,11 @@
                 android:layout_height="5dp"
                 android:background="@android:color/darker_gray"/>
 
-            <TextView
+            <TextView android:id="@+id/posicion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Especialidades" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
     </LinearLayout>
 
