@@ -144,11 +144,8 @@ public class PersonajeListFragment extends ListFragment{
           if (pj.getName().toLowerCase().startsWith(indice))
               coincidentes.add(pj);
         }
-        setListAdapter(new ArrayAdapter<Personaje>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                coincidentes));
+
+        setPersonajes(coincidentes);
     }
 
 
@@ -226,11 +223,7 @@ public class PersonajeListFragment extends ListFragment{
             public void onResponse(Response<DatosJuego> response, Retrofit retrofit) {
                 personajes.addAll(response.body().getPersonajes());
 
-                setListAdapter(new ArrayAdapter<Personaje>(
-                        getActivity(),
-                        android.R.layout.simple_list_item_activated_1,
-                        android.R.id.text1,
-                        personajes));
+                setPersonajes(personajes);
             }
 
             @Override
@@ -240,6 +233,12 @@ public class PersonajeListFragment extends ListFragment{
         });
     }
 
-
+    public void setPersonajes(List<Personaje> pjs){
+        setListAdapter(new ArrayAdapter<Personaje>(
+                getActivity(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                pjs));
+    }
 
 }

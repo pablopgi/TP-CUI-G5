@@ -1,7 +1,9 @@
 package com.example.pivanic.duelodeleyendas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,21 +60,13 @@ public class PersonajeDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_personaje_detail, container, false);
-        this.setToolBarAndButton(personaje);
-        this.setDatosPersonaje(personaje, rootView);
+        setToolBarAndButton(personaje);
+        setDatosPersonaje(personaje, rootView);
+
         return rootView;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-/*
-        Activity activity = this.getActivity();
-        ((PersonajeDetailActivity) activity).setToolBarAndButton(personaje);
-        ((PersonajeDetailActivity) activity).setDatosPersonaje(personaje);
-
-    */
-    }
+    //Methods for setting data in things
 
     public void setToolBarAndButton(Personaje personaje) {
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) getActivity().findViewById(R.id.toolbar_layout);

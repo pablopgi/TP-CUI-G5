@@ -31,7 +31,7 @@ public class PersonajeListActivity extends AppCompatActivity
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
-    private boolean mTwoPane;
+    private boolean esTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +42,21 @@ public class PersonajeListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        if (findViewById(R.id.personaje_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-large and
-            // res/values-sw600dp). If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-
-            // In two-pane mode, list items should be given the
-            // 'activated' state when touched.
-            ((PersonajeListFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.personaje_list))
-                    .setActivateOnItemClick(true);
+        if (estoyEnUnaTablet()) {
+            habilitarModoTablet();
         }
 
-        // TODO: If exposing deep links into your app, handle intents here.
+    }
+
+    private boolean estoyEnUnaTablet() {
+        return findViewById(R.id.personaje_detail_container) != null;
+    }
+
+    private void habilitarModoTablet() {
+        esTablet = true;
+        ((PersonajeListFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.personaje_list))
+                .setActivateOnItemClick(true);
     }
 
     /**
@@ -65,7 +65,7 @@ public class PersonajeListActivity extends AppCompatActivity
      */
     @Override
     public void onItemSelected(Personaje pj) {
-        if (mTwoPane) {
+        if (esTablet) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.

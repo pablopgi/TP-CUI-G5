@@ -76,36 +76,6 @@ public class PersonajeDetailActivity extends AppCompatActivity {
         }
     }
 
-    public void setToolBarAndButton(Personaje personaje) {
-        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) this.findViewById(R.id.toolbar_layout);
-        if (appBarLayout != null ) {
-            appBarLayout.setTitle(personaje.toString());
-            ImageView imgPj = ((ImageView) appBarLayout.findViewById(R.id.imgPj));
-            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(this, personaje)));
-        }
-    }
-
-    public void setDatosPersonaje(Personaje personaje){
-        ListView listEspecialidades = (ListView) findViewById(R.id.especialidades_list);
-
-        listEspecialidades.setAdapter(new ArrayAdapter<Caracteristica>(
-                this,
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                personaje.getEspecialidades()));
-
-        ListView listDebilidades = (ListView) findViewById(R.id.debilidades_list);
-
-        listDebilidades.setAdapter(new ArrayAdapter<Caracteristica>(
-                this,
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                personaje.getDebilidades()));
-
-        ((TextView) findViewById(R.id.posicion)).setText(personaje.getPosicionIdeal().toString());
-
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

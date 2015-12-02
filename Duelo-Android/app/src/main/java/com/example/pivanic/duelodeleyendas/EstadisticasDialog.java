@@ -3,6 +3,7 @@ package com.example.pivanic.duelodeleyendas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.pivanic.duelodeleyendas.adapter.EstadisticaDatoParticularAdapter;
 import com.example.pivanic.duelodeleyendas.model.Estadistica;
@@ -53,7 +54,7 @@ public class EstadisticasDialog extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                // TODO: 25/11/15
+                Toast.makeText(getBaseContext(), "Sin estadistica dispinible", Toast.LENGTH_LONG).show();
             }
         });
     }
