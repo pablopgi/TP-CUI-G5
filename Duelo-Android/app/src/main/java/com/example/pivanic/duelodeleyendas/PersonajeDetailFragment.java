@@ -1,6 +1,5 @@
 package com.example.pivanic.duelodeleyendas;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -9,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.pivanic.duelodeleyendas.adapter.AvatarAdapter;
 import com.example.pivanic.duelodeleyendas.model.Caracteristica;
 import com.example.pivanic.duelodeleyendas.model.Personaje;
-import com.example.pivanic.duelodeleyendas.model.Repo;
 
 /**
  * A fragment representing a single Personaje detail screen.
@@ -89,23 +88,43 @@ public class PersonajeDetailFragment extends Fragment {
 
     public void setDatosPersonaje(Personaje personaje, View rootView) {
         ListView listEspecialidades = (ListView) rootView.findViewById(R.id.especialidades_list);
-
         listEspecialidades.setAdapter(new ArrayAdapter<Caracteristica>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 personaje.getEspecialidades()));
+        setListViewHeightBasedOnChildren(listEspecialidades);
 
         ListView listDebilidades = (ListView) rootView.findViewById(R.id.debilidades_list);
-
         listDebilidades.setAdapter(new ArrayAdapter<Caracteristica>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 personaje.getDebilidades()));
+        setListViewHeightBasedOnChildren(listDebilidades);
 
         ((TextView) rootView.findViewById(R.id.posicion)).setText(personaje.getPosicionIdeal().toString());
-
     }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
 
 }

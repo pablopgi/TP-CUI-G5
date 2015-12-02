@@ -123,5 +123,4 @@ public class PersonajeDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
 }
