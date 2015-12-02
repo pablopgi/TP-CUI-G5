@@ -1,7 +1,9 @@
 package com.example.pivanic.duelodeleyendas;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -49,7 +51,6 @@ public class PersonajeListFragment extends ListFragment{
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
     private int unIdJugadorHardcodeado = 0;
-    private List<Personaje> personajes = new ArrayList<>();
 
 
     /**
@@ -88,11 +89,6 @@ public class PersonajeListFragment extends ListFragment{
         //Guardo los personajes en una variable de instancia
         getDatosJuego();
 
-        setListAdapter(new ArrayAdapter<Personaje>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                personajes));
     }
 
     @Override
@@ -178,8 +174,11 @@ public class PersonajeListFragment extends ListFragment{
         datosCall.enqueue(new Callback<DatosJuego>() {
             @Override
             public void onResponse(Response<DatosJuego> response, Retrofit retrofit) {
-                personajes.clear();
-                personajes.addAll(response.body().getPersonajes());
+                setListAdapter(new ArrayAdapter<Personaje>(
+                                getActivity(),
+                                android.R.layout.simple_list_item_activated_1,
+                                android.R.id.text1,
+                                response.body().getPersonajes()));
             }
 
             @Override

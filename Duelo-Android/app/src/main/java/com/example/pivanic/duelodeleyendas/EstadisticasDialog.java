@@ -28,8 +28,10 @@ public class EstadisticasDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estadisticas_dialog);
 
-        idPj = getIntent().getIntExtra("idPj", 0);
         namePj = getIntent().getStringExtra("nombrePj");
+        setTitle(namePj);
+
+        idPj = getIntent().getIntExtra("idPj", 0);
         obtenerEstadisticaDePj(idPj);
 
         // Disabling 'back' button in toolbar
@@ -37,8 +39,6 @@ public class EstadisticasDialog extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
 
-        setTitle(namePj);
-        ((ListView) findViewById(R.id.estadisticas_list)).setAdapter(new EstadisticaDatoParticularAdapter(this, estadisticas));
     }
 
     private void obtenerEstadisticaDePj(int idPj){
@@ -48,9 +48,7 @@ public class EstadisticasDialog extends AppCompatActivity {
 
             @Override
             public void onResponse(Response<Estadistica> response, Retrofit retrofit) {
-                estadisticas.clear();
-                Estadistica est = response.body();
-                estadisticas.addAll(est.getEstadisticasDatoParticular());
+                ((ListView) findViewById(R.id.estadisticas_list)).setAdapter(new EstadisticaDatoParticularAdapter(getBaseContext(), response.body().getEstadisticasDatoParticular()));
             }
 
             @Override

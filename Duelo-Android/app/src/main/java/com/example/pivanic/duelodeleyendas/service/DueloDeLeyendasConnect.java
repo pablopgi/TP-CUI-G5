@@ -5,7 +5,7 @@ import retrofit.Retrofit;
 
 public class DueloDeLeyendasConnect {
 
-    String SERVER_IP = "192.168.1.46"; //Para comunicarse en el emulador de Android Studio
+    String SERVER_IP = "192.168.1.40"; //Para comunicarse en el emulador de Android Studio
     String SERVER_IP_GENY = "192.168.56.1"; //Para comunicarse con el localhost en el emulador de Genymotion
     String API_URL = "http://" + SERVER_IP + ":9000";
 

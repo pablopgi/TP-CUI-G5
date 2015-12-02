@@ -11,13 +11,14 @@ import com.example.pivanic.duelodeleyendas.R;
 import com.example.pivanic.duelodeleyendas.model.EstadisticaDatoParticular;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EstadisticaDatoParticularAdapter extends BaseAdapter {
-    private static ArrayList<EstadisticaDatoParticular> estadisticas;
+    private static List<EstadisticaDatoParticular> estadisticas;
 
     private LayoutInflater mInflater;
 
-    public EstadisticaDatoParticularAdapter(Context context, ArrayList<EstadisticaDatoParticular> estadist) {
+    public EstadisticaDatoParticularAdapter(Context context, List<EstadisticaDatoParticular> estadist) {
         estadisticas = estadist;
         mInflater = LayoutInflater.from(context);
     }

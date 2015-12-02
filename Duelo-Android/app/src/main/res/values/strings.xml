@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">DueloDeLeyendas</string>
+    <string name="app_name">Duelo De Leyendas</string>
     <string name="title_personaje_detail">Personaje Detail</string>
     <string name="estadistica">Estadistica</string>
     <string name="especialidades_title">Especialidades</string>
     <string name="debilidades_title">Debilidades</string>
     <string name="posicion_title">Mejor posicion</string>
     <string name="estadistica_title">Estadisticas</string>
+    <string name="buscador">buscador</string>
 </resources>
