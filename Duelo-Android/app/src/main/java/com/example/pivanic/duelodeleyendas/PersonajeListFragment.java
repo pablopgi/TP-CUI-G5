@@ -5,8 +5,13 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +39,8 @@ import retrofit.Retrofit;
  */
 public class PersonajeListFragment extends ListFragment{
 
+    public static int MIN_BUSQUEDA_PERSONAJE = 0;
+    public List<Personaje> personajes = new ArrayList<>();
     /**
      * The serialization (saved instance state) Bundle key representing the
      * activated item position. Only used on tablets.
@@ -92,6 +99,11 @@ public class PersonajeListFragment extends ListFragment{
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_personaje_list, null, false);
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -100,7 +112,47 @@ public class PersonajeListFragment extends ListFragment{
                 && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
+
+        // Comportamiento del título de búsqueda
+        EditText tituloContiene = (EditText) this.getView().findViewById(R.id.pjBusqueda);
+        tituloContiene.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() >= MIN_BUSQUEDA_PERSONAJE) {
+                    buscarPersonajeCoincidente();
+                }
+            }
+        });
     }
+
+    public void buscarPersonajeCoincidente(){
+
+        EditText campoBusqueda = (EditText) this.getView().findViewById(R.id.pjBusqueda);
+        String indice = campoBusqueda.getText().toString().toLowerCase();
+
+        List<Personaje> coincidentes= new ArrayList<>();
+
+        for (Personaje pj : personajes) {
+
+          if (pj.getName().toLowerCase().startsWith(indice))
+              coincidentes.add(pj);
+        }
+        setListAdapter(new ArrayAdapter<Personaje>(
+                getActivity(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                coincidentes));
+    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -174,11 +226,13 @@ public class PersonajeListFragment extends ListFragment{
         datosCall.enqueue(new Callback<DatosJuego>() {
             @Override
             public void onResponse(Response<DatosJuego> response, Retrofit retrofit) {
+                personajes.addAll(response.body().getPersonajes());
+
                 setListAdapter(new ArrayAdapter<Personaje>(
-                                getActivity(),
-                                android.R.layout.simple_list_item_activated_1,
-                                android.R.id.text1,
-                                response.body().getPersonajes()));
+                        getActivity(),
+                        android.R.layout.simple_list_item_activated_1,
+                        android.R.id.text1,
+                        personajes));
             }
 
             @Override
@@ -187,5 +241,7 @@ public class PersonajeListFragment extends ListFragment{
             }
         });
     }
+
+
 
 }

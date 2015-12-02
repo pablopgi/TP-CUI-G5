@@ -60,7 +60,7 @@ public class PersonajeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_personaje_detail, container, false);
         this.setToolBarAndButton(personaje);
-        this.setDatosPersonaje(personaje,rootView);
+        this.setDatosPersonaje(personaje, rootView);
         return rootView;
     }
 
@@ -80,6 +80,9 @@ public class PersonajeDetailFragment extends Fragment {
         if (appBarLayout != null ) {
             appBarLayout.setTitle(personaje.toString());
             ImageView imgPj = ((ImageView) appBarLayout.findViewById(R.id.imgPj));
+            imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(getActivity(), personaje)));
+        } else {
+            ImageView imgPj = ((ImageView) getActivity().findViewById(R.id.imgPj));
             imgPj.setImageDrawable(getResources().getDrawable(new AvatarAdapter().getAvatar(getActivity(), personaje)));
         }
     }
